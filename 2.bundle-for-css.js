@@ -105,20 +105,9 @@ webpackJsonp([2],{
 	          _react2.default.createElement(_reactShare.TwitterIcon, { round: true, size: iconSize })
 	        ),
 	        _react2.default.createElement(
-	          _reactShare.GooglePlusShareButton,
+	          _reactShare.WhatsappShareButton,
 	          { url: url },
-	          _react2.default.createElement(_reactShare.GooglePlusIcon, { round: true, size: iconSize }),
-	          _react2.default.createElement(
-	            _reactShare.GooglePlusShareCount,
-	            { url: url },
-	            function (count) {
-	              return _react2.default.createElement(
-	                "div",
-	                { className: "share-count" },
-	                filter(count)
-	              );
-	            }
-	          )
+	          _react2.default.createElement(_reactShare.WhatsappIcon, { round: true, size: iconSize })
 	        ),
 	        _react2.default.createElement(
 	          _reactShare.FacebookShareButton,
