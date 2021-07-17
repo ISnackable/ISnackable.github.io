@@ -326,10 +326,10 @@ webpackJsonp([1],{
 	var React = __webpack_require__(1);
 
 	function LinkedinIcon (props) {
-	    return React.createElement("svg",props,React.createElement("path",{"d":"M49.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H49.837z M21.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H21.959z M25.354,48.137V27.71  h-6.789v20.427H25.354z M3,4h60v60H3V4z","style":{"fillRule":"evenodd","clipRule":"evenodd","fill":"#D8D9D8"}}));
+	    return React.createElement("svg",props,React.createElement("path",{"d":"M49.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195 c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655 c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H49.837z M21.959,24.922c2.367,0,3.842-1.57,3.842-3.531 c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H21.959z M25.354,48.137V27.71 h-6.789v20.427H25.354z M3,4h60v60H3V4z","style":{"fillRule":"evenodd","clipRule":"evenodd","fill":"#d8d9d8"}}));
 	}
 
-	LinkedinIcon.defaultProps = {"height":"67px","style":{"enableBackground":"new 0 0 67 67"},"version":"1.1","viewBox":"0 0 67 67","width":"67px","xmlSpace":"preserve"};
+	LinkedinIcon.defaultProps = {"style":{"enableBackground":"new 0 0 67 67"},"width":"67","height":"67","version":"1.1","viewBox":"0 0 67 67","xmlSpace":"preserve"};
 
 	module.exports = LinkedinIcon;
 

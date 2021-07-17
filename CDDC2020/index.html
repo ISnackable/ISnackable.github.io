@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en" prefix="og: http://ogp.me/ns#"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" href="/component---src-layouts-index-js-2db5931bcb6f43adeb81.js" as="script"/><link rel="preload" href="/component---src-templates-post-template-js-0061dcb532f193a51a3e.js" as="script"/><link rel="preload" href="/path---cddc-2020-a7862a65e91855b83ec1.js" as="script"/><link rel="preload" href="/app-181f15d24de0b3d7cdbb.js" as="script"/><link rel="preload" href="/commons-7b95809cd4e07ac9b1f3.js" as="script"/><style type="text/css" id="server-side-jss">html {
+<!DOCTYPE html><html lang="en" prefix="og: http://ogp.me/ns#"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" href="/component---src-layouts-index-js-8cddc01660720351500c.js" as="script"/><link rel="preload" href="/component---src-templates-post-template-js-90bf2b9dbe5110e6abf7.js" as="script"/><link rel="preload" href="/path---cddc-2020-66c3f9e45737e8f87d33.js" as="script"/><link rel="preload" href="/app-181f15d24de0b3d7cdbb.js" as="script"/><link rel="preload" href="/commons-56fed780373d7fc9ac31.js" as="script"/><style type="text/css" id="server-side-jss">html {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -1340,12 +1340,12 @@ input:-webkit-autofill {
   .jss19 {
     padding: 2rem 3rem 2rem 3rem;
   }
-}</style><title data-react-helmet="true">CDDC2020 CTF Writeup - ISnackable</title><meta data-react-helmet="true" name="description" content="A blog site created with GatsbyJS."/><meta data-react-helmet="true" property="og:url" content="https://isnackable.github.io/CDDC2020/"/><meta data-react-helmet="true" property="og:title" content="CDDC2020 CTF Writeup - ISnackable"/><meta data-react-helmet="true" property="og:description" content="A blog site created with GatsbyJS."/><meta data-react-helmet="true" property="og:image" content="/static/photo-cddc-cover-b0cce218873a325ec061f514920216d0-ada8c.jpg"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="fb:app_id" content=""/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:creator" content=""/><link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#ffffff"/><link rel="alternate" type="application/rss+xml" href="/rss.xml"/><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><style id="gatsby-inlined-css">code[class*=language-],pre[class*=language-]{color:#f8f8f2;background:none;text-shadow:0 1px rgba(0,0,0,.3);font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto;border-radius:.3em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#272822}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#8292a2}.token.punctuation{color:#f8f8f2}.token.namespace{opacity:.7}.token.constant,.token.deleted,.token.property,.token.symbol,.token.tag{color:#f92672}.token.boolean,.token.number{color:#ae81ff}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#a6e22e}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#f8f8f2}.token.atrule,.token.attr-value,.token.class-name,.token.function{color:#e6db74}.token.keyword{color:#66d9ef}.token.important,.token.regex{color:#fd971f}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}</style><meta name="apple-mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="#D0E0D8"/><meta name="apple-mobile-web-app-title" content="Lazywill"/><link rel="apple-touch-icon" href="/icons/apple-icon-57x57.png" sizes="57x57"/><link rel="apple-touch-icon" href="/icons/apple-icon-60x60.png" sizes="60x60"/><link rel="apple-touch-icon" href="/icons/apple-icon-72x72.png" sizes="72x72"/><link rel="apple-touch-icon" href="/icons/apple-icon-76x76.png" sizes="76x76"/><link rel="apple-touch-icon" href="/icons/apple-icon-114x114.png" sizes="114x114"/><link rel="apple-touch-icon" href="/icons/apple-icon-120x120.png" sizes="120x120"/><link rel="apple-touch-icon" href="/icons/apple-icon-144x144.png" sizes="144x144"/><link rel="apple-touch-icon" href="/icons/apple-icon-152x152.png" sizes="152x152"/><link rel="apple-touch-icon" href="/icons/apple-icon-180x180.png" sizes="180x180"/><link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png"/><link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="96x96" href="/icons/favicon-96x96.png"/></head><body><noscript>You need to enable JavaScript to run this app!</noscript><div id="___gatsby"><div class="jss1"><main class="jss2"><div style="position:relative;overflow:hidden;width:100%;height:100%"><div style="position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;-webkit-overflow-scrolling:touch;margin-right:0;margin-bottom:0"><article class="jss4"><header class="jss5"><h1 class="jss6">CDDC2020 CTF Writeup</h1><h2 class="jss7">Cyber Defenders Discovery Camp (CDDC) Capture-The-Flag competition</h2><div class="jss8">Tue, 23 Jun 2020</div></header><div class="jss10 jss9"><h2>WARP GATE FIVE</h2>
+}</style><title data-react-helmet="true">CDDC2020 CTF Writeup - ISnackable</title><meta data-react-helmet="true" name="description" content="A blog site created with GatsbyJS."/><meta data-react-helmet="true" property="og:url" content="https://isnackable.github.io/CDDC2020/"/><meta data-react-helmet="true" property="og:title" content="CDDC2020 CTF Writeup - ISnackable"/><meta data-react-helmet="true" property="og:description" content="A blog site created with GatsbyJS."/><meta data-react-helmet="true" property="og:image" content="/static/photo-cddc-cover-ca5fc4c347d688a922fee4d0a5cdbdf0-ada8c.jpg"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="fb:app_id" content=""/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:creator" content=""/><link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#ffffff"/><link rel="alternate" type="application/rss+xml" href="/rss.xml"/><link rel="sitemap" type="application/xml" href="/sitemap.xml"/><style id="gatsby-inlined-css">code[class*=language-],pre[class*=language-]{color:#f8f8f2;background:none;text-shadow:0 1px rgba(0,0,0,.3);font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto;border-radius:.3em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#272822}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#8292a2}.token.punctuation{color:#f8f8f2}.token.namespace{opacity:.7}.token.constant,.token.deleted,.token.property,.token.symbol,.token.tag{color:#f92672}.token.boolean,.token.number{color:#ae81ff}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#a6e22e}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#f8f8f2}.token.atrule,.token.attr-value,.token.class-name,.token.function{color:#e6db74}.token.keyword{color:#66d9ef}.token.important,.token.regex{color:#fd971f}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}</style><meta name="apple-mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="#D0E0D8"/><meta name="apple-mobile-web-app-title" content="Lazywill"/><link rel="apple-touch-icon" href="/icons/apple-icon-57x57.png" sizes="57x57"/><link rel="apple-touch-icon" href="/icons/apple-icon-60x60.png" sizes="60x60"/><link rel="apple-touch-icon" href="/icons/apple-icon-72x72.png" sizes="72x72"/><link rel="apple-touch-icon" href="/icons/apple-icon-76x76.png" sizes="76x76"/><link rel="apple-touch-icon" href="/icons/apple-icon-114x114.png" sizes="114x114"/><link rel="apple-touch-icon" href="/icons/apple-icon-120x120.png" sizes="120x120"/><link rel="apple-touch-icon" href="/icons/apple-icon-144x144.png" sizes="144x144"/><link rel="apple-touch-icon" href="/icons/apple-icon-152x152.png" sizes="152x152"/><link rel="apple-touch-icon" href="/icons/apple-icon-180x180.png" sizes="180x180"/><link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png"/><link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="96x96" href="/icons/favicon-96x96.png"/></head><body><noscript>You need to enable JavaScript to run this app!</noscript><div id="___gatsby"><div class="jss1"><main class="jss2"><div style="position:relative;overflow:hidden;width:100%;height:100%"><div style="position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;-webkit-overflow-scrolling:touch;margin-right:0;margin-bottom:0"><article class="jss4"><header class="jss5"><h1 class="jss6">CDDC2020 CTF Writeup</h1><h2 class="jss7">Cyber Defenders Discovery Camp (CDDC) Capture-The-Flag competition</h2><div class="jss8">Tue, 23 Jun 2020</div></header><div class="jss10 jss9"><h2>WARP GATE FIVE</h2>
 <h3>[Web-1] No Time</h3>
 <p>
   <a
     class="gatsby-resp-image-link"
-    href="/static/No_Time-b3dfb6613c5606d903a970fa986425e9-fdcf4.png"
+    href="/static/No_Time-fb56c6c393c70cbcacbf80372e547e99-fdcf4.png"
     style="display: block"
     target="_blank"
     rel="noopener"
@@ -1357,20 +1357,20 @@ input:-webkit-autofill {
   >
     <span
       class="gatsby-resp-image-background-image"
-      style="padding-bottom: 49.19144496609285%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACT0lEQVQoz12Q609ScRjH+V/KTEu7bm0t81KW3ayseRdEIBQ4yOWAIJcDhzsiiCjC1Frm3GxuzbXVetOr/q9PD2Jb9eKz77Nzft/P7znHkE7tUq0ekcnsocV3SCQaJDRJ7e9soMl8RvxfYrEdkokm37/9otE4waDL4ay+S0prkpQDyXjjPP+fRR47JyqXREXYItLOXGofXRyGpDxIROq0Uo+2+TOfvVutownx8PYZsZCkEAnWWA3UCPmrBLwVvEoJn3tdNgxL+Zxki1CbqFojIoS8VVSljOou43Ot41fWUex5vM4Sy441nPYCdmsOizmD0ahjSEk5tSLCFkHZVIj6qlQLn6jkDtjZOOZ94wvF1AcqxUOy2j4f97+iusoo74o4rHkWLTmWLHkspjSGjIjSwTapQJ1US+ip0qwcUy8dcdA85eTwB5v5Q/Y2T9gqHnH6+Scht3ymfY1lkbptBRRrgSVzVoQiyagi8m+j+7dI+lrUiCobrDrLBKXkl4Iq6ZEtvFJ0zKVRzDkWjWmsMzrmSY35CQ3jeBxD2ruF7qmRWN5Ec1eJuUS0VGbFXkK1FfEs5HG3yrNpTOMaE6/CvB0N8WJE5ckjH48fehgcVOgfULjfr2CIOzcI2+VnW6RsLuCcy2Kb0lkYTzD1Osqb561ygJFhHwNS6Otzcfeek9t37PTestJ9fZ7OHiMdV2a50D2NwTefxzGTxjahYxyLM/kywtizEKMjQZ4OqwwP+Xgw5GVgyMM1EfTcsNB700JXr4nLV010iqija5qOy9NcvDTJb++J38PkzL2cAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+      style="padding-bottom: 49.19144496609285%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAIAAAA7N+mxAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACFklEQVQoz13MXU/TYBjG8X4Y5E0BgxwYIwFmeNMwgxIcTrqVrmxsa7d2bdeOri9P263r2Oi2judhMo1hYjAYQ0w48MAjP5hl6InJL/+DO1duzDLft1oXFftM16ChI/0/GtLuqH+p5WDWu7n5fYq+YaZ2WjHPTP3U0BDQ0F1vqcj4Rw+Uka4E4LDIsfqm1sOAAo1DCBQ0BIdQcNFLJ1pAPlHlblnqqlJXEf2S2JH4lsB6HNMIYKCEgAxBCQIZAQkaElRFXxF8mWuLzLGQaxboBs80mVSNzTZy6Xo2VUtSDknYMRxglgTNIjSHBUWocO1WbeA559C7/IC+u+ZHz/1c0fuf+j94+phOumnKOSCrB6STiFmYXYS3RGgNlfOtnncJj76c966vBj87zuCsfdWtX1x//SUxHpuq5/ZdhnKZRC1NVLGKAG0BWsKJWeiCgm9wfpnxDrPHYuqI33eDsgmHpWoZ3KaJagq3E1GTiGjxiBbb1jCL8wHbMXIdPddWaa+UbhaTRzxVz+85zF71YNeKb2uRzdJWWNpY49dXC6vL7NISvbhILyzQmJrx5GSDJ908EbyvUDvm3raxs6lsbcjhdWF9hVtaYObns0+eZuYeJ2fmEpMPibFpfPTBu5HJKMbFnXTUpt4A/LUaeam8eiGH18TnK/xyiHsWYhdD7MwjamqWnJ4lJ6Zj41P42P3d0YnovfG3I6ORP0HoGZDidIylAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
     >
       <img
         class="gatsby-resp-image-image"
         style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;"
         alt="No Time"
         title=""
-        src="/static/No_Time-b3dfb6613c5606d903a970fa986425e9-48538.png"
-        srcset="/static/No_Time-b3dfb6613c5606d903a970fa986425e9-bed0f.png 200w,
-/static/No_Time-b3dfb6613c5606d903a970fa986425e9-5fd34.png 400w,
-/static/No_Time-b3dfb6613c5606d903a970fa986425e9-48538.png 800w,
-/static/No_Time-b3dfb6613c5606d903a970fa986425e9-b70ec.png 1200w,
-/static/No_Time-b3dfb6613c5606d903a970fa986425e9-d134a.png 1600w,
-/static/No_Time-b3dfb6613c5606d903a970fa986425e9-fdcf4.png 1917w"
+        src="/static/No_Time-fb56c6c393c70cbcacbf80372e547e99-48538.png"
+        srcset="/static/No_Time-fb56c6c393c70cbcacbf80372e547e99-bed0f.png 200w,
+/static/No_Time-fb56c6c393c70cbcacbf80372e547e99-5fd34.png 400w,
+/static/No_Time-fb56c6c393c70cbcacbf80372e547e99-48538.png 800w,
+/static/No_Time-fb56c6c393c70cbcacbf80372e547e99-b70ec.png 1200w,
+/static/No_Time-fb56c6c393c70cbcacbf80372e547e99-d134a.png 1600w,
+/static/No_Time-fb56c6c393c70cbcacbf80372e547e99-fdcf4.png 1917w"
         sizes="(max-width: 800px) 100vw, 800px"
       />
     </span>
@@ -1381,7 +1381,7 @@ input:-webkit-autofill {
 
   <a
     class="gatsby-resp-image-link"
-    href="/static/No_Time_2-b2329717e47dd4e3fdbdee952b2ff8a4-584ae.png"
+    href="/static/No_Time_2-aa5fd3ce724c66e49e35fdcc79f264b3-584ae.png"
     style="display: block"
     target="_blank"
     rel="noopener"
@@ -1393,17 +1393,17 @@ input:-webkit-autofill {
   >
     <span
       class="gatsby-resp-image-background-image"
-      style="padding-bottom: 17.551020408163264%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAr0lEQVQY011Q7Q6DIBDz/d9wy7LoWMyciiAcB7ikO3RzHz+aNvToNVdZO6IfDOoroe0cjDGYRg1PHpQIPhIofpgTI6Sw6n8uXsVlMARYH+FIhjlgshNmmkHsMc4avenhgkOI4jm9BsQcf8AvrtKSUJAfG+IS4SVI9QpHdcCpPePSNahvDdRdYbDDHpJy2rlkrA3Ltg28M2eGlYZa2hhvRFsYklOIJmlZ/O8/7zOU9yfxmjRwsFR1zAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+      style="padding-bottom: 17.551020408163264%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAIAAAABPYjBAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAmElEQVQI102P2QqDMBBF/f9PFEorDUjVbJPZkvjQcXmQHC5McmBuBoCw+fRxNC+Yc04hIiNXJqULVpImXA1+Ik0HUSZhQEEWOxEikE3FQ9zSWhhFKZZgtja96UfWrkPdW9tr36tl7ZUU3epGN77m93eZpt/0XZ0Hb6q9Pmh6bL773K3sChhCsfYxU06YEiVW1lO45PMXh/kHB4blDIIyK6EAAAAASUVORK5CYII='); background-size: cover; display: block;"
     >
       <img
         class="gatsby-resp-image-image"
         style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;"
         alt="No Time Source Code"
         title=""
-        src="/static/No_Time_2-b2329717e47dd4e3fdbdee952b2ff8a4-584ae.png"
-        srcset="/static/No_Time_2-b2329717e47dd4e3fdbdee952b2ff8a4-408a5.png 200w,
-/static/No_Time_2-b2329717e47dd4e3fdbdee952b2ff8a4-66145.png 400w,
-/static/No_Time_2-b2329717e47dd4e3fdbdee952b2ff8a4-584ae.png 735w"
+        src="/static/No_Time_2-aa5fd3ce724c66e49e35fdcc79f264b3-584ae.png"
+        srcset="/static/No_Time_2-aa5fd3ce724c66e49e35fdcc79f264b3-408a5.png 200w,
+/static/No_Time_2-aa5fd3ce724c66e49e35fdcc79f264b3-66145.png 400w,
+/static/No_Time_2-aa5fd3ce724c66e49e35fdcc79f264b3-584ae.png 735w"
         sizes="(max-width: 735px) 100vw, 735px"
       />
     </span>
@@ -1422,7 +1422,7 @@ input:-webkit-autofill {
 <p>
   <a
     class="gatsby-resp-image-link"
-    href="/static/Vuln_Login-dc1593442fe5a09f0db6477884040a04-c8f4b.png"
+    href="/static/Vuln_Login-e9b00cbd580294cbfff71af132a26521-c8f4b.png"
     style="display: block"
     target="_blank"
     rel="noopener"
@@ -1434,17 +1434,17 @@ input:-webkit-autofill {
   >
     <span
       class="gatsby-resp-image-background-image"
-      style="padding-bottom: 105.04527813712808%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAVCAYAAABG1c6oAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAEhElEQVQ4y2WU6W8VVRiH73/gBz9rgpAYiKJV3ECUGFFZAkoIRbaGJaIoGJYiRggIgQKWTVnbYumFC7W0tMYIkiBRSYGWYqQsCYa4UFHovXNnPTN35i6P78y01oQPT86Z9z3nN+8553dOIqMb9KNbBrY7gCOUii6UXBxPYmogp1QWw+xF0zWypoWjFI7jkNAMQ4Kx2K3fLM53KDq6hEtx23014MoVP+p3XlZ0XXYl59B5yab9vClzdCzHwnNdXFeR0E0Ty7Tx/CxtbR4fLIKVK0qsWFaicnmJpUuED4t9xLEwF45Z8j6cOqVkronrKNExSDiOjXJc8gWTk205li8ssWZZkdVLi6xaXKR6Q4GeP+D3W7B5bSGKhblwTOWiEqe/dfoEHYysRsIVQd/LUShanGrxWDmvyLrFBdYtKbCiIs8vF0Xsz25u91yl/QxUzs3HeWHVgiJnTypygRUJWnqWRM5z8ZRsPA7ftwZ8PCvPhveEd/N8UhHQUgN37vzNXz13Ofp5idUVcS7Kz8nT/p1PCYWybUw5oETg56IlF0sWZ5o81pTnqVoQsHFezPo5AaktcLiKqN8f3zQ/YO2MPOe+cQkKViSobIuELxW6UYWKs40en04J2Frhs3mWT9UMn50LA2oqfeo+8tnxTkDVTJ8ts322zvFZPzWg/WsXPzBxRNBTYpvAE//YiiI2P6RcNk6SibNybJ8ZUz09x7a3Y6rL4+/+2KbJPhdaZQ/zZlShY5vhHobrjwV/bFB8NjHHgbnCvLjdNS3Hzqnefeya5rF1fI4LzXLKgTEg6EqZ/YI/1TtsG+uxv9xjz5SY3W8Kk+9nz1su22VsR5Md7aEtt8W2RDA0oyPGzmNxrtZm96suydku9eXCdJd944UJfYwfYP9El11jXC4flz0UD2uZLHroQ03LoGu6CJqcP2Cz9yVFaoaITVLUT1bUjVPUjFXUvia83tcKdW8o9oxSXEpZWF6Ge3fTZDIZuXpiRks3KUiFF/fZ1Ix0aJquSI5zODzBoW60zcHRKqJ2lPTHOBx82eHLVxwOPOvQdUQsk5fHJa0RaiVC7yjLwcegc69FzeM2h16waXhRxIdbdOzwydxWaD0u5zbkqCuzSMpPQurKbLpTSoztyT2WSv+/hzkR7PrCon6oxdGRFqnnLRqeNDk9X/Hzfjvi5GxFQ5lJ6rk4f+gxi+4GubolM9o2w9DjJRuaIf/Q6dppkBxi8tUIk2MysfEpkyNDJTZYqnpE+sPiWJR7Wr4fNblSJwUF2YEla5o8kBkdVRLBap1jgwxaygyanzA4PtzgxDMGraN02oSWEXEszDXLmMYhBldrRTCvo/ULZsJTFsGcnHLXxizHHtBpHiQ8rHP8IZ0TQ3RahwlDRXBwHA9pkTGND+p079YjwfS9DGFxkWBWEw/ZGrc7NW4m5eVuNLiZyvLrUZ0bSY3rDRo3hGsNGa4nY64l01yv1/inW8e0s6TToaDYJvROKNrbm8ZwNDx5ddyCIegEcntUuBy3l6wrPlO9/6GpNHoug6V0MbQIZmIf/gudsXHsI5tiDwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+      style="padding-bottom: 105.04527813712808%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAVCAIAAADJt1n/AAAACXBIWXMAAA7DAAAOwwHHb6hkAAAEIElEQVQ4y12U21NVVRzHzz/QQ8/VONY0OVZOmDZGakxTVmLlWCYqRGFlOSGBgk5RXnAAExRJUTkgcOAQKjdrhuBBJ8cLcp2E5EElER8cOHvtdV9rX87eu98Gn5r5zG/W97vnu3973XYEEWoAmGJOuSKACKGepwAx58wjpUnprIlNkzIppRAiAmEESUbu3ef9g3JgWA7OMTbu/H3LHhiSgyNyZFSDPzQsrvezyfuYCW5prZWKYMoY5do2L17UuTuCPYV+4S6/aLefnxfk7/S+z/UK8oKi3cG8mfdd0Nsrtc2UlJySCHRXUrke7em2dm33fyrwivO9vbleRYk/PRVM3g0O7wslmMUFXuEOv69HaIdpIYiJIkoKx7KSPvuzU+/Z5u3fmTywM7n7C3fkejD579jUg3+u9AZF21zw9+cm937lXe5RFoSlZARHbEtZSgWBvNTl/JCZPPStW/KNW5ztdpwJHk4/evhgpvW4X/x5aAI/Zidv9Dl+oCQXFJsR17FhTb2AXTqvf85wy790SnNCSrKdeLnfXOofzALpglO2zdm3xb32h3KTHMJSMOistdTQ+XKbPrDB+SXbPpxll221j293okVO/V6n6munfGtowqOSjc6N35XtUghrJSKOhm+QfsD/alGlH9nHsuxjmSEVGXbl5hAYzFO5xS5bb/d3Pw4LDp3nwl4grjSpI+vsMzlWbY4NVG+yqj6xqjaG9fhcrf7UOpJu3ewQ2iWS8zCspZgL86sNsvId63SGrvk45MT6/3Nygz66Rg+cF47HBGVhGI6IYCIZ8GtRcfJtHftMN2Toxs3q1Fp1el3IqfRwHMoPVHWaGr2g7CQzDRPDaiNkEITdgPXXilOrVXyravhQNa5X9Wtl9N2QuvdkdE0IDGpWyqE4Y9qYmUkYhhHBGDNMYatunubRVHF+k4y9L5vTZf1qcfZNCdStFGfTRH2aaHhLnHlNjLRwlaRG2BlHJGeKCzuggzU8uoQ3pvKmVaJ2CRs46iSmZOKBunrQqlvKY6tEbDWvS+HjceUHmsONYDRCKRGMWwEZPsEaFrPWVNa6gsdSWF+OGqnhozWiJ1OCjK/g8ddZ40tsLMZtn8FMKRxPgk1qEg3hKtr8PD23nLYtpW2v0pbFIBkQfxEkA/PcMtqyiN2qp9LFKIHCBTMRMg0sIVyBf1tI21NI+xJy4WXSuZx0p5LuN0jnMpAUzPZXSNtzZDwahk0DEZizgRBBBOY8fAi3PkHaF+D2Z8iFp0jHs6RrEe56AXcsJO1PEzA7FpC2J8n4r0S4ODFrILiSsFXwY8HcnB5Ed5rJvTZyJ27ebSUTMXS7CU00QTUmmo3bIGOJiUb0aJwwbhoJaIqgc/iO2dkElablM+URwA04VKRnsZVAahapx5XYiCvYIxM2Gbr+ByKh0PqGcfJVAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
     >
       <img
         class="gatsby-resp-image-image"
         style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;"
         alt="Vuln Login Page"
         title=""
-        src="/static/Vuln_Login-dc1593442fe5a09f0db6477884040a04-c8f4b.png"
-        srcset="/static/Vuln_Login-dc1593442fe5a09f0db6477884040a04-16cef.png 200w,
-/static/Vuln_Login-dc1593442fe5a09f0db6477884040a04-94028.png 400w,
-/static/Vuln_Login-dc1593442fe5a09f0db6477884040a04-c8f4b.png 773w"
+        src="/static/Vuln_Login-e9b00cbd580294cbfff71af132a26521-c8f4b.png"
+        srcset="/static/Vuln_Login-e9b00cbd580294cbfff71af132a26521-16cef.png 200w,
+/static/Vuln_Login-e9b00cbd580294cbfff71af132a26521-94028.png 400w,
+/static/Vuln_Login-e9b00cbd580294cbfff71af132a26521-c8f4b.png 773w"
         sizes="(max-width: 773px) 100vw, 773px"
       />
     </span>
@@ -1455,7 +1455,7 @@ input:-webkit-autofill {
 
   <a
     class="gatsby-resp-image-link"
-    href="/static/Vuln_Login_2-b0bf81bf27ff5ea7301a566419a14faa-ea7b7.png"
+    href="/static/Vuln_Login_2-a152efff591b7cd28a24a5d51c83c092-ea7b7.png"
     style="display: block"
     target="_blank"
     rel="noopener"
@@ -1467,17 +1467,17 @@ input:-webkit-autofill {
   >
     <span
       class="gatsby-resp-image-background-image"
-      style="padding-bottom: 26.244952893674295%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAA3ElEQVQY03WQa07DMBCEcxa/48SPxI6pKxCCAg2NUqnc/y6D6xSEBPz4NN61NbvjRpkBIe/x/JThY4JPGWOIGMKIGCNCQSkFQggopRXyB193jVAtHuYVjy8H7F8XHM8fmM8XvC0r1uWE9/kI03fgQoJLBc45lBC/kAXGGBrOBdyUEfM90uBw5w12o8OunPO41clbpGkq204YrIHvNaxuYbsNVzCdrsOqYe8DjLVwWqFvFXSJKMpE+iMKo2SjbEEIrV+wKf2ua2QpZX10dedVWdVrrxpVLbAbt95/fAIGPZY15uxl2QAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+      style="padding-bottom: 26.244952893674295%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAIAAADKYVtkAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAs0lEQVQY042O2wrCMBBE+y3NPWmTTXPRVlEoatXSgv7/x7hW8aFPDodhmWVgCmV9bLu+73zKkLsQUxPREiKlLMuSEkIp2loYFkKqw206nk+7yzjMz+v8GMZpGu+362DrigvBpeKcK/FDIFIIxliBD0htaPe5gQ3YbQNb71q8vc1gc0ohRu8sVNoataCd0bXR33IFwToHRtVaGiUx+axCMUoYIYzSkpAV79mfAVjg6GwR/Vcvf8kzJuohIPcAAAAASUVORK5CYII='); background-size: cover; display: block;"
     >
       <img
         class="gatsby-resp-image-image"
         style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;"
         alt="Vuln Login Function"
         title=""
-        src="/static/Vuln_Login_2-b0bf81bf27ff5ea7301a566419a14faa-ea7b7.png"
-        srcset="/static/Vuln_Login_2-b0bf81bf27ff5ea7301a566419a14faa-1874b.png 200w,
-/static/Vuln_Login_2-b0bf81bf27ff5ea7301a566419a14faa-003b2.png 400w,
-/static/Vuln_Login_2-b0bf81bf27ff5ea7301a566419a14faa-ea7b7.png 743w"
+        src="/static/Vuln_Login_2-a152efff591b7cd28a24a5d51c83c092-ea7b7.png"
+        srcset="/static/Vuln_Login_2-a152efff591b7cd28a24a5d51c83c092-1874b.png 200w,
+/static/Vuln_Login_2-a152efff591b7cd28a24a5d51c83c092-003b2.png 400w,
+/static/Vuln_Login_2-a152efff591b7cd28a24a5d51c83c092-ea7b7.png 743w"
         sizes="(max-width: 743px) 100vw, 743px"
       />
     </span>
@@ -1493,7 +1493,7 @@ flag format is CDDC20{username_password}</p>
 <p>
   <a
     class="gatsby-resp-image-link"
-    href="/static/OSINT2-85991fa756fbf6ff79d308c7ed0070a2-4550a.png"
+    href="/static/OSINT2-010dfbe24b4a5287b08b7a19b9f12ddb-4550a.png"
     style="display: block"
     target="_blank"
     rel="noopener"
@@ -1505,17 +1505,17 @@ flag format is CDDC20{username_password}</p>
   >
     <span
       class="gatsby-resp-image-background-image"
-      style="padding-bottom: 33.52601156069364%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAAA7DAAAOwwHHb6hkAAABu0lEQVQoz0WQ224SURiF513KPYm0Agm1JgQC2MqZyrEcrBgbpViuuNOmGhP7GvYNTGpsOUMbSoFh0ERpOdREsfoMn3vGVC++rH/W2vn3mi315D7KpyHXv38xuhghKwNm367+Mb2aMZ5OmF//5Pv8B/2BzOVkzGQ21Xx1vhhfCp2IfI5ULBYpFApkMhne7u/zZfSV5zs7pNNpcts5bVbJZrPEEwkGQ4V3BweEI2Etz+fzQrd5srXFw81NpGAwhMvlwrC4SCqZ5LzXx+F0YbfZ8Pv9+Hw+PB6P8Jzo9XpaJ6e8ev2G20tLrK3d1/LQ+jpOhwOb3S4WhoIEAgF0CwtEY3E+HB1ry00mE0lxQTqVIiW4u7KCTqfj/eEhL17usrx8h/jGBtFIhMfZR8RiMR6Ew0gJ8RvRaBSz2czTZzmaooHaxmKx4Ha78Xp9Ai9WqxWj0Uil3mB3b49bBoPmu0V7j8fLvdVVHKKlVGu0UKk3W5x1uijDzzSaJ9TqTeqqr+VNqmJRpdagrww5bXc4KlcoVWuUa3VKguNKlY+lMlKnL3MuD/4jvrtC/6JoeuOrZ9vijc8E6qxqu9vT9IY/fxF7lCZ2Ei0AAAAASUVORK5CYII='); background-size: cover; display: block;"
+      style="padding-bottom: 33.52601156069364%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAIAAACHqfpvAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABk0lEQVQY0yWNa0vCcBTG91nyC5i3CVlBgtMtljrnymlzYWqCRZq9qTclRvTCPkZ+gqBCK928hC3dpgl2cV6KsstX6L88PDz8znMO50CiLLU7j9+/P8+vL1JLHr6NRu9vwAejoTLoj7+/PsafoiT2lN5gqCbKQHlVer1+/2M8hvb291O7u6H19exptvvU3UmlQqHQdiIBANRGLMYEg3K7dZbL0X4/yJPJnUQyEY/HI5Eo5CW9GIYZDMY1dk1oNFEUQxAb4fEQBOFyuRwOVKvVVmt3R8cnJqMJx5fchJuiKNThsCEIRJIk2NRMTYHDV/mCTq+HYZhhGJZlgyw7Pzen0WjOLy4PDtOW2dnAKuNb8UXDYZr2U9QyFAgEaB9tNpvjm1vlas1ut1ssMziOg7dOp2vBaoVNcJHj05mMbloHkiVQTieGLSJ2BOIqVV5V7V5oyK1OuVLjy1XgE+D4SpEvi3L7ri4UiqWbEgfaW46/LnH52yIkiNKDJE8EuCG1wA3VJ6EoCZJcbzTrTRFM75uiyv8C/AcL9vF4wZr4dgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
     >
       <img
         class="gatsby-resp-image-image"
         style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;"
         alt="OSINT-2 PDF File"
         title=""
-        src="/static/OSINT2-85991fa756fbf6ff79d308c7ed0070a2-4550a.png"
-        srcset="/static/OSINT2-85991fa756fbf6ff79d308c7ed0070a2-0755b.png 200w,
-/static/OSINT2-85991fa756fbf6ff79d308c7ed0070a2-4a009.png 400w,
-/static/OSINT2-85991fa756fbf6ff79d308c7ed0070a2-4550a.png 519w"
+        src="/static/OSINT2-010dfbe24b4a5287b08b7a19b9f12ddb-4550a.png"
+        srcset="/static/OSINT2-010dfbe24b4a5287b08b7a19b9f12ddb-0755b.png 200w,
+/static/OSINT2-010dfbe24b4a5287b08b7a19b9f12ddb-4a009.png 400w,
+/static/OSINT2-010dfbe24b4a5287b08b7a19b9f12ddb-4550a.png 519w"
         sizes="(max-width: 519px) 100vw, 519px"
       />
     </span>
@@ -1527,7 +1527,7 @@ flag format is CDDC20{username_password}</p>
 <p>
   <a
     class="gatsby-resp-image-link"
-    href="/static/OSINT2Flag-3876765a2baa4befc551f6b6f7153648-36e31.png"
+    href="/static/OSINT2Flag-181cf2e07ceeeedef454f20d9e8a387d-36e31.png"
     style="display: block"
     target="_blank"
     rel="noopener"
@@ -1539,16 +1539,16 @@ flag format is CDDC20{username_password}</p>
   >
     <span
       class="gatsby-resp-image-background-image"
-      style="padding-bottom: 10.984848484848484%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAYAAABYBvyLAAAACXBIWXMAAAsSAAALEgHS3X78AAAAXUlEQVQI1z1NWw7AIAjb/Y+0xKm81A/PxKAu+2gKpS2XzOldNCBOas42ghXImc187Q1OrbFA17WcRJFpxOjI20VhrCFUIgiJ3J/ejyke8Rh/IH1ZgiI53ruUL8v+AqaJg3OMgVWcAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+      style="padding-bottom: 10.984848484848484%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAACCAIAAADXZGvcAAAACXBIWXMAAAsSAAALEgHS3X78AAAAVklEQVQI1y2MAQqAMAwD9/8vyXBtknYT9E12IpQQkkub5nKFUVAw0+M3iFz3UwrJSGTGuopExABccqpVPcDTUfu67c3te8c5TRrkcNTGi6SKPHrfIfgC+htb4Q7JoNkAAAAASUVORK5CYII='); background-size: cover; display: block;"
     >
       <img
         class="gatsby-resp-image-image"
         style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;"
         alt="OSINT-2 Flag"
         title=""
-        src="/static/OSINT2Flag-3876765a2baa4befc551f6b6f7153648-36e31.png"
-        srcset="/static/OSINT2Flag-3876765a2baa4befc551f6b6f7153648-63fb1.png 200w,
-/static/OSINT2Flag-3876765a2baa4befc551f6b6f7153648-36e31.png 264w"
+        src="/static/OSINT2Flag-181cf2e07ceeeedef454f20d9e8a387d-36e31.png"
+        srcset="/static/OSINT2Flag-181cf2e07ceeeedef454f20d9e8a387d-63fb1.png 200w,
+/static/OSINT2Flag-181cf2e07ceeeedef454f20d9e8a387d-36e31.png 264w"
         sizes="(max-width: 264px) 100vw, 264px"
       />
     </span>
@@ -1560,7 +1560,7 @@ flag format is CDDC20{username_password}</p>
 <p>
   <a
     class="gatsby-resp-image-link"
-    href="/static/img-4bdba9f047cb651b3645cfe6a41666ba-163b3.jpg"
+    href="/static/img-a993de99266be409bdf033996e3f94df-163b3.jpg"
     style="display: block"
     target="_blank"
     rel="noopener"
@@ -1579,14 +1579,14 @@ flag format is CDDC20{username_password}</p>
         style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;"
         alt="img"
         title=""
-        src="/static/img-4bdba9f047cb651b3645cfe6a41666ba-78f2b.jpg"
-        srcset="/static/img-4bdba9f047cb651b3645cfe6a41666ba-dce19.jpg 200w,
-/static/img-4bdba9f047cb651b3645cfe6a41666ba-c1413.jpg 400w,
-/static/img-4bdba9f047cb651b3645cfe6a41666ba-78f2b.jpg 800w,
-/static/img-4bdba9f047cb651b3645cfe6a41666ba-ab4c4.jpg 1200w,
-/static/img-4bdba9f047cb651b3645cfe6a41666ba-bc99b.jpg 1600w,
-/static/img-4bdba9f047cb651b3645cfe6a41666ba-34a60.jpg 2400w,
-/static/img-4bdba9f047cb651b3645cfe6a41666ba-163b3.jpg 2592w"
+        src="/static/img-a993de99266be409bdf033996e3f94df-78f2b.jpg"
+        srcset="/static/img-a993de99266be409bdf033996e3f94df-dce19.jpg 200w,
+/static/img-a993de99266be409bdf033996e3f94df-c1413.jpg 400w,
+/static/img-a993de99266be409bdf033996e3f94df-78f2b.jpg 800w,
+/static/img-a993de99266be409bdf033996e3f94df-ab4c4.jpg 1200w,
+/static/img-a993de99266be409bdf033996e3f94df-bc99b.jpg 1600w,
+/static/img-a993de99266be409bdf033996e3f94df-34a60.jpg 2400w,
+/static/img-a993de99266be409bdf033996e3f94df-163b3.jpg 2592w"
         sizes="(max-width: 800px) 100vw, 800px"
       />
     </span>
@@ -1598,7 +1598,7 @@ flag format is CDDC20{username_password}</p>
 <p>
   <a
     class="gatsby-resp-image-link"
-    href="/static/Forensics-1_Flag-b612b84282e61a6c1a47e21163ea8ef1-3cbf6.png"
+    href="/static/Forensics-1_Flag-b74f920cef7ae4783b383331a5ec1f13-3cbf6.png"
     style="display: block"
     target="_blank"
     rel="noopener"
@@ -1610,16 +1610,16 @@ flag format is CDDC20{username_password}</p>
   >
     <span
       class="gatsby-resp-image-background-image"
-      style="padding-bottom: 78.71148459383754%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAC5klEQVQ4y5VUS2sTURSeVZdWGpqfIQguXPon/AEibgWxoWBiq6V26cJuBVeKogsVXIhWXFiFitjYJp00aZNJJpNMZjKvZN4z+Tz35kFtu/HAx7lz5uY7j+9MhEtXr+HiwiIyCxlkF7OYvzCPbDaLTCYDQRD+C3NzcxDy91dwL1/A+vo61tbWUCgU8GB1Ffl8HrlcDktLS9yfBIudh+XlZQi61oMoViA1W+h0FIgHFWiaBtMwILc7cIdDVA+rkOUWms0mqtUa+n0DzEaj0QzM0jSF4DgOv2DZDmyCrvfpbMP3fXieh8FgSHEbpmlxGIbJn1l8jAHHNCbEcQxFUVCrVqD21FkmFmeeJRQPRAyGLq8kSRIO9j5mnhBFEeqNBlzXhRCGAVwvQL1lQpINtFUXQZSAdZGmI44wjJBO2jpt6SSJKIo8ucDYez0Nimpj6CXomz5lTWdzCYIAaleFwds1qG2TZt2lrjqwLJvfYdWWSuUxIXuQWy0cVg7Bqp3alND3XH65tF/C8XGdRKmiXD7A7u4ffg7D8WhYbEYoSS38Lu6h1zeREE9EFUZ0iFm7UQyNhJLbChesrYw9E9IwDQQ0Dtby/v4+bN4yEVpdGXqzxuo6Z0oJnH4PCIdIopAnODPPUYp6vcHVFpDGeLUj487LMjZ/WHj0RcODzxoeElY+6Xj8tYunWyKebbegOuGUgYNVViER+24Cd+Bg6HpEGId48ctA4aOOja0ebr/r4MbrNm6+UXCLcP15G5efSLiy2UDug4oNSri+pZHX8X7PwG5dR9uOMbAtIqS1CcIQaRSgq1hwbO9MwzstH3ffSqjrHn7KPrYbLr4TvjU8VLoudHPAV4stPd9DrrLc5kr2NJ03w8RIJtConYRUPN8SKH2HhBzRCp0glBoSX4larcY/wZPfqUm7yURgqk8RMk85/CCEpJr0HrD+rVBGsVjE0VGd/xHYpNaEFR790vIT2KcRUNyLYbjROPGE8C9q+GURQdno2QAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+      style="padding-bottom: 78.71148459383754%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAIAAACZeshMAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACmklEQVQoz4VSTWsTQRjeXnuy0tD+DE9Cr/4Kf4DoWaotklZLP6D05qFexVMRsQgK4sFYpBRREBPS2CSbZDfJfmZ3dnZ2Z79mZtd3WxqtHnx4mZ3Zd57343lHurF06/r8QmV+fnFhce7aHKyVSkX6H2ZmZmZnZ6Xq+pNqdW1ne3trc2t9bX1jY6O6Vl1ZWXn4Dx5cxerqquQ6k/ZZezjULNNon3Ucx8Ee0jUzDEJZljVtPB6NZLmHkFdcRZ7nEiHERR72iQ8bF8EaJ0kcx2EY+j7B5/DA75PwEgG4CByplDFm6EZP7piWDfGEEIwxiBoEBCoKwgj2XIjSLiAEUBRFpZRKaZqGNBmM0FDzdJummShyKKkQeZEkKYdPWeG01PI/47zdbgdBIEEe254Ytk9jgXDMeH5xNUkSy7KhIeR5HvIMw9J1E2MfXJC+1WqRksw5SNLtdNM0mSoBaxzRVuvnabM16Cuy3IV9vd7oduUsY9AaHAk5z6wORz8aTQdhUUBJ0B40mUNjjos03XAcV4fVBTWhBi9NS3Kz2SzJcMkzx86oJzj7cxIsSymyWRyyrAToNHUBWVEUkF0qBHv1VVt+2Xr2Be9+crZqzk7N2fzoPv1sPa+dvTgZWyS97CWHHjt25EY8DAiNIqng6cF39PjDZLc2uf/WvPPauHto3Ds0bh9oN/eHS/vqo/f23pEDcfeO3HenXl1xdcICH1MalaOKk9Q0fIzj6TAAJ2q8/EbtT6Jvo+RYoScqPVaitkUnOABF4OVEkBkE0zQd1Js4bjkGUZLBHMphyn8/Sc5MRHheXJI5VxV10B/0ej2fBNNRebGASxnPp8ZEATUObSx+k8vMWqPR6PcVGCMJwoskMctxLEhyxXDMEc3K0OfkX679KBRER0S3AAAAAElFTkSuQmCC'); background-size: cover; display: block;"
     >
       <img
         class="gatsby-resp-image-image"
         style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;"
         alt="Forensics 1 Flag"
         title=""
-        src="/static/Forensics-1_Flag-b612b84282e61a6c1a47e21163ea8ef1-3cbf6.png"
-        srcset="/static/Forensics-1_Flag-b612b84282e61a6c1a47e21163ea8ef1-fa148.png 200w,
-/static/Forensics-1_Flag-b612b84282e61a6c1a47e21163ea8ef1-3cbf6.png 357w"
+        src="/static/Forensics-1_Flag-b74f920cef7ae4783b383331a5ec1f13-3cbf6.png"
+        srcset="/static/Forensics-1_Flag-b74f920cef7ae4783b383331a5ec1f13-fa148.png 200w,
+/static/Forensics-1_Flag-b74f920cef7ae4783b383331a5ec1f13-3cbf6.png 357w"
         sizes="(max-width: 357px) 100vw, 357px"
       />
     </span>
@@ -1705,7 +1705,7 @@ Execute the binary and feed the key</p>
 <p>
   <a
     class="gatsby-resp-image-link"
-    href="/static/Visual_Noise-0ec6ae0ccba7aa6e9a5726b186bcde9e-f7a2c.png"
+    href="/static/Visual_Noise-ae6ab97169069225c41b502cbc377100-f7a2c.png"
     style="display: block"
     target="_blank"
     rel="noopener"
@@ -1724,13 +1724,13 @@ Execute the binary and feed the key</p>
         style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;"
         alt="Visual Noise 1"
         title=""
-        src="/static/Visual_Noise-0ec6ae0ccba7aa6e9a5726b186bcde9e-48538.png"
-        srcset="/static/Visual_Noise-0ec6ae0ccba7aa6e9a5726b186bcde9e-bed0f.png 200w,
-/static/Visual_Noise-0ec6ae0ccba7aa6e9a5726b186bcde9e-5fd34.png 400w,
-/static/Visual_Noise-0ec6ae0ccba7aa6e9a5726b186bcde9e-48538.png 800w,
-/static/Visual_Noise-0ec6ae0ccba7aa6e9a5726b186bcde9e-b70ec.png 1200w,
-/static/Visual_Noise-0ec6ae0ccba7aa6e9a5726b186bcde9e-d134a.png 1600w,
-/static/Visual_Noise-0ec6ae0ccba7aa6e9a5726b186bcde9e-f7a2c.png 1834w"
+        src="/static/Visual_Noise-ae6ab97169069225c41b502cbc377100-48538.png"
+        srcset="/static/Visual_Noise-ae6ab97169069225c41b502cbc377100-bed0f.png 200w,
+/static/Visual_Noise-ae6ab97169069225c41b502cbc377100-5fd34.png 400w,
+/static/Visual_Noise-ae6ab97169069225c41b502cbc377100-48538.png 800w,
+/static/Visual_Noise-ae6ab97169069225c41b502cbc377100-b70ec.png 1200w,
+/static/Visual_Noise-ae6ab97169069225c41b502cbc377100-d134a.png 1600w,
+/static/Visual_Noise-ae6ab97169069225c41b502cbc377100-f7a2c.png 1834w"
         sizes="(max-width: 800px) 100vw, 800px"
       />
     </span>
@@ -1741,7 +1741,7 @@ Execute the binary and feed the key</p>
 
   <a
     class="gatsby-resp-image-link"
-    href="/static/Visual_Noise_2-aa685b5a77aae415cc85ae0dcb8048d3-f7a2c.png"
+    href="/static/Visual_Noise_2-f645ab330fdd6257289eba1e584c9dd9-f7a2c.png"
     style="display: block"
     target="_blank"
     rel="noopener"
@@ -1760,13 +1760,13 @@ Execute the binary and feed the key</p>
         style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;"
         alt="Visual Noise 2"
         title=""
-        src="/static/Visual_Noise_2-aa685b5a77aae415cc85ae0dcb8048d3-48538.png"
-        srcset="/static/Visual_Noise_2-aa685b5a77aae415cc85ae0dcb8048d3-bed0f.png 200w,
-/static/Visual_Noise_2-aa685b5a77aae415cc85ae0dcb8048d3-5fd34.png 400w,
-/static/Visual_Noise_2-aa685b5a77aae415cc85ae0dcb8048d3-48538.png 800w,
-/static/Visual_Noise_2-aa685b5a77aae415cc85ae0dcb8048d3-b70ec.png 1200w,
-/static/Visual_Noise_2-aa685b5a77aae415cc85ae0dcb8048d3-d134a.png 1600w,
-/static/Visual_Noise_2-aa685b5a77aae415cc85ae0dcb8048d3-f7a2c.png 1834w"
+        src="/static/Visual_Noise_2-f645ab330fdd6257289eba1e584c9dd9-48538.png"
+        srcset="/static/Visual_Noise_2-f645ab330fdd6257289eba1e584c9dd9-bed0f.png 200w,
+/static/Visual_Noise_2-f645ab330fdd6257289eba1e584c9dd9-5fd34.png 400w,
+/static/Visual_Noise_2-f645ab330fdd6257289eba1e584c9dd9-48538.png 800w,
+/static/Visual_Noise_2-f645ab330fdd6257289eba1e584c9dd9-b70ec.png 1200w,
+/static/Visual_Noise_2-f645ab330fdd6257289eba1e584c9dd9-d134a.png 1600w,
+/static/Visual_Noise_2-f645ab330fdd6257289eba1e584c9dd9-f7a2c.png 1834w"
         sizes="(max-width: 800px) 100vw, 800px"
       />
     </span>
@@ -1781,7 +1781,7 @@ Execute the binary and feed the key</p>
 <h3>Recycling Bin</h3>
 <p><code class="language-text">1.img</code> is mountable file, mount it to extract the content. In the folder, there is a test.zip which is an excel file document. Rename test.zip to test.xlsx to obtain the flag.</p>
 <h3>How QueeR…</h3>
-<p><img src="/barcode-df90bf8d0533e5757ea1fede8743adbc.gif" alt="Maxicode"></p>
+<p><img src="/barcode-7fd69620582b20177e7536882351cc44.gif" alt="Maxicode"></p>
 <p>A Maxicode QR Code, invert the image and use online decoder</p>
 <h3>Great Sphinx of Unduplicitous Corp (Unsolved)</h3>
 <h3>Ma GIFs</h3>
@@ -1789,7 +1789,7 @@ Execute the binary and feed the key</p>
 <p>
   <a
     class="gatsby-resp-image-link"
-    href="/static/Ma_GIF-6ed3c0a03def60db6f1a3d46ff12a8b9-edd43.png"
+    href="/static/Ma_GIF-cdb7a103265bd1003f5cad7b2ca5dcad-edd43.png"
     style="display: block"
     target="_blank"
     rel="noopener"
@@ -1808,10 +1808,10 @@ Execute the binary and feed the key</p>
         style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;"
         alt="Ma GIF Website"
         title=""
-        src="/static/Ma_GIF-6ed3c0a03def60db6f1a3d46ff12a8b9-edd43.png"
-        srcset="/static/Ma_GIF-6ed3c0a03def60db6f1a3d46ff12a8b9-1c603.png 200w,
-/static/Ma_GIF-6ed3c0a03def60db6f1a3d46ff12a8b9-bb811.png 400w,
-/static/Ma_GIF-6ed3c0a03def60db6f1a3d46ff12a8b9-edd43.png 500w"
+        src="/static/Ma_GIF-cdb7a103265bd1003f5cad7b2ca5dcad-edd43.png"
+        srcset="/static/Ma_GIF-cdb7a103265bd1003f5cad7b2ca5dcad-1c603.png 200w,
+/static/Ma_GIF-cdb7a103265bd1003f5cad7b2ca5dcad-bb811.png 400w,
+/static/Ma_GIF-cdb7a103265bd1003f5cad7b2ca5dcad-edd43.png 500w"
         sizes="(max-width: 500px) 100vw, 500px"
       />
     </span>
@@ -1823,7 +1823,7 @@ Execute the binary and feed the key</p>
 <p>
   <a
     class="gatsby-resp-image-link"
-    href="/static/Ma_GIF_2-8e7cce393fcc46ffed2e2f4137bd3264-a3454.png"
+    href="/static/Ma_GIF_2-049e58b48f35cc0c68ff2abed7fbf7bc-a3454.png"
     style="display: block"
     target="_blank"
     rel="noopener"
@@ -1835,18 +1835,18 @@ Execute the binary and feed the key</p>
   >
     <span
       class="gatsby-resp-image-background-image"
-      style="padding-bottom: 69.62962962962963%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACNklEQVQ4y3VTiXLqMAzM//9cSymUO5RA7sOxkxBysF2Zo8ybvszsSLaj1cqWnN0uxH7vES52ux3CMESeZwiCAGVZoq5rGGOglLJr8WVvHEdcr9cn5Dufz3DW65RkCVzXh+d52G5vpEVRWBKxWmtUVWXJLpfLk+Dfr64bOItFRGUpiTwSfiNJYiKhypyKtFXzqqJpzlapJBHIf23b/hJ6hwK+XyIMMh5SQduj7zt0VNJ3RN+j6zrgOjLkylIHu/eAnI3D8EuY5jUEcVohy0soZg+p8hTECGNNJPBOJyjdwlQjTD3iRv2L8V5y1ZAw3BwQu0dELsv9/kZ5PEKTQPsBqjiF4ePYdRBBhzHU0YeJIp7FFob3Lf/UtBLv6NUSxecU+ceE+EAmmEyQvb+jmM+Qz2ZI397seUHf7n1+Ip9Ob1b2lkuY7RbRbA6nZKuo9QbFYgHtujCHg4Xe72GYUfasL/vsAvm/ZLCsa1FmEaJjRyiqdPL5HIoZBFrIVytkzCxW1uUdhqQVSz+zAzq2UM/7GuThxPKVr3wcnWVwLAHlp+8TW0Lx9QVFteV6bf2aqoRMlIqyhirqB3wfDe9RVF7SFDkTOhWlS3C5WVtVgpSqU5Il0w8ktBETvpYq9hazeV5PRcSMdTLpv7hAFitK5nQwY+gdcDr4iE58ZaPZLhXG/0wH7q3z7MOzqdDSaZRGy9FqGSyToOzc1nYaZASHe/O+jt3Df9ha+vCvjBI8DL21j4l4Df4LD4U/y48lC8L4TX0AAAAASUVORK5CYII='); background-size: cover; display: block;"
+      style="padding-bottom: 69.62962962962963%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAIAAACgpqunAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAB8ElEQVQoz31S2XKrMAzl/3+uTaBZ2HcbvK8JBJKKcjtz24dqNPIR1pGOsYOiwGXZVlWR5znGmHOOEFJKOeeMMQC01tZaSJ/P5+v1en4ZgNv9HqQpK0taFH3btjtfSgkciEDeW0zT9PrPdrLzPrhex6Jged40TT2OBIwxtk9e96rXy/sbfIEuoAKk7b02ctMI1KsBc8HtNC2Px2OeJwgbeszfUpev9LFvr+v6j0y5p8ITZrnQUuuBkh5TPJqB0KbvlJmMW63/1vBLNk7rsWiHoiJVpbvW9L1B2EEzhEzXaTRAG9UhOwyOEDeOFmODkMOYVlVgklhGoTgexPHIwQ8H9v4uPiLx8UHf3iAFAM6jiIehgBhF8nIxWTacToHOc5Wm4nLRRWGaxtS1qSqIW1qWtmnAt5oss3XtYebX2FkIiXAgTicZx/J6hWoAW+M4BgyEjV9Vru9vlM7WPrxf4Zd6v0zTc541Y4FMEhaG9HDgIO98lteLSlIArm1hMvBhph8GjzE4NPLjCHGiVHRdAKpUmoDybX4c09OJXs4kCsn5PITHTUKWbafIMpVsZRuG45QliZOAYyZGyYjSXEpCcFN3DRp6Zq0x1v24op9X5eGq7sZO/nZT+m7t3Vl4Q0pvtP1hL8vyF/nXxrpstu7Lsvw9+RNDgA8zI8TmWwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
     >
       <img
         class="gatsby-resp-image-image"
         style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;"
         alt="Ma GIF Upload"
         title=""
-        src="/static/Ma_GIF_2-8e7cce393fcc46ffed2e2f4137bd3264-48538.png"
-        srcset="/static/Ma_GIF_2-8e7cce393fcc46ffed2e2f4137bd3264-bed0f.png 200w,
-/static/Ma_GIF_2-8e7cce393fcc46ffed2e2f4137bd3264-5fd34.png 400w,
-/static/Ma_GIF_2-8e7cce393fcc46ffed2e2f4137bd3264-48538.png 800w,
-/static/Ma_GIF_2-8e7cce393fcc46ffed2e2f4137bd3264-a3454.png 810w"
+        src="/static/Ma_GIF_2-049e58b48f35cc0c68ff2abed7fbf7bc-48538.png"
+        srcset="/static/Ma_GIF_2-049e58b48f35cc0c68ff2abed7fbf7bc-bed0f.png 200w,
+/static/Ma_GIF_2-049e58b48f35cc0c68ff2abed7fbf7bc-5fd34.png 400w,
+/static/Ma_GIF_2-049e58b48f35cc0c68ff2abed7fbf7bc-48538.png 800w,
+/static/Ma_GIF_2-049e58b48f35cc0c68ff2abed7fbf7bc-a3454.png 810w"
         sizes="(max-width: 800px) 100vw, 800px"
       />
     </span>
@@ -1861,7 +1861,7 @@ Execute the binary and feed the key</p>
 <p>
   <a
     class="gatsby-resp-image-link"
-    href="/static/Ma_GIF_3-9aaec22cfd3be9e4d2ea7cb765aff22b-dc1c0.png"
+    href="/static/Ma_GIF_3-64772ad6b86d4921b714757384c9d5c8-dc1c0.png"
     style="display: block"
     target="_blank"
     rel="noopener"
@@ -1873,19 +1873,19 @@ Execute the binary and feed the key</p>
   >
     <span
       class="gatsby-resp-image-background-image"
-      style="padding-bottom: 25.573314801945795%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAA9UlEQVQY06WO3W6CMBiGub1NN0VR2ZbNnRiPdoVmXgAQOBhkBggk/DcuRDjgN/CubZw3sCZPnvbN174VdvsPbN/3eN3uIG3esFo+YyG9cGbiE+aiDJFms/ka4kKm5w3Ppo8ryhr3Uwl3kyUmDxKdlyE4jgPTNOH7Ps4/Z5AsAyEEYRgiimMEQYAoipGmKc+Zs+tMURS4XApUVYWyLDnC8fiJw+EAXdfpw19QVRWapkFRFG7DMCg6vk8neJ4H13V5OSsiJEN8LWUfSJIEgmVZYNi2jTzP0bYt+r7ndF13M8uZ/2ia5kZd1xy2F8ZxxDAM/CLzf9cv+dxUu7EWCvMAAAAASUVORK5CYII='); background-size: cover; display: block;"
+      style="padding-bottom: 25.573314801945795%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAIAAADKYVtkAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAA4ElEQVQY05WM0W6CQBBF9++sVncBFbWt9sX45CeS+q5QHsRKLAhhgWWxUVcTlZZAJ2o/oCc3d25mcgcNR+PB6+i5P1TaL025JymgJyx1iKRiudvALSJ1MGljolbrzVq9Vakplar88Kg0iIo+V6u5Za09b/O1SRPOeUopjaKIBgF4whiswJMEbqkQYi/E+Xw6HI4gNJm8aZpmmu8Ly9J13TCM2WwKwbxi27bnrV3X9X2fBjTlPI5j+B6GIWMMLZcfgOM42+0uy7I8z3+u3Ob3H5CzG5c7EFFZlkVRQAe8/Ce/eQ3xFacO8bwAAAAASUVORK5CYII='); background-size: cover; display: block;"
     >
       <img
         class="gatsby-resp-image-image"
         style="width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;"
         alt="Ma GIF Backdoor"
         title=""
-        src="/static/Ma_GIF_3-9aaec22cfd3be9e4d2ea7cb765aff22b-48538.png"
-        srcset="/static/Ma_GIF_3-9aaec22cfd3be9e4d2ea7cb765aff22b-bed0f.png 200w,
-/static/Ma_GIF_3-9aaec22cfd3be9e4d2ea7cb765aff22b-5fd34.png 400w,
-/static/Ma_GIF_3-9aaec22cfd3be9e4d2ea7cb765aff22b-48538.png 800w,
-/static/Ma_GIF_3-9aaec22cfd3be9e4d2ea7cb765aff22b-b70ec.png 1200w,
-/static/Ma_GIF_3-9aaec22cfd3be9e4d2ea7cb765aff22b-dc1c0.png 1439w"
+        src="/static/Ma_GIF_3-64772ad6b86d4921b714757384c9d5c8-48538.png"
+        srcset="/static/Ma_GIF_3-64772ad6b86d4921b714757384c9d5c8-bed0f.png 200w,
+/static/Ma_GIF_3-64772ad6b86d4921b714757384c9d5c8-5fd34.png 400w,
+/static/Ma_GIF_3-64772ad6b86d4921b714757384c9d5c8-48538.png 800w,
+/static/Ma_GIF_3-64772ad6b86d4921b714757384c9d5c8-b70ec.png 1200w,
+/static/Ma_GIF_3-64772ad6b86d4921b714757384c9d5c8-dc1c0.png 1439w"
         sizes="(max-width: 800px) 100vw, 800px"
       />
     </span>
@@ -1973,9 +1973,9 @@ undefined4 <span class="token function">main</span><span class="token punctuatio
 <h3>WYSIWYG (Unsolved)</h3>
 <h2>Addtional resources</h2>
 <p><a href="https://blog.justins.in/cddc20/">https://blog.justins.in/cddc20/</a></p>
-<p>Note: <em>The website above solves some challenges that my team did not, you may want to read it.</em></p></div><footer class="jss11"><div>Loading...</div><div class="jss12"><div class="jss15 jss13"><img alt="ISnackable" src="/static/avatar.e372c714.jpg" class="jss17"/></div><div class="jss14"><p>Hello, I’m <strong>ISnackable</strong>. An aspiring Cyber Specialist and a open-source advocate. I’m also a full-time student studying cybersecurity who likes to challenge myself. This blog site is delicate to writing writesup on the CTF Challenges I found interesting.</p></div></div><div id="post-comments" class="jss18"><div><div class="fb-comments" data-colorscheme="dark" data-href="https://isnackable.github.io/CDDC2020/" data-width="100%" data-skin="dark"></div></div></div></footer></article><footer class="jss19"><div class="jss20"><ul>
+<p>Note: <em>The website above solves some challenges that my team did not, you may want to read it.</em></p></div><footer class="jss11"><div>Loading...</div><div class="jss12"><div class="jss15 jss13"><img alt="ISnackable" src="/static/avatar.48d00386.jpg" class="jss17"/></div><div class="jss14"><p>Hello, I’m <strong>ISnackable</strong>. An aspiring Cyber Specialist and a open-source advocate. I’m also a full-time student studying cybersecurity who likes to challenge myself. This blog site is delicate to writing writesup on the CTF Challenges I found interesting.</p></div></div><div id="post-comments" class="jss18"><div><div class="fb-comments" data-colorscheme="dark" data-href="https://isnackable.github.io/CDDC2020/" data-width="100%" data-skin="dark"></div></div></div></footer></article><footer class="jss19"><div class="jss20"><ul>
 <li>MIT Licensed | Copyright © 2021-present | <a href="https://github.com/ISnackable">ISnackable</a></li>
-</ul></div></footer></div><div style="position:absolute;height:6px;transition:opacity 200ms;opacity:0;display:none;right:2px;bottom:2px;left:2px;border-radius:3px"><div style="position:relative;display:block;height:100%;cursor:pointer;border-radius:inherit;background-color:rgba(0,0,0,.2)"></div></div><div style="position:absolute;width:6px;transition:opacity 200ms;opacity:0;display:none;right:2px;bottom:2px;top:2px;border-radius:3px"><div style="position:relative;display:block;width:100%;cursor:pointer;border-radius:inherit;background-color:rgba(0,0,0,.2)"></div></div></div></main><nav class="jss21 is-aside open "><div class="jss22"><div style="position:relative;overflow:hidden;width:100%;height:100%"><div style="position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;-webkit-overflow-scrolling:touch;margin-right:0;margin-bottom:0"><div class="jss23"><header></header><ul class="jss24"><li class="jss29 ctf" style="display:block"><a class="jss30" href="/A-call-to-hacktion-a-github-workflow-ctf/"><div class="jss31 pointer"><div style="height:60px" class="lazyload-placeholder"></div></div><div class="jss32"><h1>A call to hacktion, a GitHub workflow CTF</h1><h2>GitHub Security Lab, Capture The Flag</h2></div></a></li><li class="jss29 ctf" style="display:block"><a class="jss30 active" aria-current="page" href="/CDDC2020/"><div class="jss31 pointer"><div style="height:60px" class="lazyload-placeholder"></div></div><div class="jss32"><h1>CDDC2020 CTF Writeup</h1><h2>Cyber Defenders Discovery Camp (CDDC) Capture-The-Flag competition</h2></div></a></li></ul></div></div><div style="position:absolute;height:6px;transition:opacity 200ms;opacity:0;display:none;right:2px;bottom:2px;left:2px;border-radius:3px"><div style="position:relative;display:block;height:100%;cursor:pointer;border-radius:inherit;background-color:rgba(0,0,0,.2)"></div></div><div style="position:absolute;width:6px;transition:opacity 200ms;opacity:0;display:none;right:2px;bottom:2px;top:2px;border-radius:3px"><div style="position:relative;display:block;width:100%;cursor:pointer;border-radius:inherit;background-color:rgba(0,0,0,.2)"></div></div></div></div></nav><div class="jss33"><div class="jss34"><button tabindex="0" class="jss42 jss36 jss35" type="button" aria-label="Back to list" title="Back to the list"><span class="jss41"><svg class="jss45" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><g><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></g></svg></span><span class="jss52"></span></button><a tabindex="0" class="jss42 jss36 jss35" role="button" aria-label="Search" data-shape="closed" title="Search" href="/search/"><span class="jss41"><svg class="jss45 jss35" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><g><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></g></svg></span><span class="jss52"></span></a></div><div class="jss34"><nav class="jss59"><div><div><button tabindex="0" class="jss42 jss36 jss60" type="button" aria-label="Increase font size" aria-haspopup="true" title="Change font size"><span class="jss41"><svg class="jss45" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><g><path d="M9 4v3h5v12h3V7h5V4H9zm-6 8h3v7h3v-7h3V9H3v3z"></path></g></svg></span><span class="jss52"></span></button></div><div class="jss61" style="position:absolute;pointer-events:none;opacity:0"><div class="jss62 jss66 jss63" style="opacity:0;transform:scale(0.75, 0.5625);transform-origin:0 0 0" id="font-menu-list"><ul class="jss89 jss90" role="menu"><li tabindex="-1" class="jss42 jss95 jss98 jss102 jss103 jss93" role="menuitem">150%<span class="jss52"></span></li><li tabindex="-1" class="jss42 jss95 jss98 jss102 jss103 jss93" role="menuitem">125%<span class="jss52"></span></li><li tabindex="-1" class="jss42 jss95 jss98 jss102 jss103 jss93" role="menuitem">100%<span class="jss52"></span></li></ul></div></div></div></nav><button tabindex="0" class="jss42 jss36" type="button" aria-label="Back to top" title="Scroll to top"><span class="jss41"><svg class="jss45 jss35" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><g><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"></path></g></svg></span><span class="jss52"></span></button></div></div><aside class="jss105"><a class="jss107" href="/"><div class="jss15 jss108"><img alt="ISnackable" src="/static/avatar.e372c714.jpg" class="jss17"/></div></a><h3 class="jss106">ISnackable<small>Personal blog</small></h3><nav class="jss109"><div><div><button tabindex="0" class="jss42 jss36 jss110" type="button" aria-label="More" aria-haspopup="true"><span class="jss41"><svg class="jss45" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><g><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></g></svg></span><span class="jss52"></span></button></div><div class="jss111" style="position:absolute;pointer-events:none;opacity:0"><div class="jss62 jss66 jss63" style="opacity:0;transform:scale(0.75, 0.5625);transform-origin:0 0 0" id="menu-list"><ul class="jss89 jss90" role="menu"><li tabindex="-1" class="jss42 jss95 jss98 jss102 jss103 jss93" role="menuitem">Home<span class="jss52"></span></li><a style="display:block" tabindex="-1" href="/about/"><li tabindex="-1" class="jss42 jss95 jss98 jss102 jss103 jss93" role="menuitem">About<span class="jss52"></span></li></a><a style="display:block" tabindex="-1" href="/projects/"><li tabindex="-1" class="jss42 jss95 jss98 jss102 jss103 jss93" role="menuitem">My projects<span class="jss52"></span></li></a><a style="display:block" tabindex="-1" href="/contact/"><li tabindex="-1" class="jss42 jss95 jss98 jss102 jss103 jss93" role="menuitem">Contact<span class="jss52"></span></li></a></ul></div></div></div></nav></aside></div></div><script id="webpack-manifest">/*<![CDATA[*/window.webpackManifest={"0":"0-097e26e5c42c3e378136.js","1":"1-3a317d687cb7be94ddb6.js","231608221292675":"app-181f15d24de0b3d7cdbb.js","99219681209289":"component---node-modules-gatsby-plugin-offline-app-shell-js-5c4c5a0f7af9dc69d6d7.js","198517197184460":"component---src-templates-post-template-js-0061dcb532f193a51a3e.js","235131596041995":"component---src-templates-page-template-js-e0434750f574a9276ef2.js","70144966829960":"component---src-pages-contact-js-985a085bff6d3fc3336b.js","35783957827783":"component---src-pages-index-js-aa9570313651ef926b5a.js","142807904292071":"component---src-pages-search-js-6fe94fe3055688c44184.js","60335399758886":"path----8d077767356963412243.js","210333531512890":"path---offline-plugin-app-shell-fallback-a0e39f21c11f6a62c5ab.js","127883134214629":"path---cddc-2020-a7862a65e91855b83ec1.js","236706518002586":"path---a-call-to-hacktion-a-github-workflow-ctf-0ab64903d119051239b7.js","273950069227526":"path---about-55ff4cfc907d1f0e9c17.js","97786326051841":"path---projects-6c557d4f94cb7665c2bc.js","170786371021445":"path---success-834d9c3670dfbe951665.js","184662623972074":"path---contact-a0e39f21c11f6a62c5ab.js","142629428675168":"path---index-206ac74de0d3aab26f03.js","254572558124955":"path---search-882791dc92c36eb29e8e.js","114276838955818":"component---src-layouts-index-js-2db5931bcb6f43adeb81.js"}/*]]>*/</script><script>
+</ul></div></footer></div><div style="position:absolute;height:6px;transition:opacity 200ms;opacity:0;display:none;right:2px;bottom:2px;left:2px;border-radius:3px"><div style="position:relative;display:block;height:100%;cursor:pointer;border-radius:inherit;background-color:rgba(0,0,0,.2)"></div></div><div style="position:absolute;width:6px;transition:opacity 200ms;opacity:0;display:none;right:2px;bottom:2px;top:2px;border-radius:3px"><div style="position:relative;display:block;width:100%;cursor:pointer;border-radius:inherit;background-color:rgba(0,0,0,.2)"></div></div></div></main><nav class="jss21 is-aside open "><div class="jss22"><div style="position:relative;overflow:hidden;width:100%;height:100%"><div style="position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;-webkit-overflow-scrolling:touch;margin-right:0;margin-bottom:0"><div class="jss23"><header></header><ul class="jss24"><li class="jss29 ctf" style="display:block"><a class="jss30" href="/A-call-to-hacktion-a-github-workflow-ctf/"><div class="jss31 pointer"><div style="height:60px" class="lazyload-placeholder"></div></div><div class="jss32"><h1>A call to hacktion, a GitHub workflow CTF</h1><h2>GitHub Security Lab, Capture The Flag</h2></div></a></li><li class="jss29 ctf" style="display:block"><a class="jss30 active" aria-current="page" href="/CDDC2020/"><div class="jss31 pointer"><div style="height:60px" class="lazyload-placeholder"></div></div><div class="jss32"><h1>CDDC2020 CTF Writeup</h1><h2>Cyber Defenders Discovery Camp (CDDC) Capture-The-Flag competition</h2></div></a></li></ul></div></div><div style="position:absolute;height:6px;transition:opacity 200ms;opacity:0;display:none;right:2px;bottom:2px;left:2px;border-radius:3px"><div style="position:relative;display:block;height:100%;cursor:pointer;border-radius:inherit;background-color:rgba(0,0,0,.2)"></div></div><div style="position:absolute;width:6px;transition:opacity 200ms;opacity:0;display:none;right:2px;bottom:2px;top:2px;border-radius:3px"><div style="position:relative;display:block;width:100%;cursor:pointer;border-radius:inherit;background-color:rgba(0,0,0,.2)"></div></div></div></div></nav><div class="jss33"><div class="jss34"><button tabindex="0" class="jss42 jss36 jss35" type="button" aria-label="Back to list" title="Back to the list"><span class="jss41"><svg class="jss45" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><g><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path></g></svg></span><span class="jss52"></span></button><a tabindex="0" class="jss42 jss36 jss35" role="button" aria-label="Search" data-shape="closed" title="Search" href="/search/"><span class="jss41"><svg class="jss45 jss35" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><g><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></g></svg></span><span class="jss52"></span></a></div><div class="jss34"><nav class="jss59"><div><div><button tabindex="0" class="jss42 jss36 jss60" type="button" aria-label="Increase font size" aria-haspopup="true" title="Change font size"><span class="jss41"><svg class="jss45" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><g><path d="M9 4v3h5v12h3V7h5V4H9zm-6 8h3v7h3v-7h3V9H3v3z"></path></g></svg></span><span class="jss52"></span></button></div><div class="jss61" style="position:absolute;pointer-events:none;opacity:0"><div class="jss62 jss66 jss63" style="opacity:0;transform:scale(0.75, 0.5625);transform-origin:0 0 0" id="font-menu-list"><ul class="jss89 jss90" role="menu"><li tabindex="-1" class="jss42 jss95 jss98 jss102 jss103 jss93" role="menuitem">150%<span class="jss52"></span></li><li tabindex="-1" class="jss42 jss95 jss98 jss102 jss103 jss93" role="menuitem">125%<span class="jss52"></span></li><li tabindex="-1" class="jss42 jss95 jss98 jss102 jss103 jss93" role="menuitem">100%<span class="jss52"></span></li></ul></div></div></div></nav><button tabindex="0" class="jss42 jss36" type="button" aria-label="Back to top" title="Scroll to top"><span class="jss41"><svg class="jss45 jss35" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><g><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"></path></g></svg></span><span class="jss52"></span></button></div></div><aside class="jss105"><a class="jss107" href="/"><div class="jss15 jss108"><img alt="ISnackable" src="/static/avatar.48d00386.jpg" class="jss17"/></div></a><h3 class="jss106">ISnackable<small>Personal blog</small></h3><nav class="jss109"><div><div><button tabindex="0" class="jss42 jss36 jss110" type="button" aria-label="More" aria-haspopup="true"><span class="jss41"><svg class="jss45" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><g><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></g></svg></span><span class="jss52"></span></button></div><div class="jss111" style="position:absolute;pointer-events:none;opacity:0"><div class="jss62 jss66 jss63" style="opacity:0;transform:scale(0.75, 0.5625);transform-origin:0 0 0" id="menu-list"><ul class="jss89 jss90" role="menu"><li tabindex="-1" class="jss42 jss95 jss98 jss102 jss103 jss93" role="menuitem">Home<span class="jss52"></span></li><a style="display:block" tabindex="-1" href="/about/"><li tabindex="-1" class="jss42 jss95 jss98 jss102 jss103 jss93" role="menuitem">About<span class="jss52"></span></li></a><a style="display:block" tabindex="-1" href="/projects/"><li tabindex="-1" class="jss42 jss95 jss98 jss102 jss103 jss93" role="menuitem">My projects<span class="jss52"></span></li></a><a style="display:block" tabindex="-1" href="/contact/"><li tabindex="-1" class="jss42 jss95 jss98 jss102 jss103 jss93" role="menuitem">Contact<span class="jss52"></span></li></a></ul></div></div></div></nav></aside></div></div><script id="webpack-manifest">/*<![CDATA[*/window.webpackManifest={"0":"0-097e26e5c42c3e378136.js","1":"1-47bcdd90f41061fba5cd.js","231608221292675":"app-181f15d24de0b3d7cdbb.js","99219681209289":"component---node-modules-gatsby-plugin-offline-app-shell-js-5c4c5a0f7af9dc69d6d7.js","198517197184460":"component---src-templates-post-template-js-90bf2b9dbe5110e6abf7.js","235131596041995":"component---src-templates-page-template-js-e0434750f574a9276ef2.js","70144966829960":"component---src-pages-contact-js-985a085bff6d3fc3336b.js","35783957827783":"component---src-pages-index-js-aa9570313651ef926b5a.js","142807904292071":"component---src-pages-search-js-6fe94fe3055688c44184.js","60335399758886":"path----6fd185a3907fa9bdf502.js","210333531512890":"path---offline-plugin-app-shell-fallback-a0e39f21c11f6a62c5ab.js","127883134214629":"path---cddc-2020-66c3f9e45737e8f87d33.js","236706518002586":"path---a-call-to-hacktion-a-github-workflow-ctf-28f5f7dadef8b55cc53a.js","273950069227526":"path---about-55ff4cfc907d1f0e9c17.js","97786326051841":"path---projects-6c557d4f94cb7665c2bc.js","170786371021445":"path---success-834d9c3670dfbe951665.js","184662623972074":"path---contact-a0e39f21c11f6a62c5ab.js","142629428675168":"path---index-206ac74de0d3aab26f03.js","254572558124955":"path---search-882791dc92c36eb29e8e.js","114276838955818":"component---src-layouts-index-js-8cddc01660720351500c.js"}/*]]>*/</script><script>
             
   
   if(true) {
@@ -1999,4 +1999,4 @@ undefined4 <span class="token function">main</span><span class="token punctuatio
             wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
             wf.async = true;
             s.parentNode.insertBefore(wf, s);
-        })(document);</script><script>/*<![CDATA[*/["/commons-7b95809cd4e07ac9b1f3.js","/app-181f15d24de0b3d7cdbb.js","/path---cddc-2020-a7862a65e91855b83ec1.js","/component---src-templates-post-template-js-0061dcb532f193a51a3e.js","/component---src-layouts-index-js-2db5931bcb6f43adeb81.js"].forEach(function(s){document.write('<script src="'+s+'" defer></'+'script>')})/*]]>*/</script></body></html>
+        })(document);</script><script>/*<![CDATA[*/["/commons-56fed780373d7fc9ac31.js","/app-181f15d24de0b3d7cdbb.js","/path---cddc-2020-66c3f9e45737e8f87d33.js","/component---src-templates-post-template-js-90bf2b9dbe5110e6abf7.js","/component---src-layouts-index-js-8cddc01660720351500c.js"].forEach(function(s){document.write('<script src="'+s+'" defer></'+'script>')})/*]]>*/</script></body></html>
