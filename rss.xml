@@ -1,4 +1,210 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ISnackable's Blog]]></title><description><![CDATA[A blog site created with GatsbyJS.]]></description><link>https://isnackable.me</link><generator>RSS for Node</generator><lastBuildDate>Thu, 22 Jul 2021 15:27:34 GMT</lastBuildDate><item><title><![CDATA[Collaborating with CTFNote]]></title><description><![CDATA[Introduction Collaborating on a CTF competition isn’t really easy, especially if your team is operating remotely in a different timezone…]]></description><link>https://isnackable.me/ctfnote/</link><guid isPermaLink="false">https://isnackable.me/ctfnote/</guid><content:encoded>&lt;img src=&quot;https://github.com/TFNS/CTFNote/raw/main/screenshots/main-dark.png&quot; width=&quot;100%&quot; alt=&quot;CTFNote Home Page&quot;&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ISnackable's Blog]]></title><description><![CDATA[A blog site created with GatsbyJS.]]></description><link>https://isnackable.me</link><generator>RSS for Node</generator><lastBuildDate>Fri, 10 Sep 2021 06:01:58 GMT</lastBuildDate><item><title><![CDATA[Distributed T-Pot System]]></title><description><![CDATA[Introduction Last week, I was tasked with setting up a honeypot for personal research. While finding out on how to build a honeypot, I came…]]></description><link>https://isnackable.me/Building-a-honeypot/</link><guid isPermaLink="false">https://isnackable.me/Building-a-honeypot/</guid><content:encoded>&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Last week, I was tasked with setting up a honeypot for personal research. While finding out on how to build a honeypot, I came across &lt;a href=&quot;https://github.com/telekom-security/tpotce&quot;&gt;T-Pot&lt;/a&gt;, an open source honeypot platform. T-Pot looks to be an interesting project for a quick deployment of a honeypot. It is designed to run without any interaction or maintenance which seems perfect for me to test.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A honeypot is a security feature that sets up a simulated trap for attackers to fall into. An attacker can exploit weaknesses on a deliberately compromised computer system, allowing you to analyze them and enhance your security practices.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;T-Pot Technical Concepts&lt;/h2&gt;
+&lt;p&gt;T-Pot is based on the Debian 10 (Buster) network installer. The honeypot daemons as well as other support components are dockered. This allows T-Pot to run multiple honeypot daemons and tools on the same network interface while maintaining a small footprint and constrain each honeypot within its own environment.&lt;/p&gt;
+&lt;p&gt;The complete list of honeypots in T-Pot:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/huuck/ADBHoney&quot;&gt;adbhoney&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/Cymmetria/ciscoasa_honeypot&quot;&gt;ciscoasa&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/MalwareTech/CitrixHoneypot&quot;&gt;citrixhoneypot&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://conpot.org/&quot;&gt;conpot&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.micheloosterhof.com/cowrie/&quot;&gt;cowrie&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/aelth/ddospot&quot;&gt;ddospot&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/nsmfoo/dicompot&quot;&gt;dicompot&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/DinoTools/dionaea&quot;&gt;dionaea&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://gitlab.com/bontchev/elasticpot&quot;&gt;elasticpot&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/skeeto/endlessh&quot;&gt;endlessh&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/mushorg/glutton&quot;&gt;glutton&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/johnnykv/heralding&quot;&gt;heralding&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/yunginnanet/HellPot&quot;&gt;hellpot&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/foospidy/HoneyPy&quot;&gt;honeypy&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/SecureAuthCorp/HoneySAP&quot;&gt;honeysap&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/armedpot/honeytrap/&quot;&gt;honeytrap&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://gitlab.com/bontchev/ipphoney&quot;&gt;ipphoney&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/awhitehatter/mailoney&quot;&gt;mailoney&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/schmalle/medpot&quot;&gt;medpot&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/cypwnpwnsocute/RedisHoneyPot&quot;&gt;redishoneypot&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/citronneur/rdpy&quot;&gt;rdpy&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://mushmush.org/&quot;&gt;snare&lt;/a&gt;,&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://mushmush.org/&quot;&gt;tanner&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;T-Pot may also includes other tools depending on the installation type:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://cockpit-project.org/running&quot;&gt;Cockpit&lt;/a&gt; for a lightweight, webui for docker, os, real-time performance monitoring and web terminal.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://gchq.github.io/CyberChef/&quot;&gt;Cyberchef&lt;/a&gt; a web app for encryption, encoding, compression and data analysis.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/videos&quot;&gt;ELK stack&lt;/a&gt; to beautifully visualize all the events captured by T-Pot.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://mobz.github.io/elasticsearch-head/&quot;&gt;Elasticsearch Head&lt;/a&gt; a web front end for browsing and interacting with an Elastic Search cluster.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/0x4D31/fatt&quot;&gt;Fatt&lt;/a&gt; a pyshark based script for extracting network metadata and fingerprints from pcap files and live network traffic.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/smicallef/spiderfoot&quot;&gt;Spiderfoot&lt;/a&gt; a open source intelligence automation tool.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://suricata-ids.org/&quot;&gt;Suricata&lt;/a&gt; a Network Security Monitoring engine.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The figure below shows the architecture of the T-Pot system&lt;/p&gt;
+&lt;img src=&quot;https://github.com/telekom-security/tpotce/blob/master/doc/architecture.png?raw=true&quot; width=&quot;100%&quot; alt=&quot;T-Pot architecture&quot;&gt;
+&lt;h2&gt;Trying it out locally&lt;/h2&gt;
+&lt;p&gt;T-Pot has a system requirement of:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;8 GB RAM (less RAM is possible but might introduce swapping / instabilities)&lt;/li&gt;
+&lt;li&gt;128 GB SSD (smaller is possible but limits the capacity of storing events)&lt;/li&gt;
+&lt;li&gt;Network via DHCP&lt;/li&gt;
+&lt;li&gt;A working, non-proxied, internet connection&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To start testing it, I made use of the provided ISO image in the GitHub &lt;a href=&quot;https://github.com/telekom-security/tpotce/releases/tag/20.06.2&quot;&gt;releases&lt;/a&gt; and booted it up in a virtual machine (VM). The installation process was extremely simple, it took me about 5-10 minutes to get a fully functionally honeypot up and running from nothing.&lt;/p&gt;
+&lt;p&gt;To view and analyze the events/logs of the Honeypots, there is an Elasticsearch, Logstash, Kibana (ELK) dashboard to learn about the cyberattacks on the Honeypot system. Running a nmap scan on the Honeypot produce a result shown in the figures below.&lt;/p&gt;
+&lt;p&gt;Elasticsearch Dashboard:&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/T-Pot_Dashboard_1-097bfbf3228af6edc1c77b62547f9bfc-dab8d.jpeg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 800px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 38.08777429467085%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAIABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAcgJAv8A/8QAFBABAAAAAAAAAAAAAAAAAAAAEP/aAAgBAQABBQJ//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAEP/aAAgBAQAGPwJ//8QAFxABAAMAAAAAAAAAAAAAAAAAABEhQf/aAAgBAQABPyHEqf/aAAwDAQACAAMAAAAQD+//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAcEAEAAgEFAAAAAAAAAAAAAAABABEhMUFhkaH/2gAIAQEAAT8QH1qwoN7mJyXqf//Z&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;T-Pot Elastic Dashboard 1&quot;
+        title=&quot;&quot;
+        src=&quot;/static/T-Pot_Dashboard_1-097bfbf3228af6edc1c77b62547f9bfc-78f2b.jpeg&quot;
+        srcset=&quot;/static/T-Pot_Dashboard_1-097bfbf3228af6edc1c77b62547f9bfc-dce19.jpeg 200w,
+/static/T-Pot_Dashboard_1-097bfbf3228af6edc1c77b62547f9bfc-c1413.jpeg 400w,
+/static/T-Pot_Dashboard_1-097bfbf3228af6edc1c77b62547f9bfc-78f2b.jpeg 800w,
+/static/T-Pot_Dashboard_1-097bfbf3228af6edc1c77b62547f9bfc-ab4c4.jpeg 1200w,
+/static/T-Pot_Dashboard_1-097bfbf3228af6edc1c77b62547f9bfc-dab8d.jpeg 1276w&quot;
+        sizes=&quot;(max-width: 800px) 100vw, 800px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/T-Pot_Dashboard_2-0e97dde0a6555a1f85ffbc49f404a4ab-1b431.jpeg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 800px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 76.88715953307393%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAchKkC//xAAXEAADAQAAAAAAAAAAAAAAAAAAESAh/9oACAEBAAEFAh5H/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAIP/aAAgBAQAGPwJf/8QAGBAAAwEBAAAAAAAAAAAAAAAAAAERECH/2gAIAQEAAT8hTjp1GUUz/9oADAMBAAIAAwAAABBcL//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8QP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EAB0QAAMAAQUBAAAAAAAAAAAAAAABESExQVFhcYH/2gAIAQEAAT8Qc6L6NkSlm0x2KLw9hWb1X0cuD//Z&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;T-Pot Elastic Dashboard 2&quot;
+        title=&quot;&quot;
+        src=&quot;/static/T-Pot_Dashboard_2-0e97dde0a6555a1f85ffbc49f404a4ab-78f2b.jpeg&quot;
+        srcset=&quot;/static/T-Pot_Dashboard_2-0e97dde0a6555a1f85ffbc49f404a4ab-dce19.jpeg 200w,
+/static/T-Pot_Dashboard_2-0e97dde0a6555a1f85ffbc49f404a4ab-c1413.jpeg 400w,
+/static/T-Pot_Dashboard_2-0e97dde0a6555a1f85ffbc49f404a4ab-78f2b.jpeg 800w,
+/static/T-Pot_Dashboard_2-0e97dde0a6555a1f85ffbc49f404a4ab-ab4c4.jpeg 1200w,
+/static/T-Pot_Dashboard_2-0e97dde0a6555a1f85ffbc49f404a4ab-1b431.jpeg 1285w&quot;
+        sizes=&quot;(max-width: 800px) 100vw, 800px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h2&gt;Distributed System&lt;/h2&gt;
+&lt;p&gt;T-Pot does not have any remote logging which did not make sense to me, it stores all of the events that was captured in the honeypot itself. Wouldn’t that mean that if an attacker has successfully compromised the honeypot, they could delete the logs?. Of course they will have to escape the docker container too, but a hacker is skilled enough, it is entirely possible. However, since I am not an expert in this matter, I do not know if this is truly the case. Nevertheless, I would still like to setup a distributed system for remote logging.&lt;/p&gt;
+&lt;p&gt;There is a GitHub discussion &lt;a href=&quot;https://github.com/telekom-security/tpotce/discussions/250&quot;&gt;#250&lt;/a&gt; regarding on a distributed installation type. Which discuss about the advantages and possible issues on a distributed installation. It also gives some hints on how to setup a distributed system. One example would be &lt;a href=&quot;https://github.com/derp7331/tpot_distributed&quot;&gt;derp7331/tpot_distributed&lt;/a&gt;, derp7331 has developed scripts to setup a distributed T-Pot (18.11) infrastructure, which is a good starting point. The author of T-Pot mentioned that distributed installation is not a priority, and will be on the to-do list. &lt;/p&gt;
+&lt;p&gt;Setting up a distributed T-Pot system requires manual tweaking of the docker-compose file. or utilizing derp7331’s scripts to tweak the configuration files. However, derp7331 scripts is outdated and would not work on the latest version of T-Pot. Thus, we will have to look into the first method. Luckily for me, someone has already done that for us: &lt;a href=&quot;https://blog.theo.com.tw/Research/Deploy-A-Distributed-T-Pot-System-For-Personal-Research-In-Budget-Part-2/&quot;&gt;Theo Chen Blog&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The distributed system will make use of &lt;a href=&quot;https://www.elastic.co/beats/filebeat&quot;&gt;Filebeat&lt;/a&gt;, a lightweight shipper for forwarding and centralizing log data. The system architecture of a distributed system can be seen in the figure below.&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/distributed_architecture-4efb54017c7987e9a0b8e8d9f71354b6-bcb1d.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 678px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 84.21828908554572%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAAAsTAAALEwEAmpwYAAAD9ElEQVQ4y5VTXW/bVBj2ACFxwQ3wS5A2ib8AGiBtTBrcIXHDmNYxCQqCFgkhIRUhJNC0rcuCoF3pxAoam9Yv2i4lTbp8OEnzaTvxVxLHdo6dxM7nsf1y7BYoF1xwpCOf53ne9/H7+j2mkpz2dqmuL3OqEaL5djhVM8NFWQ2zLRSma3o4xZthoodZpR1OE5ysGeGSrIVJPNEJxwfxt5gWWqQ59VOqrHRvj4whiHQZWn2AWhegVa2DlGGgZXvA9wA0XgGJroBCcLVDcK0BcpYlOoBA9CYjgVaWQVDNPMVy+vzn78zC6VNvDGORPK4qI/z+2ffwKy+ewY9jJcy0BviDs5fwyyfP4GS0jMuyjafPX8avnjqH/XiuPcZXXrswfv2l85B+lItSJQmFYktbsDRzA2cLdSg2bXjw3R34aeYm5Eoy5JsWbFxdgYWZ63BQbMCB3IP16yuwNHsTsgUZCqSth9/ecVa++BEKBSFOFaV2CA4X5jUbaMGE8REh6jZkBONvLBCc5g1wjjAf6EF8QCmGHaesziA095iHD3dyuNG2gSUVfbyWgo92cqAQzDV78Mk6DdPbGWiiPnCNHsxuZgP9ML5H4tPOZ3EWbGsQp5A+mr+WScK7O6tDUe87nDJw53a33KndDVfS+26V4K/3Iu6lR2uuEOCh+0084l6MrAc61yTxf2yPr0S3SAHWHkWL3dsaKTcvd4J2E1VEtgZ0VYUEq0Gc0SBJ8D75nglWD3CCU4muQaqGgvhcvQd1ckNyUjdP0bJ9Mcl3f98ttX6OMXoiziIuWtEruyWViVY0Jsa0K9tZmfk1csARrbJHuM20wKwlq5WtrMRupmuF1f3Kb5s0/zBaVr+ijq+MbF0lQ/CyoqHmpA7KiibK13soKyAUPeCNYrMfcFnBQBke6WRb5GJnMq3xM8dM7BNF2XzaP+dEY8mflusBeEeTHI3G0NLaoBs96PZ6AefBPzrTMBr3890X/HxxAE9QtGRRlbrxlE8cSJ0F/wYMLDTp9weebVvecDgmuRMPxqrnOG7g5QxGniWpjkNeVm11heX91nN+/j7bPhFUyTXNwLCgwgJ0tsFOvYndoLoBTLAHkXtzkKKvEScPfL5xLwbi1C3/CKzSEe/GDg1JcUeGSicwrJmwoIllOP3WSfxlMU2KdcAZj2Bq/gZcjuUATyZBm8sP7sO5xZDrI75pit8n/sMwL5s/+AnxAjOkkYr9v4eYYG00wNW2gvu2HXBdPMbpLpoMPRd4pVtbTKqHhmLvr5Y7R9/QvAv/c7FNE/1Co+f/ZUjG/2RACOZ0SWrHy3J7tVxHG2SCGyzZ/rNC8PEz0deZOtomuYt7wvDZQ0OL+hM22DQCy6DWewAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px transparent;&quot;
+        alt=&quot;Distributed System Architecture&quot;
+        title=&quot;&quot;
+        src=&quot;/static/distributed_architecture-4efb54017c7987e9a0b8e8d9f71354b6-bcb1d.png&quot;
+        srcset=&quot;/static/distributed_architecture-4efb54017c7987e9a0b8e8d9f71354b6-dd772.png 200w,
+/static/distributed_architecture-4efb54017c7987e9a0b8e8d9f71354b6-6c37a.png 400w,
+/static/distributed_architecture-4efb54017c7987e9a0b8e8d9f71354b6-bcb1d.png 678w&quot;
+        sizes=&quot;(max-width: 678px) 100vw, 678px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;p&gt;For Filebeat to send the raw log data to the central logging server, it requires a filebeat.yml config for T-Pot, you can refer to my forked T-Pot repository at &lt;a href=&quot;https://github.com/ISnackable/tpotce&quot;&gt;here&lt;/a&gt;. Logstash will listen to the request from Filebeat from 64299/tcp.&lt;/p&gt;
+&lt;p&gt;Guide:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Install the Debain 10 (Stable) &lt;a href=&quot;https://www.debian.org/releases/buster/debian-installer/&quot;&gt;ISO&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Clone this repository &lt;/li&gt;
+&lt;li&gt;Follow the commands below&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;On both server:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; nodejs &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;vim&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ethtool&lt;/span&gt; python3-venv python3-pip glances &lt;span class=&quot;token function&quot;&gt;htop&lt;/span&gt; docker-compose &lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; cockpit cockpit-docker
+$ &lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; -sSL https://get.docker.com/ &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;sh&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;usermod&lt;/span&gt; -aG docker root&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;On central collector server:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; clone https://github.com/ISnackable/tpotce
+$ &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; tpotce/docker/elk/logstash/dist/logstash_with_filebeat.conf /opt/logstash.conf
+
+&lt;span class=&quot;token comment&quot;&gt;# Follow the official instruction to install as &quot;COLLECTOR&quot; type&lt;/span&gt;
+$ &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; tpotce/iso/installer/
+$ ./install.sh --type&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;user&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;On each sensor server:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; clone https://github.com/ISnackable/tpotce
+$ &lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; tpotce/docker/elk/filebeat/fi* /opt/
+
+&lt;span class=&quot;token comment&quot;&gt;# Follow the official instruction to install as &quot;NEXTGEN&quot; type&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;vim&lt;/span&gt; /opt/filebeat.yml &lt;span class=&quot;token comment&quot;&gt;# Modify your central collector server&apos;s IP&lt;/span&gt;
+$ &lt;span class=&quot;token builtin class-name&quot;&gt;cd&lt;/span&gt; tpotce/iso/installer/
+$ ./install.sh --type&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;user&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;Hosting on AWS&lt;/h2&gt;
+&lt;p&gt;Hosting it on AWS is pretty simple, make sure to properly configure the Security groups and just follow the guide written by @mkmety. You may want to setup encrpytion for remote logging using SSL, or setup a Wireguard VPN to communication between the central logging server and honeypot sensors.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://medium.com/@mkmety/deploying-t-pot-the-all-in-one-honeypot-platform-on-aws-ec2-33f019c645fb&quot;&gt;https://medium.com/@mkmety/deploying-t-pot-the-all-in-one-honeypot-platform-on-aws-ec2-33f019c645fb&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Resources&lt;/h2&gt;
+&lt;p&gt;Speical thanks to Theo Chen and all of the resources I found below.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/telekom-security/tpotce&quot;&gt;https://github.com/telekom-security/tpotce&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/derp7331/tpot_distributed&quot;&gt;https://github.com/derp7331/tpot_distributed&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://blog.theo.com.tw/Research/Deploy-A-Distributed-T-Pot-System-For-Personal-Research-In-Budget-Part-2/&quot;&gt;https://blog.theo.com.tw/Research/Deploy-A-Distributed-T-Pot-System-For-Personal-Research-In-Budget-Part-2/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://medium.com/@mkmety/deploying-t-pot-the-all-in-one-honeypot-platform-on-aws-ec2-33f019c645fb&quot;&gt;https://medium.com/@mkmety/deploying-t-pot-the-all-in-one-honeypot-platform-on-aws-ec2-33f019c645fb&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Collaborating with CTFNote]]></title><description><![CDATA[Introduction Collaborating on a CTF competition isn’t really easy, especially if your team is operating remotely in a different timezone…]]></description><link>https://isnackable.me/ctfnote/</link><guid isPermaLink="false">https://isnackable.me/ctfnote/</guid><content:encoded>&lt;img src=&quot;https://github.com/TFNS/CTFNote/raw/main/screenshots/main-dark.png&quot; width=&quot;100%&quot; alt=&quot;CTFNote Home Page&quot;&gt;
 &lt;h2&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;Collaborating on a CTF competition isn’t really easy, especially if your team is operating remotely in a different timezone. Managing files and assignment of challenges can get hectic.&lt;/p&gt;
 &lt;p&gt;My team and I used to collaborate on Discord, and we realised that when we wanted to see the challenges we solved, we would realised that we didn’t record down information on how to solve it. Thus, losing the steps on how to solve the challenge.&lt;/p&gt;
@@ -86,8 +292,10 @@ developed by &lt;a href=&quot;https://github.com/TFNS&quot;&gt;The Flat Network 
 &lt;li&gt;CMD_DOMAIN=&lt;code class=&quot;language-text&quot;&gt;&amp;lt;your-app-name&gt;.herokuapp.com&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;CMD_PROTOCOL_USESSL=&lt;code class=&quot;language-text&quot;&gt;true&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;CMD_URL_PATH=&lt;code class=&quot;language-text&quot;&gt;pad&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;CMD_IMAGE_UPLOAD_TYPE=&lt;code class=&quot;language-text&quot;&gt;filesystem&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;PGSSLMODE=&lt;code class=&quot;language-text&quot;&gt;no-verify&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;PGSSLMODE=&lt;code class=&quot;language-text&quot;&gt;no-verify&lt;/code&gt;&lt;/p&gt;
+&lt;!-- - CMD\_IMAGE\_UPLOAD_TYPE=`filesystem` --&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Once it has been deployed, open the Heroku Postgres add-on page and copy the Database Credentials URI down somewhere as we will need it later for the backend app.&lt;/p&gt;
 &lt;h3&gt;Deploy the backend app&lt;/h3&gt;
@@ -290,7 +498,8 @@ heroku container:release web --app &lt;span class=&quot;token variable&quot;&gt;
 &lt;img src=&quot;https://github.com/TFNS/CTFNote/blob/main/screenshots/task.png?raw=true&quot; width=&quot;100%&quot; alt=&quot;CTFNote Task Page&quot;&gt;
 &lt;h2&gt;Acknowledgement&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/TFNS/CTFNote/&quot;&gt;https://github.com/TFNS/CTFNote/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://stackoverflow.com/questions/52781529/nginx-heroku-docker-is-it-possible-to-run-nginx-as-a-reverse-proxy-on-heroku&quot;&gt;https://stackoverflow.com/questions/52781529/nginx-heroku-docker-is-it-possible-to-run-nginx-as-a-reverse-proxy-on-heroku&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Ricing my setup]]></title><description><![CDATA[NOT DONE Introduction The term “rice” is used to describe a person’s unix desktop where “ricing” is when someone is custom their desktop…]]></description><link>https://isnackable.me/dotfiles/</link><guid isPermaLink="false">https://isnackable.me/dotfiles/</guid><content:encoded>&lt;h1&gt;NOT DONE&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://stackoverflow.com/questions/52781529/nginx-heroku-docker-is-it-possible-to-run-nginx-as-a-reverse-proxy-on-heroku&quot;&gt;https://stackoverflow.com/questions/52781529/nginx-heroku-docker-is-it-possible-to-run-nginx-as-a-reverse-proxy-on-heroku&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Ricing my setup]]></title><description><![CDATA[NOT DONE (IN PROGRESS) https://github.com/ISnackable/dotfiles Introduction The term “rice” is used to describe a person’s unix desktop where…]]></description><link>https://isnackable.me/dotfiles/</link><guid isPermaLink="false">https://isnackable.me/dotfiles/</guid><content:encoded>&lt;h1&gt;NOT DONE (IN PROGRESS)&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ISnackable/dotfiles&quot;&gt;https://github.com/ISnackable/dotfiles&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;The term “rice” is used to describe a person’s unix desktop where “ricing” is when someone is custom their desktop such as the icons, panels, or system interface. When it comes to ricing a tiling window manager though, the ricing of a user’s system becomes much more involved. Basic things such as the panel bar and application launcher must be configured by the user.&lt;/p&gt;
 &lt;p&gt;The reddit community &lt;a href=&quot;https://www.reddit.com/r/unixporn&quot;&gt;/r/unixporn&lt;/a&gt; is a great place to stay up to date on what people are using for their setups.&lt;/p&gt;
@@ -431,7 +640,7 @@ heroku container:release web --app &lt;span class=&quot;token variable&quot;&gt;
 &lt;/span&gt;    return &quot;&quot;
     result-encoding: string&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
-&lt;p&gt;Looking at the workflow file again, I see that my input (&lt;em&gt;comment\&lt;/em&gt;body&lt;em&gt;), is flows to `console.log(process.env.COMMENT&lt;/em&gt;BODY)&lt;code class=&quot;language-text&quot;&gt;. My first initial thought is that I could potential inject javascript code here. To test my theory, I tried inputting quotes,&lt;/code&gt;’&lt;code class=&quot;language-text&quot;&gt;and&lt;/code&gt;”` to see if there is any error generated.&lt;/p&gt;
+&lt;p&gt;Looking at the workflow file again, I see that my input (comment_body), is flows to &lt;code class=&quot;language-text&quot;&gt;console.log(process.env.COMMENT_BODY)&lt;/code&gt;. My first initial thought is that I could potential inject javascript code here. To test my theory, I tried inputting quotes, &lt;code class=&quot;language-text&quot;&gt;&apos;&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;&quot;&lt;/code&gt; to see if there is any error generated.&lt;/p&gt;
 &lt;p&gt;And did it work? Of course that didn’t work, it would have been too easy if it did. Afterwards, I thought to try out some of the steps written in the GitHub Security Lab blog post about untrusted input. I tried template injection, but that didn’t work as there is no template here.&lt;/p&gt;
 &lt;p&gt;Sadly, I was stuck here for a long time, just spamming and hoping for an error to pop out. I decided to continue googling GitHub actions/workflow, to see if I could find anything of interest.&lt;/p&gt;
 &lt;p&gt;Which somehow, I did. I found out that there is something called “workflow command”, not sure what that is, I read the website and noticed that a workflow command was passed in a &lt;code class=&quot;language-text&quot;&gt;console.log&lt;/code&gt;. I tried doing the same thing just to see what will happen.&lt;/p&gt;
@@ -440,7 +649,7 @@ heroku container:release web --app &lt;span class=&quot;token variable&quot;&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;
       &lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; steps.comment_log.outputs.COMMENT_ID &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
       &lt;/div&gt;
-&lt;p&gt;Back to the workflow file again, I noticed that if I wanted the next step to run, the comment&lt;em&gt;log needed to output the COMMENT_ID, right? Note: _Not really, &lt;code class=&quot;language-text&quot;&gt;steps.comment_log.outputs.COMMENT_ID&lt;/code&gt; is actually just the value of the output from the comment_log step.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Back to the workflow file again, I noticed that if I wanted the next step to run, the comment_log needed to output the COMMENT_ID, right? &lt;em&gt;Note: Not really, &lt;code class=&quot;language-text&quot;&gt;steps.comment_log.outputs.COMMENT_ID&lt;/code&gt; is actually just the value of the output from the comment_log step.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;With that, I’m going to skip my painstaking redundant effort to try to get “COMMENT_BODY” to be the value of “COMMENT_ID”.&lt;/p&gt;
 &lt;p&gt;Now, another workflow command is &lt;code class=&quot;language-text&quot;&gt;::set-output name=action_fruit::strawberry&lt;/code&gt;. This workflow command set the value output of “action_fruit” to “strawberry”. Understanding this command, I tried to set the output value of comment_log, “COMMENT_ID” to “true” after learning that expression in the &lt;code class=&quot;language-text&quot;&gt;if&lt;/code&gt; statement will be evaluated as an expression.&lt;/p&gt;
 &lt;p&gt;My input: &lt;code class=&quot;language-text&quot;&gt;::set-output name=COMMENT_ID::true&lt;/code&gt;. Finally, I started to see progress. Quickly, I know that command injection is possible, as this input is treated as an expression as part of the variable declaration.&lt;/p&gt;
