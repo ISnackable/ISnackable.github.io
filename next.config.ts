@@ -23,6 +23,10 @@ const nextConfig: NextConfig = {
           protocol: url.protocol.replace(':', '') as 'http' | 'https',
         }
       }),
+      {
+        hostname: '**.github.dev',
+        protocol: 'https',
+      },
     ],
   },
   reactStrictMode: true,
