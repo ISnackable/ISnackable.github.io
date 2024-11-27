@@ -13,7 +13,7 @@
 
   // The optional 'workspaceFolder' property is the path VS Code should open by default when
   // connected. This is typically a file mount in .devcontainer/docker-compose.yml
-  "workspaceFolder": "/workspace",
+	"workspaceFolder": "/workspace",
   // Features to add to the dev container. More info: https://containers.dev/features.
 
   "features": {
@@ -32,7 +32,9 @@
         "esbenp.prettier-vscode",
         "dbaeumer.vscode-eslint",
         "bradlc.vscode-tailwindcss",
-        "EditorConfig.EditorConfig"
+        "EditorConfig.EditorConfig",
+        "usernamehw.errorlens",
+        "yoavbls.pretty-ts-errors"
       ],
       "settings": {
         "editor.formatOnSave": true
