@@ -53,10 +53,8 @@
 
   // Uncomment the next line if you want to keep your containers running after VS Code shuts down.
   // "shutdownAction": "none",
-
-  "initializeCommand": [
-    "./.devcontainer/initializeCommand.sh"
-  ],
+  
+  "initializeCommand": "echo localWorkspaceFolder=${localWorkspaceFolderBasename} > .devcontainer/.env",
 
   // Uncomment the next line to run commands after the container is created.
   "postCreateCommand": "sudo chown -f vscode node_modules && pnpm install",
