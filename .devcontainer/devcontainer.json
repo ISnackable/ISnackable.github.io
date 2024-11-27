@@ -13,7 +13,7 @@
 
   // The optional 'workspaceFolder' property is the path VS Code should open by default when
   // connected. This is typically a file mount in .devcontainer/docker-compose.yml
-	"workspaceFolder": "/workspace",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   // Features to add to the dev container. More info: https://containers.dev/features.
 
   "features": {
@@ -53,6 +53,10 @@
 
   // Uncomment the next line if you want to keep your containers running after VS Code shuts down.
   // "shutdownAction": "none",
+
+  "initializeCommand": [
+    "./.devcontainer/initializeCommand.sh"
+  ],
 
   // Uncomment the next line to run commands after the container is created.
   "postCreateCommand": "sudo chown -f vscode node_modules && pnpm install",
