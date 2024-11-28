@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { cn } from 'src/utilities/cn'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
+import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import React from 'react'
 
 import { AdminBar } from '@/components/AdminBar'
@@ -29,16 +30,18 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </head>
       <body>
         <Providers>
-          <AdminBar
-            adminBarProps={{
-              preview: isEnabled,
-            }}
-          />
-          <LivePreviewListener />
+          <NuqsAdapter>
+            <AdminBar
+              adminBarProps={{
+                preview: isEnabled,
+              }}
+            />
+            <LivePreviewListener />
 
-          <Header />
-          {children}
-          <Footer />
+            <Header />
+            {children}
+            <Footer />
+          </NuqsAdapter>
         </Providers>
       </body>
     </html>

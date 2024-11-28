@@ -43,14 +43,17 @@
     "jsonwebtoken": "9.0.2",
     "lucide-react": "^0.462.0",
     "next": "^15",
+    "nuqs": "^2.2.3",
     "payload": "^3.2.1",
     "payload-admin-bar": "^1.0.6",
     "react": "19.0.0-rc-65a56d0e-20241020",
     "react-dom": "19.0.0-rc-65a56d0e-20241020",
     "react-hook-form": "7.53.2",
+    "react-medium-image-zoom": "^5.2.11",
     "sharp": "0.33.5",
     "tailwind-merge": "^2.3.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "thumbhash": "^0.1.1"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.1.6",
